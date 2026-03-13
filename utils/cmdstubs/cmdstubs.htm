@@ -1,0 +1,29 @@
+<html>
+<head>
+<link rel="stylesheet" href="../../../xsi.css" type="text/css">
+<title>CmdStubs</title>
+</head>
+
+<body>
+
+<h1>CmdStubs</h1>
+<p align="left">This utility script helps you invoke Softimage commands within your C++ API-base plug-in.  It generates functions for each Softimage Command (including any custom commands installed on 
+your system).  These functions are easier to use than calling Application::ExecuteCommand directly.</p>
+<ol>
+  <li>
+    <p align="left">Run the JScript in Softimage.  This generates the cmdstubs.cpp and cmdstubs.h file.</li>
+  <li>
+    <p align="left">Include the resulting cmdstubs.cpp and cmdstubs.h in your C++ plug-in.  You could also extract just the code related to the commands you want to call.</li>    
+<li>
+    <p align="left">Softimage commands can now be invoked by calling a function. See the dotXSIConverter example for an example usage.</li>    
+  </li>
+<li>
+    <p align="left">When each new version of Softimage ships you can run this script again to include any new commands in your project.</li>    
+  </li>
+
+</ol>
+
+Please refer to the script file (cmdstubs.js) for further details.  
+</body>
+
+</html>
