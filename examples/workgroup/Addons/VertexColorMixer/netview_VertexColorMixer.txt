@@ -1,0 +1,1 @@
+This example shows how to create an operator that uses port group instances to connect to many vertex color properties. The operator write a processed result to a vertex color property acting as the mixed result.

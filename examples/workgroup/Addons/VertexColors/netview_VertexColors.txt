@@ -1,0 +1,1 @@
+This example is the source code for the VertexColors plug-in included with Softimage. This plug-in uses a custom display to implement a tool for creating and editing vertex colors on a polygon mesh.
