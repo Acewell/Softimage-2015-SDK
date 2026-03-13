@@ -1,0 +1,76 @@
+//***************************************************************************************
+// File supervisor: Crosswalk team
+/*!
+	\file ColorRGB.h
+	\brief Defines the CSLColorRGBProxy class
+
+	Copyright 2008 Autodesk, Inc.  All rights reserved.
+	Use of this software is subject to the terms of the Autodesk license agreement
+	provided at the time of installation or download, or which otherwise accompanies
+	this software in either electronic or hard copy form.
+*/
+//***************************************************************************************
+
+#ifndef __COLORRGB_H__
+#define __COLORRGB_H__
+
+#include "SL_Float.h"			// CSLFloatProxy
+#include <SIBCVector.h>			// CSIBCVector3D
+#include <SIBCColor.h>			// CSIBCColorf
+class CCOLLADATemplate;
+
+/*! \brief Allows modification of an RGB parameter in a template
+*/
+class XSIEXPORT CSLColorRGBProxy
+{
+public:
+
+	/*! Constructor
+		\param in_pTemplate Template that contains the RGB values
+		\param in_lIndexR Index in the template for the red value
+		\param in_lIndexG Index in the template for the green value
+		\param in_lIndexB Index in the template for the blue value
+	*/
+	CSLColorRGBProxy
+	(
+		CdotXSITemplate *in_pTemplate,
+		SI_Long in_lIndexR,
+		SI_Long in_lIndexG,
+		SI_Long in_lIndexB
+	);
+
+	/*! Sets the RGB value
+		\param in_rColor	The new color
+		\return CSLColorRGBAProxy&	Reference to this color
+	*/
+    CSLColorRGBProxy& operator =(const CSIBCColorf &in_rColor);
+
+	/*! Conversion operator. Converts the color in this object to a CSIBCColorf object
+	*/
+    operator CSIBCColorf();
+
+	/*! Gets the red value
+		\return CSLFloatProxy Parameter containing the red value of this color
+	*/
+	CSLFloatProxy& R();
+
+	/*! Gets the green value
+		\return CSLFloatProxy Parameter containing the green value of this color
+	*/
+	CSLFloatProxy& G();
+
+	/*! Gets the blue value
+		\return CSLFloatProxy Parameter containing the blue value of this color
+	*/
+	CSLFloatProxy& B();
+
+	void	Connect ( CdotXSITemplate *in_pTemplate, SI_Long in_lIndexR, SI_Long in_lIndexG, SI_Long in_lIndexB );
+	void	Connect ( CSLTemplate *in_pTemplate, CCOLLADATemplate *in_pOwner, SI_Long in_lIndexR, SI_Long in_lIndexG, SI_Long in_lIndexB, CSLCOLLADAScene* in_pScene, int in_CurveType[], const char* in_XSIName[] );
+
+protected:
+	CSLFloatProxy m_fR;
+	CSLFloatProxy m_fG;
+	CSLFloatProxy m_fB;
+};
+
+#endif //__COLORRGB_H__
