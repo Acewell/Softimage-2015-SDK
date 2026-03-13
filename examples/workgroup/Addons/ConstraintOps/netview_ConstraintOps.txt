@@ -1,0 +1,1 @@
+Demonstration of "Constraint" style Self-Installed Custom Operators.  These are operators that hold objects or parameter values together, as an alternative to features like Constraints, Expressions and Proxy Parameters.

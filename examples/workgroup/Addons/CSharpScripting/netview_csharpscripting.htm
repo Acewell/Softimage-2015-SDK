@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>CSharpScripting</title>
+		<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<LINK href="../../doc/shared/examples.css" type="text/css" rel="StyleSheet">
+			<script src="../../doc/shared/utils.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<div class="body"><a name="top"></a><IMG class="netview" style="PADDING-RIGHT: 6px; FLOAT: left" src="netview_csharpscripting.jpg">
+			<h1>C# Scripting</h1>
+			<p>
+			This plug-in shows how to use C# as a scripting language from the Scripting Editor. You can use it when you
+			need to test some simple C# code in Softimage without having to create a plug-in. To use C# scripting, just add a Script.Main method
+			entry-point in the Scripting Editor, type C# code in the Main function and Run the code by right-clicking the <b>C# Scripting | Run</b> menu
+			in the Scripting Editor window.
+			</p>
+
+			<b>E.g.:</b>
+<pre>
+   class Script
+   {
+      public static void Main()
+      {
+         // Code goes here
+      }
+   }
+</pre>
+
+			<p>The C# scripting menu contains the following entries:
+			<ul>
+			<li><strong>Run</strong>: Compiles and executes the current .cs file. Compile errors are listed in the history.
+			<li><strong>New</strong>: Clears the Scripting Editor and adds a blank C# entry-point.
+			<li><strong>Open</strong>: Loads a .cs file in the editor.
+			<li><strong>Load User Files</strong>: Lists all user .cs files in a sub-menu. Files can be loaded by selecting an entry.
+			<li><strong>Save</strong>: Saves the content of the editor in a .cs file.
+			<li><strong>Save As</strong>: Saves the content of the editor in a new .cs file.
+			<li><strong>References</strong>: Lists the assemblies referenced by the current C# script.
+			</ul>
+
+			<br><b>Note</b>: The assemblies required by your C# code are not referenced automatically by the C# compiler. If a reference is missing,
+			the compiler will issue an error. Referenced assemblies can be added/removed through the
+			References menu. For instance, if your script needs a reference to System.Web, you must add
+			an entry to the reference list containing System.Web.dll.
+
+			<h2>Example Files</h2>
+			<DIV class="body">
+				<table>
+					<tr>
+						<td><strong>Location</strong></td>
+						<td><span class="installPath"></span></td>
+					</tr>
+					<tr>
+						<td><strong>Files</strong></td>
+						<td>
+						<div class="examplefile" folder="src">CSharpScripting.csproj</div>
+						<div class="examplefile" folder="src">CSharpScripting.cs</div>
+						</td>
+					</tr>
+				</table>
+				<a name="build"></a>
+				<h2>Running the Example</h2>
+				<div id="toinstall" style="DISPLAY: none">
+					<p class="proc-head">To install the example</p>
+					<ul>
+						<li>
+							<p>Connect to the Softimage SDK workgroup at
+								<span class="workgroupPath">%XSISDK_ROOT%\examples\workgroup</span>.</p>
+							<ol>
+						<li>
+							In the <strong>Plug-in Manager</strong>, click the <strong>Workgroups</strong>
+						tab.
+						<li>
+							Click <strong>File</strong> and then click <strong>Connect</strong>.
+						<li>
+							In the <strong>Connect to Workgroup</strong> dialog box, click <IMG src="..\..\doc\shared\bBrowse.gif">,
+							locate the workgroup folder and then click <strong>Select</strong>.
+						</li>
+						</OL></LI></ul>
+					<p class="proc-head">To view the help page for an example</p>
+					<ul>
+						<li>
+							Do one of the following:
+							<ul>
+								<li>
+									In the Plug-in Tree, expand the SDK examples workgroup, right-click the example
+									add-on and then click <strong>Help</strong>.
+								<li>
+									Open a Net View and click <IMG style="BOTTOM: -6px; POSITION: relative" src="..\..\doc\shared\xsiweb.png">
+									to go to Softimage Net local. In the top navigation bar, click <strong>add-ons</strong>,
+									and then click the SDK example add-on.
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div>
+					<p class="proc-head">To run the example</p>
+					<ul>
+						<li>From the Scripting Editor, right-click in the editor window and select the <b>C# Scripting | New</b> menu.
+						<li>Add some C# code in the Main method such as:
+<pre>
+public static void Main()
+{
+   CXSIApplicationClass xsi = new CXSIApplicationClass();
+   xsi.LogMessage( "Called From Main", siSeverity.siInfo );
+}
+</pre>
+						<li>Right-click in the Scripting Editor window and select the <b>C# Scripting | Run</b> menu.
+					</ul>
+				</div>
+
+				<a name="build"></a>
+				<h2>Building the C# Scripting Example</h2>
+				<p>
+				Softimage SDK includes a compiled version of C# Scripting. If you want to modify the code, you can rebuild the example by following these instructions.
+				</p>
+				<div id="windows-build">
+				<p class="proc-head">To build the example on Windows</p>
+				<ol>
+					<li>
+						<p><span class="sishell" cssrc="src">Open</span> an Softimage command prompt, and type <strong>devenv</strong> to start Visual Studio .NET.</p>
+						<p>Starting Visual Studio .NET from an Softimage command prompt ensures that environment variables such as XSI_USERHOME are set (otherwise you'll get build and link errors).</p>
+						<p><strong>Tip</strong> To load the <span class="devenv" csproj="src\CSharpScripting.csproj">CSharpScripting</span> project from the command line, type:</p>
+						<pre>devenv <span class="installPath">src\CSharpScripting.csproj</span></pre>
+					        <li> In Visual Studio .NET, open the project file <tt>.csproj</tt>.
+					        <li> Select a configuration (Release or Debug) and build the DLL.</li>
+					</li>
+				</ol>
+			</div>
+
+				<div id="keywords">
+					<h2>Keywords</h2>
+					<p>This example uses the following keywords:</p>
+					<p>C#, RegisterCommand, RegisterMenu, View.</p>
+				</div>
+			</DIV>
+		</div>
+	</body>
+</html>

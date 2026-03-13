@@ -1,0 +1,1 @@
+This example shows how to implement import / export converter events as a self-installing plug-in with VBScript.

@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>ConstraintOps</title>
+		<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<link rel="StyleSheet" href="../../doc/shared/examples.css" type="text/css">
+			<script type="text/javascript" src="../../doc/shared/utils.js"></script>
+	</head>
+	<body>
+		<div class="body"><a name="top"></a> <img class="netview" src="netview_ConstraintOps.jpg" style="PADDING-RIGHT:6px;FLOAT:left">
+			<h1>Constraint Operator Examples</h1>
+			<p>This addon shows various self-installed custom operators that "constrain"
+				objects together. For example one object may influence the rotation or position
+				of another object in the scene. This sort of operator is common when building
+				rigs and are an alternative to the Constraint, Expression and Proxy Parameter
+				features of Softimage. A Custom Operator is best suitable for cases where the logic
+				of the relationship between the objects is complex such that it can't be
+				described by a simple fcurve or expression statement.
+			</p>
+			<p><strong>CenterOp_Basic</strong><br>
+			This is a straightforward example, that sets the position of a Null to the
+			average of the position of 3 other objects. In many cases an operator deals
+			with a fixed number of inputs and a single output as shown in this example.
+			<p><strong>CenterOp_Simple</strong><br>
+			The simple CenterOp Plugin builds on the basic example, but it is more flexible
+			and powerful. Rather than a hard-coded number of inputs it supports any number
+			of inputs. It also offers a special custom command "ApplyCenterOp_Simple" that
+			makes it easier to create the operator and its output Null with a single API
+			call.
+			<p><strong>CenterOp_Dynamic</strong><br>
+			This is the most advanced CenterOp variation, which lets you connect addition
+			input objects even after the operator has been created. Rather than building a
+			separate input port for each input object as is done in the Simple example, it
+			uses a single input port but allows an unlimited number of instances of the
+			port to be created (via the PortGroup concept). There are two commands,
+			ApplyCenterOp_Dynamic to create the operator and make the initial connections
+			and AddInputsToCenterOp to attach additional inputs to an existing instance of
+			the operator. Because it requires more code to create this type of operator it
+			is only recommended for operators that really need to be fully dynamic.
+			<p><strong>SurfConstrainOp</strong><br>
+			This is a Python example which creates an operator that constrains the
+			kinematic global position of a 3D object (the constrained) to a surface.
+			The constrained object position is based on the closest position of an
+			other 3D object (the controller) to the surface object.
+			<p><strong>SpringOp_Cpp</strong><br>
+				This is a classic scripted operator example, ported into a C++ self-installed
+				operator.
+			<p><strong>CSCenterOp</strong><br>
+			The JScript simple CenterOp plug-in ported to C#.
+				<h2>Example Files</h2>
+				<table>
+					<tr>
+						<td><strong>Location</strong></td>
+						<td><span class="installPath"></span>
+						</td>
+					</tr>
+					<tr>
+						<td><strong>Files</strong></td>
+						<td>
+							<div class="examplefile">CenterOp_Basic.js</div>
+							<div class="examplefile">CenterOp_Dynamic.js</div>
+							<div class="examplefile">CenterOp_Simple.js</div>
+							<DIV class="examplefile">SurfaceConstrainOp.py</DIV>
+							<div class="examplefile" folder="cppsrc_SpringOp">SpringOp_cpp.cpp</div>
+							<div class="examplefile" folder="cssrc_CenterOp">CSCenterOp.cs</div>
+						</td>
+					</tr>
+				</table>
+				<a name="build"></a>
+				<h2>Running the Example</h2>
+				<div id="toinstall" style="DISPLAY:none">
+					<p class="proc-head">To install the example</p>
+					<ul>
+						<li>
+							<p>Connect to the Softimage SDK workgroup at
+								<span class="workgroupPath">%XSISDK_ROOT%\examples\workgroup</span>.</p>
+							<ol>
+						<li>
+							In the <strong>Plug-in Manager</strong>, click the <strong>Workgroups</strong>
+						tab.
+						<li>
+							Click <strong>File</strong> and then click <strong>Connect</strong>.
+						<li>
+							In the <strong>Connect to Workgroup</strong> dialog box, click <img src="..\..\doc\shared\bBrowse.gif">,
+							locate the workgroup folder and then click <strong>Select</strong>.</li>
+						</ol> </li>
+					</ul>
+					<p class="proc-head">To view the help page for an example</p>
+					<ul>
+						<li>
+							Do one of the following:
+							<ul>
+								<li>
+									In the Plug-in Tree, expand the SDK examples workgroup, right-click the example
+									add-on and then click <strong>Help</strong>.
+								<li>
+									Open a Net View and click <img style="BOTTOM:-6px;POSITION:relative" src="..\..\doc\shared\xsiweb.png">
+									to go to Softimage Net local. In the top navigation bar, click <strong>add-ons</strong>,
+									and then click the SDK example add-on.
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div>
+					<p class="proc-head">To run the DemoCenterOp_Basic example</p>
+					<ul>
+						<li>
+							Execute the
+							<span class="runCmd" title="DemoCenterOp_Basic">DemoCenterOp_Basic</span>
+						command.
+						<li>
+							Move the spheres or cylinder and watch the null adjust its position.</li>
+					</ul>
+				</div>
+				<div>
+					<p class="proc-head">To run the DemoCenterOp_Simple example</p>
+					<li>
+						Execute the
+						<span class="runCmd" title="DemoCenterOp_Simple">DemoCenterOp_Simple</span>
+					command.
+					<li>
+						The resulting scene is similar to the DemoCenterOp_Basic scene.
+						<UL>
+						</UL>
+					</li>
+				</div>
+				<div>
+					<p class="proc-head">To run the DemoCenterOp_Dynamic example</p>
+					<li>
+						Execute the
+						<span class="runCmd" title="DemoCenterOp_Dynamic">DemoCenterOp_Dynamic</span>
+					command.
+					<li>
+						The resulting scene is similar to the DemoCenterOp_Basic scene. However if you
+						inspect the details of the operator in the SDK explorer you will see the
+						different Port configuration.
+						<UL>
+						</UL>
+					</li>
+				</div>
+				<div>
+					<p class="proc-head">To run the SurfaceConstrainOp example</p>
+					<ul>
+						<li>
+							Execute the
+							<span class="runCmd" title="CreateSurfConstrainOp">CreateSurfConstrainOp</span>
+						command.
+						<li>
+							Translates the 'constrainer' Null object around and see how the 'constrained' Null
+							object is moving onto the sphere.</li>
+					</ul>
+				</div>
+				<div>
+					<p class="proc-head">To run the SpringOp example</p>
+					<ul>
+						<li>
+							Execute the
+							<span class="runCmd" title="DemoSpringOp">DemoSpringOp</span>
+						command.
+						<li>
+						Select the cube and move it, and watch the sphere bounce beneath it.
+						<li>
+							Also open the property page for the SpringOp (found under the Global Kinematics
+							of the sphere) and adjust the parameters to change the spring behavior.
+						</li>
+					</ul>
+				</div>
+				<div>
+					<p class="proc-head">To run the CSCenterOp example</p>
+					<ul>
+						<li>
+							Select CSCenterOp_Menu|Demo item on the top menu bar.
+						<li>
+						Move the spheres or cylinder and watch the null adjust its position.</li>
+						<li>
+							Also open the property page for the CSCenterOp (found under the Global Kinematics
+							of the null) and adjust the parameters to change the CSCenterOp behavior.
+						</li>
+					</ul>
+				</div>
+
+				<a name="build"></a>
+				<h2>Building the SpringOp Example</h2>
+			<p>
+				Softimage SDK includes a compiled version of SpringOp_Cpp. If you want to modify the
+				code, you can rebuild the example by following these instructions.</p>
+			<div id="windows-build">
+				<p class="proc-head">To build the example on Windows</p>
+				<ol>
+					<li>
+						<p><span class="sishell" cppsrc="cppsrc_SpringOp">Open</span>
+							an Softimage command prompt, and type <strong>devenv</strong> to start Visual Studio
+							.NET.</p>
+						<p>Starting Visual Studio .NET from an Softimage command prompt ensures that environment
+							variables such as XSISDK_ROOT are set (otherwise you'll get build and link
+							errors).</p>
+						<p><strong>Tip</strong> To load the
+							<span class="devenv" vcproj="cppsrc_SpringOp\SpringOp_Cpp.vcproj">SpringOp_Cpp</span>
+							project from the command line, type:</p>
+						<pre>devenv <span class="installPath">cppsrc_SpringOp\SpringOp_Cpp.vcproj</span></pre>
+					<li>In Visual Studio .NET, open the project file <tt>.vcproj</tt>.</li>
+					<li>Select a configuration (Release or Debug) and build the DLL.</li>
+				</ol>
+			</div>
+			<div id="linux-build">
+				<p class="proc-head">To build the example on Linux</p>
+				<ol>
+					<li>
+						<p>In a shell (tcsh) window, type:</p>
+						<pre>source $XSI_HOME/<span class="linuxExt">.xsi_&lt;xsi_version&gt;</span></pre>
+					<li>
+						<p>Change directories to</p>
+						<pre><span class="installPath">cppsrc_SpringOp</span></pre>
+					<li>
+						<p>To remove all intermediate files before building the example, run this command:</p>
+						<pre>gmake clean</pre>
+					<li>
+						<p>
+						To compile the example, run this command:<p>
+							<pre>gmake</pre>
+					</li>
+				</ol>
+			</div>
+				<a name="build"></a>
+				<h2>Building the C# Center Op Example</h2>
+			<p>
+				Softimage SDK includes a compiled version of CSCenterOp. If you want to modify the
+				code, you can rebuild the example by following these instructions.</p>
+			<div id="windows-build">
+				<p class="proc-head">To build the example on Windows</p>
+				<ol>
+					<li>
+						<p><span class="sishell" cppsrc="cssrc_CenterOp">Open</span>
+							an Softimage command prompt, and type <strong>devenv</strong> to start Visual Studio
+							.NET.</p>
+						<p>Starting Visual Studio .NET from an Softimage command prompt ensures that environment
+							variables such as XSI_HOME are set (otherwise you'll get build and link
+							errors).</p>
+						<p><strong>Tip</strong> To load the
+							<span class="devenv" vcproj="cssrc_CenterOp/CSCenterOp.csproj">CSCenterOp</span>
+							project from the command line, type:</p>
+						<pre>devenv <span class="installPath">cssrc_CenterOp/CSCenterOp.csproj</span></pre>
+					<li>In Visual Studio .NET, open the project file <tt>.csproj</tt>.</li>
+					<li>Select a configuration (Release or Debug) and build the DLL.</li>
+				</ol>
+			</div>
+			<div id="keywords">
+				<h2>Keywords</h2>
+				<p>This example uses the following keywords:</p>
+				<p>
+					Operator CustomOperator OperatorContext JScript Python
+				</p>
+			</div>
+		</div>
+	</body>
+</html>
