@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>RealtimeShaders</title>
+		<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<link rel="StyleSheet" href="../../doc/shared/examples.css" type="text/css">
+			<script type="text/javascript" src="../../doc/shared/utils.js"></script>
+	</head>
+	<body>
+		<div class="body"><a name="top"></a> <img class="netview" src="netview_RealtimeShaders.jpg" style="PADDING-RIGHT:6px;FLOAT:left">
+			<h1>Real-Time Shader Examples</h1>
+			<p>This add-on shows various real-time shaders such as Effect shaders written with the HLSL, CGFX language and Hardware shaders written in C++. All shaders are available to load
+			from the RenderTree view under the "Realtime\Softimage Examples" category.<br>
+			<p><br><strong>SimpleShader_CGFX</strong><br>
+			Demonstrates how to write a simple vertex and texture Cg shader.<br>
+			<p><br><strong>SimpleHWShader</strong><br>
+			Demonstrates how to write a simple hardware shader in C++.<br>
+				<h2>Example Files</h2>
+				<table>
+					<tr>
+						<td><strong>Location</strong></td>
+						<td><span class="installPath"></span>
+						</td>
+					</tr>
+					<tr>
+						<td><strong>Files</strong></td>
+						<td>
+							<div class="examplefile" folder="cgfx">SimpleShader_CGFX.cgfx</div>
+							<div class="examplefile" folder="cppsrc_SimpleHWShader">HWShaderPlugin.cpp</div>
+							<div class="examplefile" folder="cppsrc_SimpleHWShader">SimpleHWShader.cpp</div>
+						</td>
+					</tr>
+				</table>
+				<a name="build"></a>
+				<h2>Running the Example</h2>
+				<div id="toinstall" style="DISPLAY:none">
+					<p class="proc-head">To install the example</p>
+					<ol>
+						<li>
+							<p>Connect to the Softimage SDK workgroup at
+								<span class="workgroupPath">%XSISDK_ROOT%\examples\workgroup</span>.</p>
+						<li>
+							In the <strong>Plug-in Manager</strong>, click the <strong>Workgroups</strong> tab.
+						<li>
+							Click <strong>File</strong> and then click <strong>Connect</strong>.
+						<li>
+							In the <strong>Connect to Workgroup</strong> dialog box, click <img src="..\..\doc\shared\bBrowse.gif">,
+							locate the workgroup folder and then click <strong>Select</strong>.</li>
+						</li>
+					</ol>
+				</div>
+				<div>
+					<p class="proc-head">To run the SimpleShader_CGFX example</p>
+					<ol>
+						<li>
+							Load the Data\Project\Scenes\SimpleShader_CGFX.scn file.
+						<li>
+							A geometry should be displayed in an OpenGL view. Use the technique combo box to switch between the vertex and texture shader function.</li>
+					</ol>
+				</div>
+				<div>
+					<p class="proc-head">To run the SimpleHWShader example</p>
+					<ol>
+						<li>
+							Load the Data\Project\Scenes\SimpleHWShader.scn file.
+						<li>
+							A geometry should be displayed in an OpenGL view.</li>
+					</ol>
+				</div>
+			</div>
+			<div id="keywords">
+				<h2>Keywords</h2>
+				<p>This example uses the following keywords:</p>
+				<p>
+					Real-Time Realtime Shader Hardware C++ HLSL CGFX OpenGL DirectX
+				</p>
+			</div>
+		</div>
+	</body>
+</html>

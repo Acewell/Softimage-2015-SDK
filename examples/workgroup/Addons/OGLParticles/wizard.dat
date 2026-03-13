@@ -1,0 +1,6 @@
+# Shaderwizard configuration data
+mr_shader: false
+rt_shader: true
+sources: OGLParticle.cpp
+headers: OGLParticle.h
+spdls: OGLParticle.spdl

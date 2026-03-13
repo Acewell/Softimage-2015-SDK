@@ -1,0 +1,1 @@
+This C++ example shows how to write a particle operator that makes the particles in a cloud flock together. A custom property page controls the flocking behavior.
