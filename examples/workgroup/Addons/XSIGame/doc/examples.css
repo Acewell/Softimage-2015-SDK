@@ -1,0 +1,210 @@
+body {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	margin:24px;
+}
+
+.body {
+		clear: right; margin: 2em auto; width: 50em
+}
+
+
+
+h1 {
+	font-size:21px;
+	}
+
+h2 {
+	font-size:15px;
+	}
+
+h3 {
+	font-size:13px;
+	margin-top:12px;margin-bottom:0px;padding-bottom:0px;
+	}
+
+.walkthrough h3 {
+	margin-top:24px;
+	margin-bottom:0px;
+	}
+.walkthrough p.subhead {
+	margin-top:0px;
+	margin-bottom:18px;
+	font-style:italic;
+	}
+
+/* This selector does not work in IE6 */
+h3 + p {
+	margin-top:0px;
+	padding-top:0px;
+	}
+
+/* Since IE doesn't support the adjacent sibling selector... */
+p {
+	margin-top:0px;
+	margin-bottom:6px;
+	line-height:17px;
+	}
+	
+h4 {
+	font-size: 11px;
+	}
+
+li {
+	padding-bottom:6px;
+	}
+
+ol ul, ul ul {
+	list-style-type: square;
+}
+
+.proc-head {
+	font-weight:bold;
+}
+
+.annotation {
+	border:1px solid green;
+	border-left:6px solid green;
+	border-top:1px solid green;
+	background:#eeffee;
+	color:#333333;
+	padding-left:12px;
+	padding-top:6px;padding-right:6px;
+	margin-top:6px;
+}
+
+.indent1{
+	margin-left:72px;
+	}
+	
+.indent2{
+	margin-left:144px;
+	}
+
+.indent3{
+	margin-left:200px;
+	}
+
+
+.annotation1 {
+	border:1px solid green;
+	border-left:6px solid green;
+	border-top:1px solid green;
+	background:#eeffee;
+	color:#333333;
+	padding-left:12px;
+	padding-top:6px;padding-right:6px;
+	margin-left:62px;
+}
+
+pre {
+	font-family: "Courier New";
+	font-size:12px;
+	}
+
+.annotation pre, .annotation1 pre {
+	margin-top:6px;
+	margin-left:12px;
+	}
+
+div.code {
+	margin-left:12px;
+	}
+	
+.example {
+	margin-top: 24px;
+	}
+	
+.note {
+	border-left: 3px solid navy;
+	padding-left:6px;
+	margin-right:72px;
+	}
+
+.tip {
+	border-left: 3px solid navy;
+	padding-left:6px;
+	margin-right:72px;
+	}
+
+.warning {
+	border-left: 3px solid red;
+	padding-left:6px;
+}
+
+
+.details {
+	margin-bottom:12px;
+	}
+
+th {
+	text-align:left;
+	border-bottom:1px solid black;
+	}
+
+table.details {
+	margin-left:0px;padding-left:0px;
+	border-top:0px solid #dedede;
+	border-bottom:0px solid #dedede;
+	}
+
+td {
+	vertical-align:top;
+	}
+	
+td.caption {
+	font-weight:bold;
+	margin-left:0px;padding-left:0px;
+	/*background:#dedede;*/
+	border:1px solid white;
+	vertical-align:top;
+	}
+
+table.details td {
+	font-size:12px;
+	padding:2px;
+	padding-left:0px;
+	padding-right:6px;
+	}
+
+.details ul {
+	margin-top:0px;
+	margin-bottom:0px;
+	margin-left:18px;
+	}
+
+	
+
+
+.top {
+	color:red;
+	margin-top:24px;
+	margin-bottom:24px;
+	}
+
+.inline {
+	vertical-align	:middle
+}
+
+
+.comment {
+	color:green;
+	}
+	
+pre, .code {
+	color:blue;
+	}
+
+ol pre {
+	color:#666666;
+	margin-bottom:0px; 
+	padding-bottom:6px;
+	margin-top:0px; 
+	padding-top:0px;
+}
+
+li p 
+{
+	margin-bottom:6px; 
+	padding-bottom:0px;
+}

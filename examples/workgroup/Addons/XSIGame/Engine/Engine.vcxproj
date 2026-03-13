@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0B773C1A-6B79-4471-A807-1D86D72BF190}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props"/>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props"/>
+  <ImportGroup Label="ExtensionSettings"></ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
+    <Import Project="$(XSISDK_ROOT)\mkfiles\Release-x86.props"/>
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
+    <Import Project="$(XSISDK_ROOT)\mkfiles\Debug-x86.props"/>
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
+    <Import Project="$(XSISDK_ROOT)\mkfiles\Release-x64.props"/>
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
+    <Import Project="$(XSISDK_ROOT)\mkfiles\Debug-x64.props"/>
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros"/>
+  <PropertyGroup>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)lib\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)lib\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)lib\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)lib\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(GLEXT_INC_PATH);$(CG_INC_PATH);$(CROSSWALKSDK_ROOT)\include\FTK;$(CROSSWALKSDK_ROOT)\include\Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;ENGINE_EXPORTS;__XSI_PLUGIN_;XSI_STATIC_LINK;XSICORE_IMPL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(GLEXT_INC_PATH);$(CG_INC_PATH);$(CROSSWALKSDK_ROOT)\include\FTK;$(CROSSWALKSDK_ROOT)\include\Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention></DataExecutionPrevention>
+    </Link>
+    <Lib>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(GLEXT_INC_PATH);$(CG_INC_PATH);$(CROSSWALKSDK_ROOT)\include\FTK;$(CROSSWALKSDK_ROOT)\include\Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;ENGINE_EXPORTS;__XSI_PLUGIN_;XSI_STATIC_LINK;XSICORE_IMPL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(GLEXT_INC_PATH);$(CG_INC_PATH);$(CROSSWALKSDK_ROOT)\include\FTK;$(CROSSWALKSDK_ROOT)\include\Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention></DataExecutionPrevention>
+    </Link>
+    <Lib>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="BillboardManager.cpp"/>
+    <ClCompile Include="BoundingBox.cpp"/>
+    <ClCompile Include="Camera.cpp"/>
+    <ClCompile Include="debug.cpp"/>
+    <ClCompile Include="DiskGameFlow.cpp"/>
+    <ClCompile Include="Display.cpp"/>
+    <ClCompile Include="dotXSI.cpp"/>
+    <ClCompile Include="dotXSILOD.cpp"/>
+    <ClCompile Include="ElectricField.cpp"/>
+    <ClCompile Include="Enemy.cpp"/>
+    <ClCompile Include="GameState.cpp"/>
+    <ClCompile Include="GenericLevel.cpp"/>
+    <ClCompile Include="Geometry.cpp"/>
+    <ClCompile Include="Level.cpp"/>
+    <ClCompile Include="LevelParser.cpp"/>
+    <ClCompile Include="OpenGLDisplay.cpp"/>
+    <ClCompile Include="Player.cpp"/>
+    <ClCompile Include="Sky.cpp"/>
+    <ClCompile Include="SkyBox.cpp"/>
+    <ClCompile Include="StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="PowerUp.cpp"/>
+    <ClCompile Include="Shield.cpp"/>
+    <ClCompile Include="SpeedUp.cpp"/>
+    <ClCompile Include="CubicTextureShader.cpp"/>
+    <ClCompile Include="MaterialSystem.cpp"/>
+    <ClCompile Include="Shader.cpp"/>
+    <ClCompile Include="TexCoordShader.cpp"/>
+    <ClCompile Include="TextureShader.cpp"/>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BillboardManager.h"/>
+    <ClInclude Include="BoundingBox.h"/>
+    <ClInclude Include="Camera.h"/>
+    <ClInclude Include="CubicTextureShader.h"/>
+    <ClInclude Include="debug.h"/>
+    <ClInclude Include="DiskGameFlow.h"/>
+    <ClInclude Include="Display.h"/>
+    <ClInclude Include="dotXSI.h"/>
+    <ClInclude Include="dotXSILOD.h"/>
+    <ClInclude Include="ElectricField.h"/>
+    <ClInclude Include="Enemy.h"/>
+    <ClInclude Include="engine.h"/>
+    <ClInclude Include="GameState.h"/>
+    <ClInclude Include="GenericLevel.h"/>
+    <ClInclude Include="Geometry.h"/>
+    <ClInclude Include="Level.h"/>
+    <ClInclude Include="LevelParser.h"/>
+    <ClInclude Include="MaterialSystem.h"/>
+    <ClInclude Include="OpenGLDisplay.h"/>
+    <ClInclude Include="Player.h"/>
+    <ClInclude Include="PowerUp.h"/>
+    <ClInclude Include="Shader.h"/>
+    <ClInclude Include="Shield.h"/>
+    <ClInclude Include="SIBCArray.h"/>
+    <ClInclude Include="Sky.h"/>
+    <ClInclude Include="SkyBox.h"/>
+    <ClInclude Include="SpeedUp.h"/>
+    <ClInclude Include="StdAfx.h"/>
+    <ClInclude Include="TexCoordShader.h"/>
+    <ClInclude Include="TextureShader.h"/>
+    <ClInclude Include="vector.h"/>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Readme.txt"/>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets"/>
+  <ImportGroup Label="ExtensionTargets"></ImportGroup>
+</Project>

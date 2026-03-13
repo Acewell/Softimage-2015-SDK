@@ -1,0 +1,7 @@
+EXPORTS
+	XSILoadPlugin	@5 PRIVATE
+	XSIUnloadPlugin	@6 PRIVATE
+	CharacterOptimizerProperty_DefineLayout	@7 PRIVATE
+	CharacterOptimizerProperty_Define		@8 PRIVATE
+	OnCharacterOptimizerMenu		@9 PRIVATE
+	CharacterOptimizer_Init			@10 PRIVATE
