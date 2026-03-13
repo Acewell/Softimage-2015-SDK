@@ -1,0 +1,175 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_CONTROL_PANEL DIALOGEX 0, 0, 338, 281
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE | WS_BORDER
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    CONTROL         "Pause Game",IDC_PAUSEGAME,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,14,212,74,10
+    GROUPBOX        "Settings",IDC_STATIC,7,202,100,37
+    CONTROL         "Auto Update Level",IDC_AUTOUPDATE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,14,224,74,10
+    GROUPBOX        "Camera",IDC_STATIC,109,202,123,37
+    LTEXT           "Type:",IDC_STATIC,115,221,21,10
+    COMBOBOX        IDC_CAMERATYPE,137,219,88,35,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Debug Helpers",IDC_STATIC,234,202,97,37
+    CONTROL         "Show Sectors",IDC_SHOWSECTORS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,242,213,74,10
+    CONTROL         "Show AI Grid",IDC_SHOWAIGRID,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,242,225,74,10
+    CONTROL         "",IDC_TABCONTROL,"SysTabControl32",0x0,7,7,324,192
+    PUSHBUTTON      "Next Level",IDC_NEXTLEVEL,80,251,51,15
+    PUSHBUTTON      "Force Update",IDC_FORCEUPDATE,212,251,51,15
+    PUSHBUTTON      "New Level",IDC_CREATENEW,19,251,51,15
+    GROUPBOX        "Level",IDC_STATIC,7,240,324,34
+    PUSHBUTTON      "Set Mesh",IDC_SETMESH,267,251,51,15
+END
+
+IDD_LEVELEDITING DIALOGEX 0, 0, 340, 206
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    LISTBOX         IDC_LIST1,82,17,72,54,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Edit",IDC_EDITASSET,160,58,39,14
+    PUSHBUTTON      "Refresh",IDC_REFRESH,83,76,40,15
+    PUSHBUTTON      "Update",IDC_UPDATE,160,74,39,14
+    PUSHBUTTON      "Add",IDC_ADDASSET,160,20,39,14
+    PUSHBUTTON      "Remove",IDC_REMOVEASSET,160,36,39,14
+    GROUPBOX        "Assets",IDC_STATIC,73,7,130,89
+    GROUPBOX        "Sky",IDC_STATIC,205,7,101,89
+    LTEXT           "",IDC_SKY1,243,23,42,10
+    LTEXT           "Layer 1",IDC_STATIC,211,22,26,10
+    PUSHBUTTON      "...",IDC_BROWSE1,287,22,14,11
+    LTEXT           "",IDC_SKY2,244,37,42,10
+    LTEXT           "Layer 2",IDC_STATIC,211,37,26,10
+    PUSHBUTTON      "...",IDC_BROWSE2,287,37,14,11
+    PUSHBUTTON      "Fog Color",IDC_FOGCOLOR,209,76,46,14
+    CONTROL         106,IDC_STATIC,"Static",SS_BITMAP,7,100,308,96
+    PUSHBUTTON      "Friction Map",IDC_FRICTIONMAP,15,13,52,16
+END
+
+IDD_ACTOREDITING DIALOGEX 0, 0, 398, 186
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "Actors",IDC_STATIC,7,7,143,53
+    PUSHBUTTON      "Reload Enemy",IDC_RELOADENEMY,78,38,62,14
+    PUSHBUTTON      "Reload Player",IDC_RELOADPLAYER,78,18,62,14
+    PUSHBUTTON      "Edit Enemy",IDC_EDITENEMY,12,39,62,14
+    PUSHBUTTON      "Edit Player",IDC_EDITPLAYER,12,18,62,14
+    CONTROL         104,IDC_STATIC,"Static",SS_BITMAP,7,65,308,108
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_CONTROL_PANEL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 331
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 274
+    END
+
+    IDD_LEVELEDITING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 333
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 199
+    END
+
+    IDD_ACTOREDITING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 391
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 179
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP1             BITMAP                  "bitmap1.bmp"
+IDB_BITMAP2             BITMAP                  "background.bmp"
+IDB_BITMAP3             BITMAP                  "background2.bmp"
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

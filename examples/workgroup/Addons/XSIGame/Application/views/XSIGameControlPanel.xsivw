@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<xsi_file type="RelationalView" xsi_version="4.2.2004.1114" syntax_version="1.0">
+	<relationalview clsid="{81C91B7D-F0CF-4E19-9199-2617AE11FCCE}" name="XSIGameControlPanel" height="800" width="550">
+		<definition maxinstances="10000" acceptfocus="true" private="false" defaultsize="100,100,500,500" cmdmap="{00000000-0000-0000-0000-000000000000}" supportedtypes="6" category="SDK Samples"> </definition>
+		<relations>
+		</relations>
+		<frameset orientation="vertical" name="Frameset1" splitter="movable" sizechild="400,*">
+			<frame name="xsigamecontrolpanel1" description="C++ control panel" type="Custom Display Host" primary="true" toolbar="own"> 
+				<properties>
+					<targetcontent>XSIGameControlPanel</targetcontent>
+				</properties>
+			</frame>
+			<frame name="xsigamecontrolpanel2" description="Custom PSet" type="Property Panel" primary="false" toolbar="own">
+			</frame>
+		</frameset>
+		
+<script language="JScript"><![CDATA[
+
+function RV_Init( in_rv )
+{
+
+	// Populate the right pane.
+	var oFileMgrPane = in_rv.Views( "xsigamecontrolpanel2" ) ;
+	
+	try 
+	{
+		var oProp = SIGetGameControlPanelPset();
+		
+		oFileMgrPane.SetAttributeValue( "targetcontent", oProp.fullname );
+	}
+	catch(error)
+	{
+		Logmessage( "Error in XSIGameControlPanel.xsivw::RV_Init() Unable to call SIGetGameControlPanelPset");
+	}
+}
+		]]></script>
+
+		
+	</relationalview>
+</xsi_file>
