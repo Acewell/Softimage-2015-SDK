@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<Device>
+<FileVersion>1.0</FileVersion>
+<DeviceName>MouseExample</DeviceName>
+<DeviceType>Custom</DeviceType>
+<DataTransfert>Polling</DataTransfert>
+<CustomPSetFilename></CustomPSetFilename>
+<DefaultPresetFilename>mousedriver_default.Preset</DefaultPresetFilename>
+<pluginfilename>mouseexample</pluginfilename>
+<SupportMultiInstance>false</SupportMultiInstance>
+
+<Description><![CDATA[Mouse Driver]]></Description>
+<Channel>
+	<ChannelName>x</ChannelName>
+	<ChannelDescription><![CDATA[]]></ChannelDescription>
+	<ChannelID>0</ChannelID>
+	<ChannelDirectionType>input</ChannelDirectionType>
+	<ChannelType>Slider</ChannelType>
+	<ChannelMin>0</ChannelMin>
+	<ChannelMax>1</ChannelMax>
+</Channel>
+
+<Channel>
+	<ChannelName>y</ChannelName>
+	<ChannelDescription><![CDATA[]]></ChannelDescription>
+	<ChannelID>1</ChannelID>
+	<ChannelDirectionType>input</ChannelDirectionType>
+	<ChannelType>Slider</ChannelType>
+	<ChannelMin>0</ChannelMin>
+	<ChannelMax>1</ChannelMax>
+</Channel>
+<Channel>
+	<ChannelName>LeftButton</ChannelName>
+	<ChannelDescription><![CDATA[The mouse left button]]></ChannelDescription>
+	<ChannelID>2</ChannelID>
+	<ChannelDirectionType>input</ChannelDirectionType>
+	<ChannelType>Button</ChannelType>
+	<ChannelMin>0</ChannelMin>
+	<ChannelMax>1</ChannelMax>
+</Channel>
+<Channel>
+	<ChannelName>MiddleButton</ChannelName>
+	<ChannelDescription><![CDATA[The mouse middle button]]></ChannelDescription>
+	<ChannelID>3</ChannelID>
+	<ChannelDirectionType>input</ChannelDirectionType>
+	<ChannelType>Button</ChannelType>
+	<ChannelMin>0</ChannelMin>
+	<ChannelMax>1</ChannelMax>
+</Channel>
+<Channel>
+	<ChannelName>RightButton</ChannelName>
+	<ChannelDescription><![CDATA[The mouse right button]]></ChannelDescription>
+	<ChannelID>4</ChannelID>
+	<ChannelDirectionType>input</ChannelDirectionType>
+	<ChannelType>Button</ChannelType>
+	<ChannelMin>0</ChannelMin>
+	<ChannelMax>1</ChannelMax>
+</Channel>
+
+</Device>

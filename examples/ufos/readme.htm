@@ -1,0 +1,47 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>UFO</title>
+</head>
+
+<body>
+
+<h1>UFO examples</h1>
+<p>This folder contains Media Illusion User Function Object plug-ins that are
+used inside the Softimage FX Tree.<br>
+</p>
+<h2><strong><font face="Arial" size="5">How to Compile and install the ufo
+examples plug-ins</font></strong></h2>
+<h2>Windows</h2>
+<h3>Compiling</h3>
+<p>Open any examples project with MSDEV, select a compilation target (debug or release) and
+compile.&nbsp;<br>
+</p>
+<h3>Installing</h3>
+<p>To install the result dll, simply run install_ufos.bat under the ufo folder
+from a Softimage command prompt.<br>
+<h2>Linux</h2>
+<p>Before running any command, you have to set up your Softimage environment. To
+achieve this, run the following command in a shell (tcsh) :<br>
+<br>
+&nbsp;&nbsp;&nbsp; source [Install dir]/.xsi_[version]<br>
+<h3>Compiling</h3>
+<p>In the shell (tcsh),go to the ufo folder and issue the following command:<br>
+<br>
+&nbsp;&nbsp;&nbsp; gmake<br>
+<h3>Cleaning</h3>
+<p>In the shell (tcsh), issue the following command:<br>
+<br>
+&nbsp;&nbsp;&nbsp; gmake clean<br>
+<h3>Installing</h3>
+<p>To install the result dso, simply from the tcsh shell, run ./install_ufos.csh
+under the ufo folder.<br>
+<br>
+</p>
+
+</body>
+
+</html>

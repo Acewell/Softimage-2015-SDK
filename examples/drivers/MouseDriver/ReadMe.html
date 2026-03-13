@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Mouse Driver</title>
+<link rel="StyleSheet" href="../../workgroup/doc/shared/examples.css" type="text/css">
+<script type="text/javascript">
+window.onload = function () {
+
+	var x = location.pathname.lastIndexOf('\\');
+	if ( x == -1 )
+	{
+		// We're not in IE, so slashes lean the other way
+		x = location.pathname.lastIndexOf('/');
+	}
+	var installPath = location.pathname.substring( 1, x+1 );
+	var oSpans = document.getElementsByTagName( "span" );
+
+	for (var i=0; i < oSpans.length; i++ )
+	{
+		if ( oSpans[i].className == "installPath" )
+		{
+			// FIREFOX: use innerHTML instead of innerText
+			//o.innerText = installPath;
+			oSpans[i].innerHTML = installPath + oSpans[i].innerHTML;
+		}
+	}
+}
+</script>
+<style>
+span {
+	font-family:Courier-New, monospace;
+	font-size:12px;
+	}
+</style>
+</head>
+<body>
+<div class="body"><a name="top"></a>
+
+
+
+<h1>Mouse Driver</h1>
+
+<p>This example provides the source code for the mouse driver included with Softimage. The mouse driver uses the Softimage object model to drive the X and Y position of a selected object in Softimage.
+</p>
+
+
+<h2>Files</h2>
+
+<table>
+<tr>
+<td>mousedriver.vcproj</td>
+<td>Msdev project </td>
+</tr>
+
+<tr>
+<td>mousedriver.cpp </td>
+<td>Implementation of the mouse device driver in C++ using the Softimage Object Model.</td>
+</tr>
+
+<tr>
+<td>mousedriver.def </td>
+<td>Module-definition (.def) file that lists the exported functions.
+</td>
+</tr>
+
+<tr>
+<td>stdafx.cpp
+stdafx.h </td>
+<td>Precompiled header file
+</td>
+</tr>
+
+<tr>
+<td>update.bat </td>
+<td>Copies the updated DLL to %XSI_HOME%\Application\bin. Note that this overwrites the shipped version of the mouse driver.
+</td>
+</tr>
+
+<tr>
+<td>mouseexample.xsidevice</td>
+<td>Device description file that specifies the device driver and its channels. Softimage loads device description files when a user activates the Device Manager. For more information, look up ".xsidevice" in the index of the Softimage SDK documentation.
+</td>
+</tr>
+</table>
+
+
+<a name="build"></a><h2>Running the Example</h2>
+
+<div>
+<p class="proc-head">To run the example:</p>
+<ol>
+<li>In the Animation toolbar, click <strong>Tools &gt; Devices &gt; Device Manager</strong>.
+</li>
+
+<li>In the <strong>Device Manager</strong> property page, select the <strong>Device Manager Active</strong> check box.</li>
+<li>
+<p>Click <strong>Add</strong> and select <strong>Mouse</strong> from the list of device drivers.</p>
+
+<p>The <strong>Device Manager: Mouse property</strong> page appears. The mouse driver uses a default preset (specified in the .xsidevice file) that drives the X and Y position of the current selection.
+</p>
+</li>
+
+<!--
+<li>Create a primitive (for example, a null or a sphere).</li>
+ -->
+
+<li>Activate the mouse driver.</li>
+
+<li>Select an object (such as a null or a sphere) and move the mouse pointer to change the position of the selected objects.</li>
+
+</ol>
+
+
+</div>
+
+
+<a name="build"></a><h2>Building the Mouse Driver</h2>
+<div>
+
+
+<p class="proc-head">To build the mouse driver on Windows</p>
+<ol>
+<li><p>Open an Softimage command prompt, and type <strong>devenv</strong> to start Visual Studio .NET.</p>
+<p>Starting Visual Studio .NET from an Softimage command prompt ensures that environment variables such as XSISDK_ROOT are set (otherwise you'll get build and link errors).</p>
+
+<p><strong>Tip</strong> To load the <strong>mousedriver</strong> project from the command line, type:</p>
+<p>devenv <span class="installPath">mousedriver.vcproj</span></p>
+</li>
+
+<li>If you did not load the project from the command line:
+
+<ul><li>In Visual Studio .NET, open mousedriver.vcproj.</li></ul>
+</li>
+
+<li>Select a configuration (Debug Win32, Release Win32, Debug x64 or Release x64) and build the DLL.</li>
+</ol>
+</div>
+
+
+<div>
+<p class="proc-head">To build the mouse driver on Linux</p>
+
+
+<p class="note" style="margin-top:12px">
+<strong>Important</strong> To build the mouse driver on Linux, you need <a href="http://www.mainsoft.com/products/mainwin.aspx">Visual MainWin for Linux</a> from Mainsoft Corporation.
+</p>
+
+
+<ol>
+<li>
+<p>In a shell (tcsh) window, type:</p>
+<pre>source ~/.xsi_4.5</pre>
+</li>
+
+<li>
+<p>Change directories to</p>
+<span class="installPath"></span>
+</li>
+
+<li>
+<p>To remove all intermediate files before building the example, run this command:</p>
+<pre>gmake clean</pre>
+</li>
+
+<li>
+<p>To compile the example, run this command:<p>
+<pre>gmake</pre>
+</li>
+</ol>
+</div>
+
+
+
+<h2>Installing the Mouse Driver</h2>
+<div>
+
+<p class="proc-head">To install the mouse driver</p>
+<ul>
+<li>Copy <strong>mouseexample.dll/so</strong> to <strong>Application\bin</strong> in the Softimage installation folder. </li>
+<li>Copy <strong>mouseexample.xsidevice</strong> to <strong>Data\Devices</strong> in the Softimage installation folder.</li>
+
+</ul>
+
+</div>
+
+
+
+</div>
+</body>
+</html>
