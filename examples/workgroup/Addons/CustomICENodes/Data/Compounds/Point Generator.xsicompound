@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<xsi_file type="CompoundNode" name="Point Generator" category="Geometry Queries" tasks="" author="" url="" formatversion="1.4" compoundversion="1.0" versiontag="" backgroundcolor="14537815">
+	<description><![CDATA[]]></description>
+	<definition>
+		<nodes>
+			<node type="PointGeneratorFromGeometry" index="0">
+				<param name="sampling type" type="3" value="4"></param>
+				<param name="random points" type="3" value="3"></param>
+				<portdef name="geometry" type="1024" structure="1" group="0" instance="0" port="0"></portdef>
+				<portdef name="sampling type" type="2" structure="1" group="1" instance="0" port="0"></portdef>
+				<portdef name="random points" type="2" structure="1" group="1" instance="0" port="1"></portdef>
+				<datablob category="ui_infos">
+					<prop name="posx">-89</prop>
+					<prop name="posy">-102</prop>
+					<prop name="state">Normal</prop>
+				</datablob>
+			</node>
+		</nodes>
+		<exposed_ports>
+			<port index="0" portname="geometry" username="Geometry" basename="Geometry" portlabel="Geometry" exposetype="single"> </port>
+			<port index="0" portname="sample points" username="Sample_Points" basename="Sample Points" portlabel="Sample Points" exposetype="single"> </port>
+			<port index="0" portname="sampling type" username="Sampling_type" basename="Sampling type" portlabel="Sampling type" exposetype="single"> </port>
+			<port index="0" portname="random points" username="Number_of_random_points" basename="Number of random points" portlabel="Number of random points" exposetype="single"> </port>
+		</exposed_ports>
+		<connections>
+		</connections>
+		<layout>
+			<item type="input" name="Geometry"> </item>
+			<item type="input" name="Sampling_type" min="0" max="0">
+				<enum value="0"><![CDATA[Polygon Center]]></enum>
+				<enum value="1"><![CDATA[Triangle Center]]></enum>
+				<enum value="2"><![CDATA[Segment Center]]></enum>
+				<enum value="3"><![CDATA[Points]]></enum>
+				<enum value="4"><![CDATA[Random Points]]></enum>
+			</item>
+			<item type="input" name="Number_of_random_points"> </item>
+			<item type="output" name="Sample_Points"> </item>
+		</layout>
+	</definition>
+</xsi_file>
