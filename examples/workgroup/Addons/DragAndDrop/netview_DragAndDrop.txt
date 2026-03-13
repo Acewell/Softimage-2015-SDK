@@ -1,0 +1,1 @@
+This example contains an implementation of the siOnDragAndDrop2 event. It will duplicate a 3D Object that is dragged from a Scene Explorer view to a viewport, and move the new object around based on the mouse location in the viewport 3D space.

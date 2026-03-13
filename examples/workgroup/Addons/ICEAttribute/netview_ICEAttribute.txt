@@ -1,0 +1,1 @@
+This C++ example shows how to inspect ICE Attributes stored on objects such as geometries and properties.

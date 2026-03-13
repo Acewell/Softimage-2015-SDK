@@ -1,0 +1,230 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>GridData</title>
+<link rel="StyleSheet" href="../../doc/shared/examples.css" type="text/css">
+<script type="text/javascript" src="../../doc/shared/utils.js"></script>
+</head>
+<body>
+<div class="body"><a name="top"></a>
+
+<img class="netview" src="netview_GridData.jpg" style="float:left;padding-right:6px;">
+<h1>GridData</h1>
+
+<p>This example contains a Python and a C++ implementation of the grid data.</p>
+
+<a name="build"></a><h2>Running the Example</h2>
+
+<div id="toinstall" style="display:none">
+<p class="proc-head">To install the example</p>
+<ul>
+<li><p>Connect to the Softimage SDK workgroup at <span class="workgroupPath">%XSISDK_ROOT%\examples\workgroup</span>.</p>
+	<ol>
+	<li>In the <strong>Plug-in Manager</strong>, click the <strong>Workgroups</strong> tab.</li>
+	<li>Click <strong>File</strong> and then click <strong>Connect</strong>.</li>
+	<li>In the <strong>Connect to Workgroup</strong> dialog box, click <img src="..\..\doc\shared\bBrowse.gif">, locate the workgroup folder and then click <strong>Select</strong>.</li>
+	</ol>
+</li>
+</ul>
+
+<p class="proc-head">To view the help page for an example</p>
+
+<ul>
+<li>Do one of the following:</li>
+<ul>
+<li>In the Plug-in Tree, expand the SDK examples workgroup, right-click the example add-on and then click <strong>Help</strong>.
+</li>
+<li>
+Open a Net View and click <img style="position:relative;bottom:-6px;" src="..\..\doc\shared\xsiweb.png"> to go to Softimage Net local. In the top navigation bar, click <strong>add-ons</strong>, and then click the SDK example add-on.
+</li>
+</ul>
+</ul>
+</div>
+
+<div>
+<p class="proc-head">To run the example</p>
+<ul>
+<li>
+<p>Load an existing scene containing 3D objects and materials. Then, execute either the "GDE_Create3DOGrid" command (Python example) or the "GDE_CreateCPPGrid" command (CPP example). The grid data will be displayed</p>
+<br>
+<br>
+<strong>Python Example ("GridDataExample.py")</strong> 
+<br>
+<br>
+
+<p>
+Once the plug-in is loaded, executing the "GDE_Create3DOGrid" command will 
+create a new Custom Property called "GDE_3DOGrid", in which a grid data 
+parameter called "Data" will be created.
+</p>
+
+<p>
+The grid data will contain one row per 3DObject in the scene, and the 
+following is implemented in the Python plug-in:
+</p>
+<ul>
+    <li>3DObject rows are using a green background color</li>
+    <li>Model rows are using a blue background color</li>
+    <li>Selecting a cell in the "Object" color will select the object in the scene</li>
+    <li>A refresh button can be pushed to synchronize changes from the scene to the grid data</li>
+    <li>A dump button to log the contents of the grid data in the script log</li>
+    <li>A contextual menu allows setting the read-only flags on selected cells</li>
+</ul>
+
+<p>Details about the different columns in the example:</p>
+<ul>
+	<li>
+	    Object
+	    <ul>
+	    	<li>Uses the siColumnStandard column type</li>
+	    	<li>Lists the object names</li>
+	    	<li>Selecting the cell changes the scene selection</li>
+	    	<li>The plug-in blocks value changes for this column, using the return value in "OnBeginValueChange"</li>
+	    </ul>
+	</li>
+	<li>
+	    ID
+	    <ul>
+	    	<li>Uses the siColumnInt column type</li>
+	    	<li>Lists the object IDs</li>
+	    	<li>The plug-in blocks selection for this column, using the return value in "OnBeginSelectionChange"</li>
+	    </ul>
+	</li>
+	<li>
+	    Vis
+	    <ul>
+	    	<li>Uses the siColumnBool column type</li>
+	    	<li>Clicking on the checkmark will hide/show the object</li>
+	    </ul>
+	</li>
+	<li>
+	    Color
+	    <ul>
+	    	<li>Uses the siColumnColor column type</li>
+	    	<li>Clicking on the cell will let the user choose a wireframe display color for the object</li>
+	    </ul>
+	</li>
+	<li>
+	    Image
+	    <ul>
+	    	<li>Uses the siColumnImageClip column type</li>
+	    	<li>Double-clicking will inspect the associated imageclip in a PPG</li>
+	    	<li>A contextual menu lets the user select an image file</li>
+	    </ul>
+	</li>
+	<li>
+	    ShaderBall
+	    <ul>
+	    	<li>Uses the siColumnShaderBall column type</li>
+	    	<li>Double-clicking will inspect the associated material in the render tree</li>
+	    	<li>A contextual menu lets the user pick a material in the scene</li>
+	    </ul>
+	</li>
+	<li>
+	    Set Uni. Scl.
+	    <ul>
+	    	<li>Uses the siColumnFloat column type</li>
+	    	<li>Editing the value will force uniform local scaling values for the object</li>
+	    </ul>
+	</li>
+	<li>
+	    Translation
+	    <ul>
+	    	<li>Uses the siColumnVector column type</li>
+	    	<li>Editing the value will set the local translation values for the object </li>
+	    </ul>
+	</li>
+	<li>
+	    Static Selection
+	    <ul>
+	    	<li>Uses the siColumnCombo column type</li>
+	    	<li>Will affect the Selected/Static parameter under the Display property for the object</li>
+	    </ul>
+	</li>
+	<li>
+	    Delete
+	    <ul>
+	    	<li>Uses the siColumnButton column type</li>
+	    	<li>Will delete the object from the scene once pushed</li>
+	    </ul>
+	</li>
+	<li>
+	    File
+	    <ul>
+	    	<li>Uses the siColumnFile column type</li>
+	    	<li>Double-clicking will launch a file browser that allows setting the file</li>
+	    </ul>
+	</li>
+	<li>
+	    Comment
+	    <ul>
+	    	<li>Uses the siColumnMultiLine column type</li>
+	    </ul>
+	</li>
+</ul>
+
+<br>
+<br>
+<strong>CPP Example ("GridDataExampleCPP.cpp")</strong> 
+<br>
+<br>
+<p>
+Once the plug-in is loaded, executing the "GDE_CreateCPPGrid" command will 
+create a new Custom Property called "GDE_CPPGrid", in which a grid data 
+parameter called "Data" will be created.
+</p>
+
+<p>
+The grid data contains 5 rows. The last row ("Sum") will sum all the data, 
+per column, when possible. 
+</p>
+
+<p>
+The last row ("Sum") is not editable.
+</p>
+
+<p>
+The custom property also displays a dump button to log the contents of the grid 
+data in the script log
+</p>
+
+<p>
+The column headers show what column types are used for the column. Here is 
+additional details about some of the columns:
+</p>
+
+<ul>
+	<li>
+    	siColumnImageClip
+	    <ul>
+	    	<li>The assigned images are taken from the scene that is loaded at the time the "GDE_CreateCPPGrid" command was executed</li>
+	    </ul>
+	</li>
+	<li>
+    	siColumnButton
+	    <ul>
+	    	<li>Pressing the button will assign the color in the "siColumnColor" colum as the background color for the whole row</li>
+	    </ul>
+	</li>
+	<li>
+    	siColumnShaderBall
+	    <ul>
+	    	<li>The assigned materials are taken from the scene that is loaded at the time the "GDE_CreateCPPGrid" command was executed.</li>
+	    </ul>
+	</li>
+</ul>
+
+</div>
+
+<div id="keywords">
+<h2>Keywords</h2>
+<p>This example uses the following keywords:</p>
+<p>
+Python example, CPP example, GridData, self-installed plug-in
+</p>
+</div>
+</div>
+</body>
+</html>
+
