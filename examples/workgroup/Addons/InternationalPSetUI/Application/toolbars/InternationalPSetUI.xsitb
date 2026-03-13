@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<xsi_file type="Shelf" xsi_version="13.0.145.0" syntax_version="1.0">
+   <shelf_view name="InternationalPSetUI" clsid="{87C06AAF-F21C-42DA-8067-2DB2DACB9234}">
+      <properties>
+         <showtabs>false</showtabs>
+         <dictionary>InternationalPSetUIDemo</dictionary>
+      </properties>
+      <definition maxinstances="10000" acceptfocus="true" private="false" defaultsize="0,100,200,300" cmdmap="{00000000-0000-0000-0000-000000000000}" supportedtypes="6" category=""></definition>
+      <tabs layout="top" active="DS Toolbar">
+         <tab label="DS Toolbar" type="toolbar">
+            <properties id="{6682C039-B942-4DC0-A8CA-11A8D01E5CD4}" name="" display_preset_as_small="False" display_as_text_only="False"></properties>
+            <item type="scriptbutton" label="Create InternationalPSetUIJScript Property" userwidth="300" scriptengine="JScript" tooltip="InternationalPSetUI - JScript Version">
+               <scripttext>&lt;![CDATA[var oProp,oParent;
+if (Selection.Count == 0)
+{
+	XSIUIToolkit.MsgBox( XSIUtils.Translate(&quot;Please select something and try again&quot;, &quot;InternationalPSetUIDemo&quot;) ); 
+}
+else
+{
+	oParent = Selection.Item( 0 );
+	oProp = oParent.AddProperty( &quot;InternationalPSetUIJScript&quot; );
+	InspectObj( oProp );
+}]]&gt;</scripttext>
+            </item>
+            <item type="separator" mode="empty" group_name=""></item>
+            <item type="scriptbutton" label="Create InternationalPSetUICPP Property" userwidth="300" scriptengine="JScript" tooltip="InternationalPSetUI - C++ API Version">
+               <scripttext>&lt;![CDATA[var oProp,oParent;
+if (Selection.Count == 0)
+{
+	XSIUIToolkit.MsgBox( XSIUtils.Translate(&quot;Please select something and try again&quot;, &quot;InternationalPSetUIDemo&quot;) ); 
+}
+else
+{
+	oParent = Selection.Item( 0 );
+	oProp = oParent.AddProperty( &quot;InternationalPSetUICPP&quot; );
+	InspectObj( oProp );
+}]]&gt;</scripttext>
+            </item>
+         </tab>
+      </tabs>
+   </shelf_view>
+</xsi_file>

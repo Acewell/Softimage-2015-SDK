@@ -1,0 +1,1 @@
+This example shows how to internationalize the user interface for a plugin

@@ -1,0 +1,254 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<!--  US English dictionary for SDK example - internationalPSetUI.   -->
+<xsidict>
+	<namespace name="InternationalPSetUIDemo" langs="en,jp">
+		<dictstring context="Label of silder" locid="InternationalPSetUIDemo_1">
+			<dictkey>NoSliderDemo</dictkey>
+			<dictval lang="jp">NoSliderDemo</dictval>
+		</dictstring>
+		<dictstring context="Label of thumbwheel" locid="InternationalPSetUIDemo_2">
+			<dictkey>Thumbwheel</dictkey>
+			<dictval lang="jp">サムホイール</dictval>
+		</dictstring>
+		<dictstring context="Label of group" locid="InternationalPSetUIDemo_3">
+			<dictkey>NoLabel and ValueOnly</dictkey>
+			<dictval lang="jp">NoLabel と ValueOnly</dictval>
+		</dictstring>
+		<dictstring context="Lable of normal slider" locid="InternationalPSetUIDemo_4">
+			<dictkey>NormalSlider</dictkey>
+			<dictval lang="jp">NormalSlider</dictval>
+		</dictstring>
+		<dictstring context="Lable of Logarithmic Slider" locid="InternationalPSetUIDemo_5">
+			<dictkey>Logarithmic Slider Demo</dictkey>
+			<dictval lang="jp">対数スライダ デモ</dictval>
+		</dictstring>
+		<dictstring context="Label of file path control to save" locid="InternationalPSetUIDemo_6">
+			<dictkey>Export Filename</dictkey>
+			<dictval lang="jp">書き出しファイル名</dictval>
+		</dictstring>
+		<dictstring context="Label of file path control to open" locid="InternationalPSetUIDemo_7">
+			<dictkey>Import Filename</dictkey>
+			<dictval lang="jp">読み込みファイル名</dictval>
+		</dictstring>
+		<dictstring context="Label of file path control to open an image" locid="InternationalPSetUIDemo_8">
+			<dictkey>Import Image</dictkey>
+			<dictval lang="jp">イメージの読み込み</dictval>
+		</dictstring>
+		<dictstring context="label of file path control to open a folder browser" locid="InternationalPSetUIDemo_9">
+			<dictkey>Pick Folder</dictkey>
+			<dictval lang="jp">フォルダをピック</dictval>
+		</dictstring>
+		<dictstring context="Label of Group " locid="InternationalPSetUIDemo_10">
+			<dictkey>Multi-Line Edit</dictkey>
+			<dictval lang="jp">複数行の編集</dictval>
+		</dictstring>
+		<dictstring context="Label of check box - Enable Edit" locid="InternationalPSetUIDemo_11">
+			<dictkey>Enable Edit</dictkey>
+			<dictval lang="jp">編集を有効化</dictval>
+		</dictstring>
+		<dictstring context="Label of group" locid="InternationalPSetUIDemo_12">
+			<dictkey>Current Pass Info</dictkey>
+			<dictval lang="jp">現在のパス情報</dictval>
+		</dictstring>
+		<dictstring context="Label of the CurrentPass edit" locid="InternationalPSetUIDemo_13">
+			<dictkey>CurrentPass</dictkey>
+			<dictval lang="jp">CurrentPass</dictval>
+		</dictstring>
+		<dictstring context="Labe of Find Pass button" locid="InternationalPSetUIDemo_14">
+			<dictkey>Find pass</dictkey>
+			<dictval lang="jp">パスを検索</dictval>
+		</dictstring>
+		<dictstring context="The text of static control" locid="InternationalPSetUIDemo_15">
+			<dictkey>Each color channel is a separate parameter:</dictkey>
+			<dictval lang="jp">各カラーチャネルは個別のパラメータです:</dictval>
+		</dictstring>
+		<dictstring context="Visiable strings showing in colors tab" locid="InternationalPSetUIDemo_16">
+			<dictkey>MyRGBAColor</dictkey>
+			<dictval lang="jp">MyRGBAColor</dictval>
+		</dictstring>
+		<dictstring context="Visiable strings showing in colors tab" locid="InternationalPSetUIDemo_17">
+			<dictkey>MyRGBColor</dictkey>
+			<dictval lang="jp">MyRGBColor</dictval>	
+		</dictstring>
+		<dictstring context="Visiable strings showing in Options tab" locid="InternationalPSetUIDemo_18">
+			<dictkey>ComboDemo</dictkey>
+			<dictval lang="jp">ComboDemo</dictval>
+		</dictstring>
+		<dictstring context="Combo box items showing in Options tab" locid="InternationalPSetUIDemo_19">
+			<dictkey>Item 1</dictkey>
+			<dictval lang="jp">項目 1</dictval>
+		</dictstring>
+		<dictstring context="Combo box items showing in Options tab" locid="InternationalPSetUIDemo_20">
+			<dictkey>Item 2</dictkey>
+			<dictval lang="jp">項目 2</dictval>
+		</dictstring>
+		<dictstring context="Combo box items showing in Options tab" locid="InternationalPSetUIDemo_21">
+			<dictkey>Item 3</dictkey>
+			<dictval lang="jp">項目 3</dictval>
+		</dictstring>
+		<dictstring context="Visiable strings showing in Options tab" locid="InternationalPSetUIDemo_22">
+			<dictkey>DynamicCombo</dictkey>
+			<dictval lang="jp">DynamicCombo</dictval>
+		</dictstring>
+		<dictstring context="Combo box items showing in Options tab" locid="InternationalPSetUIDemo_23">
+			<dictkey>StringLabel1</dictkey>
+			<dictval lang="jp">StringLabel1</dictval>
+		</dictstring>
+		<dictstring context="Combo box items showing in Options tab" locid="InternationalPSetUIDemo_24">
+			<dictkey>StringLabel2</dictkey>
+			<dictval lang="jp">StringLabel2</dictval>
+		</dictstring>
+		<dictstring context="Visiable strings showing in Options tab" locid="InternationalPSetUIDemo_25">
+			<dictkey>Radio Button</dictkey>
+			<dictval lang="jp">ラジオ ボタン</dictval>
+		</dictstring>
+		<dictstring context="Combo box items showing in Options tab" locid="InternationalPSetUIDemo_26">
+			<dictkey>Val 0</dictkey>
+			<dictval lang="jp">値 0</dictval>
+		</dictstring>
+		<dictstring context="Combo box items showing in Options tab" locid="InternationalPSetUIDemo_27">
+			<dictkey>Val 11</dictkey>
+			<dictval lang="jp">値 11</dictval>
+		</dictstring>
+		<dictstring context="Combo box items showing in Options tab" locid="InternationalPSetUIDemo_28">
+			<dictkey>Val 222</dictkey>
+			<dictval lang="jp">値 222</dictval>
+		</dictstring>
+		<dictstring context="Visiable strings showing in Options tab" locid="InternationalPSetUIDemo_29">
+			<dictkey>ListBoxDemo</dictkey>
+			<dictval lang="jp">ListBoxDemo</dictval>
+		</dictstring>
+		<dictstring context="Visiable strings showing in Options tab" locid="InternationalPSetUIDemo_30">
+			<dictkey>Bitmask Demo</dictkey>
+			<dictval lang="jp">ビットマスク デモ</dictval>
+		</dictstring>
+		<dictstring context="Bitmask item showing in Options tab" locid="InternationalPSetUIDemo_31">
+			<dictkey>Flag 1</dictkey>
+			<dictval lang="jp">フラグ 1</dictval>
+		</dictstring>
+		<dictstring context="Bitmask item showing in Options tab" locid="InternationalPSetUIDemo_32">
+			<dictkey>Flag 4</dictkey>
+			<dictval lang="jp">フラグ 4</dictval>
+		</dictstring>
+		<dictstring context="Bitmask item showing in Options tab" locid="InternationalPSetUIDemo_33">
+			<dictkey>Flag 16</dictkey>
+			<dictval lang="jp">フラグ 16</dictval>
+		</dictstring>
+		<dictidstring define="IDS_STATICTEXT" idvalue="1" context="Bitmask item showing in Options tab" locid="InternationalPSetUIDemo_34">
+			<dictval>Bitfields are an efficient way\r\nto store many boolean\r\nvalues in a single integer</dictval>
+			<dictval lang="jp">多くの boolean 値を 1 つの整数に\r\n格納するには、ビットフィールドが\r\n効率的な方法です。</dictval>
+		</dictidstring>
+		<dictstring context="Visiable strings showing in Options tab" locid="InternationalPSetUIDemo_35">
+			<dictkey>Spdl logic controlled</dictkey>
+			<dictval lang="jp">SPDL ロジックに制御されています</dictval>
+		</dictstring>
+		<dictstring context="Visiable strings showing in Options tab" locid="InternationalPSetUIDemo_36">
+			<dictkey>Selection?</dictkey>
+			<dictval lang="jp">何を選択しますか?</dictval>
+		</dictstring>
+		<dictstring context="Visiable strings showing in Check Boxes tab" locid="InternationalPSetUIDemo_37">
+			<dictkey>Letter</dictkey>
+			<dictval lang="jp">文字</dictval>
+		</dictstring>
+		<dictstring context="Visiable strings showing in Check Boxes tab" locid="InternationalPSetUIDemo_38">
+			<dictkey>Number</dictkey>
+			<dictval lang="jp">数</dictval>
+		</dictstring>
+		<dictstring context="Visiable strings showing in Check Boxes tab" locid="InternationalPSetUIDemo_39">
+			<dictkey>Invert</dictkey>
+			<dictval lang="jp">反転</dictval>
+		</dictstring>
+		<dictstring context="Visiable strings showing in Images tab" locid="InternationalPSetUIDemo_40">
+			<dictkey>Image Clip 1</dictkey>
+			<dictval lang="jp">イメージ クリップ 1</dictval>
+		</dictstring>
+		<dictstring context="Visiable strings showing in Images tab" locid="InternationalPSetUIDemo_41">
+			<dictkey>Image Clip 2</dictkey>
+			<dictval lang="jp">イメージ クリップ 2</dictval>
+		</dictstring>
+		<dictstring context="Visiable strings showing in Images tab" locid="InternationalPSetUIDemo_42">
+			<dictkey>Static Bitmap Demo</dictkey>
+			<dictval lang="jp">スタティック ビットマップ デモ</dictval>
+		</dictstring>
+		<dictstring context="Visiable strings showing in Images tab" locid="InternationalPSetUIDemo_43">
+			<dictkey>Static Bitmap</dictkey>
+			<dictval lang="jp">スタティック ビットマップ</dictval>
+		</dictstring>
+		<dictidstring define="IDS_MSG_INSPECTOBJ" idvalue="2" context="Log message to print the name of the inspected object" locid="InternationalPSetUIDemo_44">
+			<dictval>Inspected objct %s has %s parameters</dictval>
+			<dictval lang="jp">インスペクトされたオブジェクト %s には %s のパラメータがあります</dictval>
+		</dictidstring>
+		<dictidstring define="IDS_MSG_CURRRENDERPASS" idvalue="3" context="Log message to print the current render pass" locid="InternationalPSetUIDemo_45">
+			<dictval>Current render pass %s</dictval>
+			<dictval lang="jp">現在のレンダー パス %s</dictval>
+		</dictidstring>
+		<dictidstring define="IDS_MSG_TABVISIBLE" idvalue="4" context="Log message to notify the file control tab is visible" locid="InternationalPSetUIDemo_46">
+			<dictval>File control tab is now visible</dictval>
+			<dictval lang="jp">［ファイル コントロール］タブが表示されます</dictval>
+		</dictidstring>
+		<dictidstring define="IDS_MSG_VALUEOF_NOSLIDERDEMO_PARAM" idvalue="5" context="Log message to notify the file control tab is visible" locid="InternationalPSetUIDemo_47">
+			<dictval>New value for NoSliderDemo parameter: %s</dictval>
+			<dictval lang="jp">NoSliderDemo パラメータの新しい値: %s</dictval>
+		</dictidstring>
+		<dictidstring define="IDS_MSG_PARAMCHANGE" idvalue="6" context="Log message to notify the file control tab is visible" locid="InternationalPSetUIDemo_48">
+			<dictval>%s called for ParameterChange: %s %s</dictval>
+			<dictval lang="jp">%s が ParameterChange に呼び出されました: %s %s</dictval>
+		</dictidstring>
+		<dictstring context="Menu in Model>Get Property>" locid="InternationalPSetUIDemo_49">
+			<dictkey><![CDATA[&InternationalPSetUI - C++ API Version]]></dictkey>
+			<dictval lang="jp"><![CDATA[InternationalPSetUI - C++ API バージョン(&I)]]></dictval>
+		</dictstring>
+		<dictstring context="Menu in Model>Get Property>" locid="InternationalPSetUIDemo_50">
+			<dictkey><![CDATA[InternationalPSetUI - &JScript Version]]></dictkey>
+			<dictval lang="jp"><![CDATA[InternationalPSetUI - JScript バージョン(&J)]]></dictval>
+		</dictstring>
+		<dictstring context="Message to prompt something needs to be selected" locid="InternationalPSetUIDemo_51">
+			<dictkey>Please select something and try again</dictkey>
+			<dictval lang="jp">何かを選択して再度実行してください</dictval>
+		</dictstring>
+		<dictstring context="Button Tooltip in InternationalToolbar" locid="InternationalPSetUIDemo_52">
+			<dictkey>InternationalPSetUI - C++ API Version</dictkey>
+			<dictval lang="jp">InternationalPSetUI - C++ API バージョン</dictval>
+		</dictstring>
+		<dictstring context="Button Tooltip in InternationalToolbar" locid="InternationalPSetUIDemo_53">
+			<dictkey>InternationalPSetUI - JScript Version</dictkey>
+			<dictval lang="jp">InternationalPSetUI - JScript バージョン</dictval>
+		</dictstring>
+		<dictstring context="Button label in InternationalToolbar" locid="InternationalPSetUIDemo_54">
+			<dictkey>Create InternationalPSetUICPP Property</dictkey>
+			<dictval lang="jp">InternationalPSetUICPP プロパティを作成</dictval>
+		</dictstring>
+		<dictstring context="Button label in InternationalToolbar" locid="InternationalPSetUIDemo_55">
+			<dictkey>Create InternationalPSetUIJScript Property</dictkey>
+			<dictval lang="jp">InternationalPSetUIJScript プロパティを作成</dictval>
+		</dictstring>
+		<dictstring context="Tab name" locid="InternationalPSetUIDemo_56">
+			<dictkey>Numbers</dictkey>
+			<dictval lang="jp">番号</dictval>
+		</dictstring>
+		<dictstring context="Tab name" locid="InternationalPSetUIDemo_57">
+			<dictkey>File Controls</dictkey>
+			<dictval lang="jp">ファイル コントロール</dictval>
+		</dictstring>
+		<dictstring context="Tab name" locid="InternationalPSetUIDemo_58">
+			<dictkey>Text</dictkey>
+			<dictval lang="jp">テキスト</dictval>
+		</dictstring>
+		<dictstring context="Tab name" locid="InternationalPSetUIDemo_59">
+			<dictkey>Colors</dictkey>
+			<dictval lang="jp">カラー</dictval>
+		</dictstring>
+		<dictstring context="Tab name" locid="InternationalPSetUIDemo_60">
+			<dictkey>Options</dictkey>
+			<dictval lang="jp">オプション</dictval>
+		</dictstring>
+		<dictstring context="Tab name" locid="InternationalPSetUIDemo_61">
+			<dictkey>Check Boxes</dictkey>
+			<dictval lang="jp">チェック ボックス</dictval>
+		</dictstring>
+		<dictstring context="Tab name" locid="InternationalPSetUIDemo_62">
+			<dictkey>Images</dictkey>
+			<dictval lang="jp">イメージ</dictval>
+		</dictstring>
+	</namespace>
+</xsidict>
