@@ -1,0 +1,11 @@
+level IcyValley.lvl
+asset icebergs.xsi
+asset bridge.xsi
+asset Train.xsi
+skytexture1 Clouds2-alphalow.bmp
+skytexture2 overcast.bmp
+fogdistance 200.000000
+fogcolor.red 0.253906
+fogcolor.green 0.425781
+fogcolor.blue 0.617188
+enemies 2

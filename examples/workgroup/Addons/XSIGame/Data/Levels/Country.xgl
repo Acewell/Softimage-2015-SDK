@@ -1,0 +1,9 @@
+level Country.lvl
+asset windmill.xsi
+asset windmill2.xsi
+skytexture1 orangesky.bmp
+skytexture2 overcast.bmp
+fogdistance 200.000000
+fogcolor.red 0.500000
+fogcolor.green 0.500000
+fogcolor.blue 0.000000
