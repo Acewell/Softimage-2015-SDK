@@ -1,0 +1,1 @@
+This example shows how to integrate a game render window and modtool into Softimage.

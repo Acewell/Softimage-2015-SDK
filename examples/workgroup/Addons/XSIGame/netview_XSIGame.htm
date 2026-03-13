@@ -1,0 +1,329 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>XSIGame</title>
+<link rel="StyleSheet" href="../../doc/shared/examples.css" type="text/css">
+<script type="text/javascript" src="../../doc/shared/utils.js"></script>
+</head>
+<body>
+<div class="body"><a name="top"></a>
+
+
+
+<img class="netview" src="netview_XSIGame.jpg" style="float:left;padding-right:6px;">
+<h1>XSIGame</h1>
+
+<p>
+This example shows how to integrate a game render window and modtool into Softimage.
+</p>
+
+<p>Features demonstrated in this example:</p>
+<ul>
+<li>Custom Display Host</li>
+<li>Custom Views</li>
+<li>Custom User Preference</li>
+<li>Custom Scripted User Interface</li>
+<li>Customized NxN Integration</li>
+</ul>
+
+
+<h2>Example Files</h2>
+<table><tr>
+<td><strong>Location</strong></td><td><span class="installPath"></span>
+</td>
+</tr>
+
+<tr>
+<td><strong>Files</strong></td>
+<td>
+<div class="examplefile">XSIGameControlPanel2.js</div>
+<br/>
+<div class="examplefile" folder="CDHInterface">XSIGameControlPanelUI.cpp</div>
+<div class="examplefile" folder="CDHInterface">XSIGameControlPanelUI.h</div>
+<div class="examplefile" folder="CDHInterface">XSIGameInterface.cpp</div>
+<div class="examplefile" folder="CDHInterface">XSIGameInterface.h</div>
+<div class="examplefile" folder="CDHInterface">XSIGameInterface.vcproj</div>
+<div class="examplefile" folder="CDHInterface">XSIGameInterfaceUI.cpp</div>
+<div class="examplefile" folder="CDHInterface">XSIGameInterfaceUI.h</div>
+<br/>
+<div class="examplefile" folder="CharacterOptimizer">CharacterOptimizer.cpp</div>
+<div class="examplefile" folder="CharacterOptimizer">CharacterOptimizer.h</div>
+<div class="examplefile" folder="CharacterOptimizer">CharacterOptimizer.vcproj</div>
+<br/>
+<p>The Engine and Game folders contain the code for the actual game.</p>
+<!--
+<br/>
+<div id="examplefile" folder="Engine">BillboardManager.cpp</div>
+<div id="examplefile" folder="Engine">BillboardManager.h</div>
+<div id="examplefile" folder="Engine">BoundingBox.cpp</div>
+<div id="examplefile" folder="Engine">BoundingBox.h</div>
+<div id="examplefile" folder="Engine">Camera.cpp</div>
+<div id="examplefile" folder="Engine">Camera.h</div>
+<div id="examplefile" folder="Engine">CgProgramShader.cpp</div>
+<div id="examplefile" folder="Engine">CgProgramShader.h</div>
+<div id="examplefile" folder="Engine">CubicTextureShader.cpp</div>
+<div id="examplefile" folder="Engine">CubicTextureShader.h</div>
+<div id="examplefile" folder="Engine">debug.cpp</div>
+<div id="examplefile" folder="Engine">debug.h</div>
+<div id="examplefile" folder="Engine">DiskGameFlow.cpp</div>
+<div id="examplefile" folder="Engine">DiskGameFlow.h</div>
+<div id="examplefile" folder="Engine">Display.cpp</div>
+<div id="examplefile" folder="Engine">Display.h</div>
+<div id="examplefile" folder="Engine">dotXSI.cpp</div>
+<div id="examplefile" folder="Engine">dotXSI.h</div>
+<div id="examplefile" folder="Engine">dotXSILOD.cpp</div>
+<div id="examplefile" folder="Engine">dotXSILOD.h</div>
+<div id="examplefile" folder="Engine">ElectricField.cpp</div>
+<div id="examplefile" folder="Engine">ElectricField.h</div>
+<div id="examplefile" folder="Engine">Enemy.cpp</div>
+<div id="examplefile" folder="Engine">Enemy.h</div>
+<div id="examplefile" folder="Engine">engine.h</div>
+<div id="examplefile" folder="Engine">Engine.vcproj</div>
+<div id="examplefile" folder="Engine">GameState.cpp</div>
+<div id="examplefile" folder="Engine">GameState.h</div>
+<div id="examplefile" folder="Engine">GenericLevel.cpp</div>
+<div id="examplefile" folder="Engine">GenericLevel.h</div>
+<div id="examplefile" folder="Engine">Geometry.cpp</div>
+<div id="examplefile" folder="Engine">Geometry.h</div>
+<div id="examplefile" folder="Engine">Level.cpp</div>
+<div id="examplefile" folder="Engine">Level.h</div>
+<div id="examplefile" folder="Engine">LevelParser.cpp</div>
+<div id="examplefile" folder="Engine">LevelParser.h</div>
+<div id="examplefile" folder="Engine">Makefile</div>
+<div id="examplefile" folder="Engine">MaterialSystem.cpp</div>
+<div id="examplefile" folder="Engine">MaterialSystem.h</div>
+<div id="examplefile" folder="Engine">OpenGLDisplay.cpp</div>
+<div id="examplefile" folder="Engine">OpenGLDisplay.h</div>
+<div id="examplefile" folder="Engine">Player.cpp</div>
+<div id="examplefile" folder="Engine">Player.h</div>
+<div id="examplefile" folder="Engine">PowerUp.cpp</div>
+<div id="examplefile" folder="Engine">PowerUp.h</div>
+<div id="examplefile" folder="Engine">Readme.txt</div>
+<div id="examplefile" folder="Engine">Shader.cpp</div>
+<div id="examplefile" folder="Engine">Shader.h</div>
+<div id="examplefile" folder="Engine">Shield.cpp</div>
+<div id="examplefile" folder="Engine">Shield.h</div>
+<div id="examplefile" folder="Engine">SIBCArray.h</div>
+<div id="examplefile" folder="Engine">Sky.cpp</div>
+<div id="examplefile" folder="Engine">Sky.h</div>
+<div id="examplefile" folder="Engine">SkyBox.cpp</div>
+<div id="examplefile" folder="Engine">SkyBox.h</div>
+<div id="examplefile" folder="Engine">SpeedUp.cpp</div>
+<div id="examplefile" folder="Engine">SpeedUp.h</div>
+<div id="examplefile" folder="Engine">TexCoordShader.cpp</div>
+<div id="examplefile" folder="Engine">TexCoordShader.h</div>
+<div id="examplefile" folder="Engine">TextureShader.cpp</div>
+<div id="examplefile" folder="Engine">TextureShader.h</div>
+<div id="examplefile" folder="Engine">vector.h</div>
+<br/>
+<div id="examplefile" folder="Game">Game.cpp</div>
+<div id="examplefile" folder="Game">Game.vcproj</div>
+ -->
+</td>
+</tr>
+
+
+</table>
+
+
+<a name="build"></a><h2>Running the Example</h2>
+
+<div id="toinstall" style="display:none">
+<p class="proc-head">To install the example</p>
+<ul>
+<li><p>Connect to the Softimage SDK workgroup at <span class="workgroupPath">%XSISDK_ROOT%\examples\workgroup</span>.</p>
+	<ol>
+	<li>In the <strong>Plug-in Manager</strong>, click the <strong>Workgroups</strong> tab.</li>
+	<li>Click <strong>File</strong> and then click <strong>Connect</strong>.</li>
+	<li>In the <strong>Connect to Workgroup</strong> dialog box, click <img src="..\..\doc\shared\bBrowse.gif">, locate the workgroup folder, and then click <strong>Select</strong>.</li>
+	</ol>
+</li>
+</ul>
+
+<p class="proc-head">To view the help page for an example</p>
+
+<ul>
+<li>Do one of the following:</li>
+<ul>
+<li>In the Plug-in Tree, expand the SDK examples workgroup, right-click the example add-on and then click <strong>Help</strong>.
+</li>
+<li>
+Open a Net View and click <img style="position:relative;bottom:-6px;" src="..\..\doc\shared\xsiweb.png"> to go to Softimage Net local. In the top navigation bar, click <strong>add-ons</strong>, and then click the SDK example add-on.
+</li>
+</ul>
+</ul>
+</div>
+
+
+<div>
+<p class="proc-head">To run the example</p>
+<ol>
+<li>
+In viewport A, click the view name ("Top") to open the <strong>Views</strong> menu. In the <strong>Views</strong> menu, choose <strong>Custom Displays &gt; XSIGameView</strong>.
+</li>
+<li>Click in viewport A to start the game.</li>
+<li>If you edit the track in viewport B, the changes are automatically applied in the game view.</li>
+<li>To orbit the camera in the game view, orbit the camera in the wireframe view of viewport B.</li>
+</ol>
+
+
+</div>
+
+
+<a name="build"></a><h2>Building the Example</h2>
+<div>
+<p>
+Softimage SDK includes a compiled version of XSIGame. If you modify the code, you can rebuild the game by following these instructions.
+</p>
+
+<p class="proc-head">To build the example on Windows</p>
+
+<ol>
+
+<li>
+	<p>Download and install the required libraries:</p>
+    <ul>
+		<li><a target="_blank" href="http://xml.apache.org/xerces-c/">Xerces 2.1.0</a></li>
+		<li><p><a target="_blank" href="http://www.opengl.org/resources/libraries/glut/" >GLUT 3.7</a></p>
+		<div class="note"><strong>Important</strong> Install GLUT in a folder named gl (for example, <code>C:\Glut\gl</code>).</div>
+		</li>
+		<li><a target="_blank" href="http://developer.nvidia.com/object/cg_toolkit.html">CG 1.2</a></li>
+    </ul>
+    </ul>
+</li>
+
+<li><p><span class="sishell" cppsrc="INSTALL_FOLDER">Open</span> an Softimage command prompt.</p>
+<p>Opening an Softimage command prompt ensures that environment variables such as XSISDK_ROOT are set.</p>
+</li>
+
+<li>
+<p>In the Softimage command prompt, set the <strong>XERCESC_INC_PATH</strong>, <strong>GLEXT_INC_PATH</strong>, <strong>GLEXT_LIB_PATH</strong>, and <strong>CG_INC_PATH</strong> environment variables .</p>
+
+<ul>
+<li>
+<p>For example, if you installed XERCES in the folder <code>C:\xerces\bin</code>, GLUT in the folder <code>C:\Glut\gl</code>, then set the GLEXT environment variables like this:</p>
+<pre>
+set XERCESC_INC_PATH=C:\xerces\bin
+set GLEXT_INC_PATH=C:\Glut
+set GLEXT_LIB_PATH=C:\Glut\gl
+</pre>
+</li>
+<li>The Cg installer may have already set <strong>CG_INC_PATH</strong>.</li>
+</ul>
+</li>
+
+<li>
+<p>Start devenv and load the project you want to build:</p>
+<ul>
+<li>Engine\Engine.vcproj</li>
+<li>Game\Game.vcproj</span></li>
+<li>CDHInterface\XSIGameInterface.vcproj</li>
+<li>CharacterOptimizer\CharacterOptimizer.vcproj</li>
+<li>CGShaderHandler\CGShaderHandler.vcproj</li>
+</ul>
+
+<div class="note">
+<p><strong>Tip</strong> To load a project from the command line, type the name of the project in the <strong>devenv</strong> command line. For example:</p>
+<pre>devenv Engine\Engine.vcproj</pre>
+</div>
+
+
+</li>
+
+<!--
+<li><p>In <span class="installPath">xsivcvars32.bat</span>, set the values of the GLUT_ROOT and CG_ROOT environment variables . For example:</p>
+<pre>
+set XSISDK_ROOT=&quot;C:\Softimage\XSI_4.5\XSISDK&quot;
+set GLUT_ROOT=&quot;C:\glut-3.7&quot;
+set CG_ROOT=&quot;C:\Program Files\NVIDIA Corporation\Cg-1.2&quot;</pre>
+</li>
+
+<li><p>Run <strong>xsivcvars32.bat</strong>.</p>
+</li>
+-->
+
+<!-- These files are writable already
+<li><p>Ensure that you have permission to overwrite the existing modules.</p>
+<pre>
+attrib -R .\Application\Plugins\XSIGameInterface.dll
+attrib -R .\Application\bin\nt-x86\Game.exe
+</pre>
+</li>
+-->
+
+<li><p>Compile a specific configuration (Release or Debug) of XSIGame using Visual Studio .NET.</p>
+<!--
+<pre>
+devenv .\Engine\Engine.vcproj /useenv /build Debug
+devenv .\CDHInterface\XSIGameInterface.vcproj /useenv /build Debug
+devenv .\Game\Game.vcproj /useenv /build Debug
+</pre>
+-->
+</li>
+
+</ol>
+
+</div>
+
+
+
+
+<a name="build"></a><h2>Setting Up AlienBrain</h2>
+<div>
+
+<p class="proc-head">To set up AlienBrain</p>
+
+<ol>
+<li>
+<p>Install version 7.2 of the <a href="http://www.alienbrain.com">Alienbrain</a> client and the Softimage integration.</p>
+</li>
+
+<li>Use the subst drive H: for your local Alienbrain database.</li>
+
+<li>
+<p>Add the XSIGame files to Alienbrain server.</p>
+<p>The idea is to put all the files (3D assets and code files) into alienbrain and base the asset management workflow on AlienBrain.</p>
+   <ul>
+      <li>Create a Project called XSIGame on the Alienbrain server.</li>
+      <li>Add all files under XSISDK\examples\workgroup\Addons\XSIGame\
+        to the Alienbrain project.</li>
+    </ul>
+  </li>
+  <li>Set the XSIGame working path:
+    <ul>
+      <li>Start Softimage.</li>
+      <li>Open the control panel (XSIGame &gt; Control Panel).</li>
+      <li>Set the Data Folder path to <a href="file:///H:/XSIGame">H:\XSIGame</a>.
+        Note that the data location is stored in a file called
+        datalocation.txt located at the root folder of the example. The game engine is
+        uses the content of this file to find the data files.</li>
+      <li>Now you can start manipulating the data using alienbrain within Softimage.</li>
+    </ul>
+  </li>
+</ol>
+</div>
+
+<div id="keywords">
+<h2>Keywords</h2>
+<p>This example uses the following keywords:</p>
+<p>
+C++ example,
+ViewContext,
+PutUserData,
+GetUserData,
+Notify,
+CreateDialog,
+RegisterCustomDisplay,
+siEventID,
+GetNotificationData,
+AlienBrain,
+Custom Display Host
+</p>
+</div>
+
+
+
+
+</div><!-- end of body div -->
+</body>
+</html>
