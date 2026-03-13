@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="UserMacros">
+    <BitSuffix>.64</BitSuffix>
+    <LibArchDir>nt-x86-64</LibArchDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <Link>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="BitSuffix">
+      <Value>$(BitSuffix)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LibArchDir">
+      <Value>$(LibArchDir)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

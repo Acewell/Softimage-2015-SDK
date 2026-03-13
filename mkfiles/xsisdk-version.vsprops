@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="xsisdk-version"
+	>
+	<Tool
+		Name="VCCLCompilerTool"
+		PreprocessorDefinitions="XSISDK_VERSION=$(XSISDK_VERSION);XSISDK_VERSION_NAME=\&quot;$(XSISDK_VERSION_NAME)\&quot;"
+	/>
+	<UserMacro
+		Name="XSISDK_VERSION_NAME"
+		Value="2015"
+	/>
+	<UserMacro
+		Name="XSISDK_VERSION"
+		Value="13000"
+	/>
+</VisualStudioPropertySheet>

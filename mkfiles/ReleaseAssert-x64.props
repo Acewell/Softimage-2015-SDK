@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="allcfg.props" />
+    <Import Project="cl-release.props" />
+    <Import Project="cl-x64.props" />
+    <Import Project="link-release.props" />
+    <Import Project="link-x64.props" />
+    <Import Project="link.props" />
+    <Import Project="link-xsisdk-libs.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <SIIntDir>\x64\shipassert</SIIntDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <BuildMacro Include="SIIntDir">
+      <Value>$(SIIntDir)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

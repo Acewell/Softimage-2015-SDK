@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="allcfg"
+	InheritedPropertySheets=".\xsisdk-version.vsprops"
+	>
+	<Tool
+		Name="VCBscMakeTool"
+		OutputFile="$(IntDir)/$(ProjectName).bsc"
+	/>
+	<Tool
+		Name="VCCLCompilerTool"
+		AdditionalOptions="/we4293 /we4700"
+		EnableIntrinsicFunctions="true"
+		AdditionalIncludeDirectories="$(XSISDK_ROOT)/include"
+		PreprocessorDefinitions="_WIN32_WINNT=0x0500;_CRT_SECURE_NO_DEPRECATE;_HAS_ITERATOR_DEBUGGING=0;_HAS_EXCEPTIONS=1"
+		FloatingPointModel="2"
+		TreatWChar_tAsBuiltInType="true"
+		ForceConformanceInForLoopScope="true"
+		RuntimeTypeInfo="false"
+		AssemblerListingLocation="$(IntDir)\"
+		ObjectFile="$(IntDir)\"
+		ProgramDataBaseFileName="$(IntDir)\"
+		XMLDocumentationFileName="$(IntDir)\"
+		BrowseInformationFile="$(IntDir)\"
+		WarningLevel="4"
+		CompileAs="0"
+		DisableSpecificWarnings="4100;4201;4505;4514;4710;4711;4996"
+	/>
+	<Tool
+		Name="VCLibrarianTool"
+		SuppressStartupBanner="true"
+		IgnoreAllDefaultLibraries="false"
+	/>
+	<Tool
+		Name="VCResourceCompilerTool"
+		Culture="1033"
+	/>
+</VisualStudioPropertySheet>

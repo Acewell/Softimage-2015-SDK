@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="Release-x86"
+	InheritedPropertySheets=".\allcfg.vsprops;.\cl-release.vsprops;.\cl-x86.vsprops;.\link-release.vsprops;.\link-x86.vsprops;.\link.vsprops;.\link-xsisdk-libs.vsprops"
+	>
+	<UserMacro
+		Name="SIIntDir"
+		Value="\x86\ship"
+	/>
+</VisualStudioPropertySheet>

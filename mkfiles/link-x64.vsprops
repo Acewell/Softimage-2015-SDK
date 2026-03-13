@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="link-x64"
+	>
+	<Tool
+		Name="VCLinkerTool"
+		TargetMachine="17"
+	/>
+	<UserMacro
+		Name="BitSuffix"
+		Value=".64"
+	/>
+	<UserMacro
+		Name="LibArchDir"
+		Value="nt-x86-64"
+	/>
+</VisualStudioPropertySheet>

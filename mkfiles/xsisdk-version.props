@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="UserMacros">
+    <XSISDK_VERSION_NAME>2015</XSISDK_VERSION_NAME>
+    <XSISDK_VERSION>13000</XSISDK_VERSION>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PreprocessorDefinitions>XSISDK_VERSION=$(XSISDK_VERSION);XSISDK_VERSION_NAME="$(XSISDK_VERSION_NAME)";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="XSISDK_VERSION_NAME">
+      <Value>$(XSISDK_VERSION_NAME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="XSISDK_VERSION">
+      <Value>$(XSISDK_VERSION)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
