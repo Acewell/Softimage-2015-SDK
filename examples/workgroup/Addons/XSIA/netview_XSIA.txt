@@ -1,0 +1,1 @@
+This JScript example demonstrates writing your own importer/exporter for scene summary data using a XML file format.
