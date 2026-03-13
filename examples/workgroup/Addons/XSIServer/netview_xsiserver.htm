@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>XSIServer</title>
+		<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<LINK href="../../doc/shared/examples.css" type="text/css" rel="StyleSheet">
+			<script src="../../doc/shared/utils.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<div class="body"><a name="top"></a><IMG class="netview" style="PADDING-RIGHT: 6px; FLOAT: left" src="netview_xsiserver.jpg">
+			<h1>Softimage TCP Server</h1>
+			<p><br><br>			
+This plugin provides 2 examples of a TCP/IP server implementation for Softimage. The first example is a C# server which manages 
+client connections asynchronously and can execute requests received from client connections.
+
+<ul>
+<b>Note</b>: The C# example is not available on Linux.
+</ul>
+<p>
+<br>
+The XSIClientSample command-line application can be used for sending requests to the Softimage server. <br>
+
+<ul>
+Example:<br>
+<pre>
+XSIClientSample.exe "log|my message" -> logs "my message" in the history window.
+XSIClientSample.exe "script|c:\\temp\\test.vbs" -> executes the test.vbs script in Softimage (any Softimage script language can be used)
+</pre>
+Note: The above examples work if the XSIServer is connected on the localhost (127.0.0.1) on port 10000.<br><br>
+
+You can also specify the full address and connection port to XSIClientSample.exe:
+<pre>
+XSIClientSample.exe "log|Send to 172.24.40.132 on port 50010" "172.24.40.132" 50010
+XSIClientSample.exe "script|c:\\temp\\test.vbs" "172.24.40.126" 50010
+</pre>
+</ul>
+<p>
+The second example is a python TCP server which also manage client connections asynchronously. The tcpclient.py example 
+can be used for sending requests to the TCP server.
+
+<ul>
+Example:<br>
+<pre>
+##tcpclient.py
+from socket import *
+ 
+HOST = 'localhost'
+PORT = 5007    #our port from before
+ADDR = (HOST,PORT)
+BUFSIZE = 4096
+ 
+cli = socket( AF_INET,SOCK_STREAM)
+cli.connect((ADDR))
+
+cli.send('xyz_request:Torus')
+ 
+data = cli.recv(1024)
+	
+print 'request result %s' % (data) 
+
+cli.close()
+</pre>
+
+
+			</p>
+			<h2>Example Files</h2>
+			<DIV class="body">
+				<table>
+					<tr>
+						<td><strong>Location</strong></td>
+						<td><span class="installPath"></span></td>
+					</tr>
+					<tr>
+						<td><strong>Files</strong></td>
+						<td>
+							<div class="examplefile" folder="cssrc">XSIServer.cs</div>
+							<div class="examplefile" folder="cssrc">XSITCP.cs</div>
+							<div class="examplefile" folder="cssrc">XSIServiceProvider.cs</div>
+							<div class="examplefile" folder="cssrc">XSIHelpers.cs</div>
+							<div class="examplefile" folder="XSIClientSample">main.cs</div>
+							<div class="examplefile" folder="Application/Plugins">si_tcp_server.py</div>
+							<div class="examplefile" folder="Application/Plugins">tcpclient.py</div>
+						</td>
+					</tr>
+				</table>
+				<a name="build"></a>
+				<h2>Running the examples</h2>
+				<div id="toinstall" style="DISPLAY: none">
+					<p class="proc-head">To install the example</p>
+					<ul>
+						<li>
+							<p>Connect to the Softimage SDK workgroup at
+								<span class="workgroupPath">%XSISDK_ROOT%\examples\workgroup</span>.</p>
+							<ol>
+						<li>
+							In the <strong>Plug-in Manager</strong>, click the <strong>Workgroups</strong>
+						tab.
+						<li>
+							Click <strong>File</strong> and then click <strong>Connect</strong>.
+						<li>
+							In the <strong>Connect to Workgroup</strong> dialog box, click <IMG src="..\..\doc\shared\bBrowse.gif">,
+							locate the workgroup folder and then click <strong>Select</strong>.
+						</li>
+						</OL></LI></ul>
+					<p class="proc-head">To view the help page for an example</p>
+					<ul>
+						<li>
+							Do one of the following:
+							<ul>
+								<li>
+									In the Plug-in Tree, expand the SDK examples workgroup, right-click the example
+									add-on and then click <strong>Help</strong>.
+								<li>
+									Open a Net View and click <IMG style="BOTTOM: -6px; POSITION: relative" src="..\..\doc\shared\xsiweb.png">
+									to go to Softimage Net local. In the top navigation bar, click <strong>add-ons</strong>,
+									and then click the SDK example add-on.
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div>
+					<p class="proc-head">To run the C# TCP Server Example</p>
+					<ul>
+						<LI>
+							From the <strong>XSIServer_Menu</strong> menu located in the main menu bar, click <strong>
+							Properties</strong>. The Softimage Server property page opens.
+						</LI>
+						<LI>Click the <strong>Start</strong> radio-button.</LI>
+						<LI>
+							<p><span class="sishell" cssrc="XSIClientSample">Open</span> a Softimage command prompt, and type the following:</p>
+							<pre>XSIClientSample.exe "log|Message sent from XSIClientSample"</pre>
+						</LI>
+						<LI>
+							The Softimage Scripting Editor window displays the message (if you have activated the <strong>Log Verbose Messages</strong> preference).
+						</LI>
+					</ul>
+				</div>
+
+				<div>
+					<p class="proc-head">To run the python TCP Server Example</p>
+					<ul>
+						<LI>
+							From the <strong>SI TCP Server</strong> menu located in the main menu bar, click <strong>
+							Start</strong> to run the server. 
+						</LI>
+						<LI>
+							<p><span class="sishell">Open</span> a Softimage command prompt, and type the following:</p>
+							<pre>python.exe tcpclient.py</pre>
+						</LI>						
+						<LI>
+							A new torus should be created in Softimage and the following is logged on the command-line<strong>request result done</strong>.
+						</LI>
+						
+					</ul>
+				</div>
+
+				<a name="build"></a>
+				<h2>Building the Softimage C# TCP Server Example</h2>
+				<p>
+				Softimage SDK includes a compiled version of XSIServer and XSIClientSample. If you want to modify the
+				code, you can rebuild the example by following these instructions.</p>
+			<div id="windows-build">
+				<p class="proc-head">To build the example on Windows</p>
+				<ol>
+					<li>
+						<p><span class="sishell" cssrc="cssrc">Open</span>
+							an Softimage command prompt, and type <strong>devenv</strong> to start Visual Studio
+							.NET.</p>
+						<p>Starting Visual Studio .NET from an Softimage command prompt ensures that environment
+							variables such as XSI_HOME are set (otherwise you'll get build and link
+							errors).</p>
+						<p><strong>Tip</strong> To load the
+							<span class="devenv" csproj="cssrc\XSIServer.csproj">XSIServer</span>
+							project from the command line, type:</p>
+						<pre>devenv <span class="installPath">cssrc\XSIServer.csproj</span></pre>
+					<li>In Visual Studio .NET, open the project file <tt>XSIServer.csproj</tt>.</li>
+					<li>Select a configuration (Release or Debug) and build the DLL.</li>
+					<li>To build XSIClientSample: open the project file <span class="devenv" csproj="XSIClientSample\XSIClientSample.csproj">XSIClientSample.csproj</span>.</li>
+					<li>Select a configuration (Release or Debug) and build the DLL.</li>
+
+				</ol>
+			</div>
+
+				<div id="keywords">
+					<h2>Keywords</h2>
+					<p>This example uses the following keywords:</p>
+					<p>C#, TCP/IP, RegisterCommand, RegisterProperty, RegisterMenu, RegisterTimerEvent.
+					</p>
+				</div>
+			</DIV>
+		</div>
+	</body>
+</html>

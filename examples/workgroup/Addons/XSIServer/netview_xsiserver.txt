@@ -1,0 +1,1 @@
+This plugin provides an example of a C# and python TCP/IP server implementation for Softimage. 
