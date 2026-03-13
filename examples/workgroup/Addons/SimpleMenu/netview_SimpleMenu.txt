@@ -1,0 +1,1 @@
+This example shows how to add custom menus in Softimage. The example includes JScript, Python, VBScript, and C++ versions.

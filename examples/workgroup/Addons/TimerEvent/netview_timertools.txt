@@ -1,0 +1,1 @@
+This example shows how to implement a timer event as a self-installing plug-in with JScript.

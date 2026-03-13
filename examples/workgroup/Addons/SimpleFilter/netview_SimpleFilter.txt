@@ -1,0 +1,1 @@
+This example shows how to implement a custom filter as a self-installing plug-in. The example includes JScript, Python, VBScript, and C++ versions of the filter.

@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>SimpleFilter</title>
+		<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<link rel="StyleSheet" href="../../doc/shared/examples.css" type="text/css">
+			<script type="text/javascript" src="../../doc/shared/utils.js"></script>
+	</head>
+	<body>
+		<div class="body"><a name="top"></a> <img class="netview" src="netview_SimpleFilter.jpg" style="PADDING-RIGHT:6px;FLOAT:left">
+			<h1>Simple Filter</h1>
+			<p>
+				This example shows how to implement a custom filter as a self-installing
+				plug-in. Softimage installs the custom filter at startup and automatically adds it to
+				the filter menu in the Select panel of the main command area. When Simple
+				Filter is the active selection filter, you cannot select polygon meshes with
+				less than fifty vertices.
+			</p>
+			<p>
+				The example includes JScript, Python, VBScript, and C++ versions of the filter.
+				A more advanced C# filter called Triangle Filter is also included here.
+				You can find more examples of custom filters in the
+				%XSISDK_ROOT%\Application\Filters folder.
+			</p>
+			<h2>Example Files</h2>
+			<table>
+				<tr>
+					<td><strong>Location</strong></td>
+					<td><span class="installPath"></span>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Files</strong></td>
+					<td>
+						<div class="examplefile">simplejsfilter.js</div>
+						<DIV class="examplefile">simplepyfilter.py</DIV>
+						<div class="examplefile">simplevbsfilter.vbs</div>
+						<div class="examplefile">simplefilter.cpp</div>
+						<div class="examplefile">GNUmakefile</div>
+						<div class="examplefile">simplefilter.vcproj</div>
+						<div class="examplefile" folder="cssrc_TriangleFilter">CSTriangleFilter.cs</div>
+						<div class="examplefile" folder="cssrc_TriangleFilter">CSTriangleFilter.csproj</div>
+					</td>
+				</tr>
+			</table>
+			<!--
+<a name="build"></a><h2>Running the Example</h2>
+ -->
+			<div id="toinstall" style="DISPLAY:none">
+				<p class="proc-head">To install the example</p>
+				<ul>
+					<li>
+						<p>Connect to the Softimage SDK workgroup at
+							<span class="workgroupPath">%XSISDK_ROOT%\examples\workgroup</span>.</p>
+						<ol>
+					<li>
+						In the <strong>Plug-in Manager</strong>, click the <strong>Workgroups</strong>
+					tab.
+					<li>
+						Click <strong>File</strong> and then click <strong>Connect</strong>.
+					<li>
+						In the <strong>Connect to Workgroup</strong> dialog box, click <img src="..\..\doc\shared\bBrowse.gif">,
+						locate the workgroup folder and then click <strong>Select</strong>.</li>
+					</ol> </li>
+				</ul>
+				<p class="proc-head">To view the help page for an example</p>
+				<ul>
+					<li>
+						Do one of the following:
+						<ul>
+							<li>
+								In the Plug-in Tree, expand the SDK examples workgroup, right-click the example
+								add-on and then click <strong>Help</strong>.
+							<li>
+								Open a Net View and click <img style="BOTTOM:-6px;POSITION:relative" src="..\..\doc\shared\xsiweb.png">
+								to go to Softimage Net local. In the top navigation bar, click <strong>add-ons</strong>,
+								and then click the SDK example add-on.
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div>
+				<p class="proc-head">To run the example</p>
+				<ol>
+					<li>
+					Create some polygon mesh objects, such as a cube and a sphere.
+					<li>
+						<p>In the Select panel, click <img src="../../doc/shared/drop-arrow.gif"> to
+							display the list of filters.</p>
+						<div>
+							<img src="../../doc/shared/filters.gif">
+						</div>
+					<li>
+						In the list of filters, click <strong>Simple Filter</strong> (or <strong>JScript
+							Simple Filter</strong> or&nbsp;<STRONG>Python Simple Filter </STRONG>or <strong>
+							VBScript Simple Filter</strong> or <strong>CSTriangleFilter</strong>).
+					<li>
+						Try to select different polygon meshes. The custom filter limits the selection to meshes with at least fifty points. </br></br>
+						<b>Note 1:</b> The C# Triangle Filter limits the selection to triangles.</br>
+						<b>Note 2:</b> The python filter can be configured by clicking the PythonFilterMenu | PPG menu in the main menu bar.
+				        </li>
+				</ol>
+			</div>
+
+			<a name="build"></a>
+			<h2>Building the C++ Example</h2>
+			<p>
+				Softimage SDK includes a compiled version of SimpleFilter. If you want to modify the
+				code, you can rebuild the example by following these instructions.</p>
+			<div id="windows-build">
+				<p class="proc-head">To build the example on Windows</p>
+				<ol>
+					<li>
+						<p><span class="sishell">Open</span>
+							an Softimage command prompt, and type <strong>devenv</strong> to start Visual Studio
+							.NET.</p>
+						<p>Starting Visual Studio .NET from an Softimage command prompt ensures that environment
+							variables such as XSISDK_ROOT are set (otherwise you'll get build and link
+							errors).</p>
+						<p><strong>Tip</strong> To load the
+							<span class="devenv" vcproj="SimpleFilter.vcproj">SimpleFilter</span>
+							project from the command line, type:</p>
+						<pre>devenv <span class="installPath">SimpleFilter.vcproj</span></pre>
+					<li>In Visual Studio .NET, open the project file <tt>.vcproj</tt>.</li>
+					<li>Select a configuration (Win32 Release or Win32 Debug) and build the DLL.</li>
+				</ol>
+			</div>
+			<div id="linux-build">
+				<p class="proc-head">To build the example on Linux</p>
+				<ol>
+					<li>
+						<p>In a shell (tcsh) window, type:</p>
+						<pre>source $XSI_HOME/<span class="linuxExt">.xsi_&lt;xsi_version&gt;</span></pre>
+					<li>
+						<p>Change directories to</p>
+						<pre><span class="installPath">cppsrc</span></pre>
+					<li>
+						<p>To remove all intermediate files before building the example, run this command:</p>
+						<pre>gmake clean</pre>
+					<li>
+						<p>
+						To compile the example, run this command:<p>
+							<pre>gmake</pre>
+					</li>
+				</ol>
+			</div>
+
+			<a name="build"></a>
+			<h2>Building the C# Triangle Filter Example</h2>
+				<p>
+				Softimage SDK includes a compiled version of C# Triangle Filter. If you want to modify the
+				code, you can rebuild the example by following these instructions.</p>
+			<div id="windows-build">
+				<p class="proc-head">To build the example on Windows</p>
+				<ol>
+					<li>
+						<p><span class="sishell" cssrc="cssrc_TriangleFilter">Open</span>
+							an Softimage command prompt, and type <strong>devenv</strong> to start Visual Studio
+							.NET.</p>
+						<p>Starting Visual Studio .NET from an Softimage command prompt ensures that environment
+							variables such as XSI_HOME are set (otherwise you'll get build and link
+							errors).</p>
+						<p><strong>Tip</strong> To load the
+							<span class="devenv" csproj="cssrc_TriangleFilter\CSTriangleFilter.csproj">CSTriangleFilter</span>
+							project from the command line, type:</p>
+						<pre>devenv <span class="installPath">cssrc_TriangleFilter\CSTriangleFilter.csproj</span></pre>
+					<li>In Visual Studio .NET, open the project file <tt>.csproj</tt>.</li>
+					<li>Select a configuration (Release or Debug) and build the DLL.</li>
+
+				</ol>
+			</div>
+
+			<div id="keywords">
+				<h2>Keywords</h2>
+				<p>This example uses the following keywords:</p>
+				<p>
+					C++, JScript, Python, VBScript, C++ example, JScript example,&nbsp;Python
+					example, VBScript example, RegisterFilter, siFilter3DObject, X3DObject, IsA,
+					siX3DObjectID, siPrimitiveID, SIObject, GetParent, Match, Context,
+					GetAttribute, Input, IsValid, GetActivePrimitive, GetGeometry, GetPoints,
+					GetCount, Applicable, Subset, GetArrayAttribute, Input, PutArrayAttribute,
+					PutUserData, GetUserData, CValue::siPtrType, Init, Reload, Term, ClassName
+				</p>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>TimerEvent</title>
+		<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<link rel="StyleSheet" href="../../doc/shared/examples.css" type="text/css">
+			<script type="text/javascript" src="../../doc/shared/utils.js"></script>
+	</head>
+	<body>
+		<div class="body"><a name="top"></a> <img class="netview" src="netview_timertools.jpg" style="PADDING-RIGHT:6px;FLOAT:left">
+			<h1>Timer Tools</h1>
+			<p>This example demonstrates how to use timer events in Softimage.</p>
+			<h2>Example Files</h2>
+		<DIV class="body">
+			<table>
+				<tr>
+					<td><strong>Location</strong></td>
+					<td><span class="installPath"></span></td>
+				</tr>
+				<tr>
+					<td><strong>Files</strong></td>
+					<td>
+						<div class="examplefile">timertools.js</div>
+					</td>
+				</tr>
+			</table>
+			<a name="build"></a>
+		<h2 class="body">Running the Example</h2>
+			<div id="toinstall" style="DISPLAY:none">
+				<p class="proc-head">To install the example</p>
+				<ul>
+					<li>
+						<p>Connect to the Softimage SDK workgroup at
+							<span class="workgroupPath">%XSISDK_ROOT%\examples\workgroup</span>.</p>
+						<ol>
+					<li>
+						In the <strong>Plug-in Manager</strong>, click the <strong>Workgroups</strong>
+					tab.
+					<li>
+						Click <strong>File</strong> and then click <strong>Connect</strong>.
+					<li>
+						In the <strong>Connect to Workgroup</strong> dialog box, click <img src="..\..\doc\shared\bBrowse.gif">,
+						locate the workgroup folder and then click <strong>Select</strong>.</li>
+					</ol> </li>
+				</ul>
+				<p class="proc-head">To view the help page for an example</p>
+				<ul>
+					<li>
+						Do one of the following:
+						<ul>
+							<li>
+								In the Plug-in Tree, expand the SDK examples workgroup, right-click the example
+								add-on and then click <strong>Help</strong>.
+							<li>
+								Open a Net View and click <img style="BOTTOM:-6px;POSITION:relative" src="..\..\doc\shared\xsiweb.png">
+								to go to Softimage Net local. In the top navigation bar, click <strong>add-ons</strong>,
+								and then click the SDK example add-on.
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div>
+				<p class="proc-head">To run the example</p>
+				<ul>
+					<li>The timer tools plug-in contains several timer demos which can be enabled, disabled
+					and reset from the Timer Tools PPG.
+
+					<li>
+					You can open the Timer Tools PPG by executing the <span class="runCmd" title="ShowTimerTools">ShowTimerTools</span> command.
+<p style="margin-top:6px;margin-left:-1.5em;">-or-</p>
+					<li>
+					You can open the Timer Tools PPG from the Timer Tools menu located in the main menu bar.
+<p style="margin-top:6px;margin-left:-1.5em;">-or-</p>
+					<li>
+					You can manage these timers from the Plugin Manager Event panel.
+				</ul>
+
+				<p class="proc-head">Timers included in this example</p>
+				<ul>
+					<li><strong>Auto Save Scene</strong>: Automatically saves the current scene
+					every 15 seconds.
+
+					<li><strong>Auto Script Editor Backup</strong>: Dumps the content of the script
+					editor in a backup file every 10 seconds.
+
+					<li><strong>Sub-component extruder</strong>: This sample combines an event timer
+					with the key up and key down events to extrude any selected geometry sub-components.
+					If you hit the F2 key, the selected sub-components is extruded and an event timer is
+					started. While you hold down the F2 key, the timer callback kicks in and increases
+					the length parameter of the extrusion operator by 1 unit every 50 milliseconds. This
+					stops as soon as you release the F2 key.
+
+					<li><strong>Auto Freeze Modeling</strong>: Freezes the selected object modeling
+					operator(s) every 20 secs.
+
+					<li><strong>Show Banner</strong>: Opens Netview with a banner file 5 seconds after
+					Softimage has been started or after the Show Banner Timer as been enabled (unmuted). This
+					demo uses a single timer which only fires once. A single timer disables itself after
+					it has been executed for the first time.
+				</ul>
+
+			</div>
+			<div id="keywords">
+				<h2>Keywords</h2>
+				<p>This example uses the following keywords:</p>
+				<p>
+					JScript, RegisterTmerEvent, RegisterEvent, TimerEvent, EventInfo, Mute,
+					Reset, Delay, Interval, SaveScene, SetGlobal, ApplyTopoOp, FreezeModeling.
+				</p>
+			</div>
+	</body>
+</html>
