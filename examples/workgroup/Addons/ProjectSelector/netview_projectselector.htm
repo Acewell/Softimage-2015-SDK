@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>ProjectSelector</title>
+		<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<LINK href="../../doc/shared/examples.css" type="text/css" rel="StyleSheet">
+			<script src="../../doc/shared/utils.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<div class="body"><a name="top"></a><IMG class="netview" style="PADDING-RIGHT: 6px; FLOAT: left" src="netview_projectselector.jpg">
+			<h1>Project Selector</h1>
+			<p>This plug-in demonstrates how to use the change&nbsp;project event
+				(siOnChangeProject) in JScript and C#. The plug-in property page&nbsp;lists 3 projects
+				you can select through a radio button control.&nbsp;When a&nbsp;new selected
+				project is activated, the siOnChangeProject event&nbsp;callback activates a new
+				layout according to the activated project.
+			</p>
+			<h2>Example Files</h2>
+			<DIV class="body">
+				<table>
+					<tr>
+						<td><strong>Location</strong></td>
+						<td><span class="installPath"></span></td>
+					</tr>
+					<tr>
+						<td><strong>Files</strong></td>
+						<td>
+							<div class="examplefile">projectselector.js</div>
+							<div class="examplefile" folder="cssrc">CSProjectSelector.cs</div>
+						</td>
+					</tr>
+				</table>
+				<a name="build"></a>
+				<h2>Running the Example</h2>
+				<div id="toinstall" style="DISPLAY: none">
+					<p class="proc-head">To install the example</p>
+					<ul>
+						<li>
+							<p>Connect to the Softimage SDK workgroup at
+								<span class="workgroupPath">%XSISDK_ROOT%\examples\workgroup</span>.</p>
+							<ol>
+						<li>
+							In the <strong>Plug-in Manager</strong>, click the <strong>Workgroups</strong>
+						tab.
+						<li>
+							Click <strong>File</strong> and then click <strong>Connect</strong>.
+						<li>
+							In the <strong>Connect to Workgroup</strong> dialog box, click <IMG src="..\..\doc\shared\bBrowse.gif">,
+							locate the workgroup folder and then click <strong>Select</strong>.
+						</li>
+						</OL></LI></ul>
+					<p class="proc-head">To view the help page for an example</p>
+					<ul>
+						<li>
+							Do one of the following:
+							<ul>
+								<li>
+									In the Plug-in Tree, expand the SDK examples workgroup, right-click the example
+									add-on and then click <strong>Help</strong>.
+								<li>
+									Open a Net View and click <IMG style="BOTTOM: -6px; POSITION: relative" src="..\..\doc\shared\xsiweb.png">
+									to go to Softimage Net local. In the top navigation bar, click <strong>add-ons</strong>,
+									and then click the SDK example add-on.
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div>
+					<p class="proc-head">To run the JScript example</p>
+					<ul>
+						<LI>
+							From the&nbsp;Project Selector&nbsp;menu located in the main menu bar, click <strong>
+								Launch Project Selector</strong>. The Project Selector PPG opens. You can
+							select one of the project below:
+							<ul>
+								<li>
+									<strong>Default</strong>: Creates/activates a default project in the user
+								folder and activates the default Softimage layout.
+								<li>
+									<strong>Animation</strong>: Creates/activates an animation&nbsp;project in
+								the user folder and activates the Dual Softimage layout.&nbsp;
+								<li>
+									<strong>Compositing</strong>:&nbsp;Creates/activates
+									a&nbsp;compositing&nbsp;project in the user folder and activates the Compositing Softimage layout.
+								</li>
+							</ul>
+						</LI>
+					</ul>
+				</div>
+
+				<div>
+					<p class="proc-head">To run the C# example</p>
+					<ul>
+						<LI>
+							From the&nbsp;CSProjectSelector_Menu&nbsp;menu located in the main menu bar, click <strong>
+								Launch C# Project Selector</strong>. The Project Selector PPG opens. You can
+							select one of the project below:
+							<ul>
+								<li>
+									<strong>Default</strong>: Creates/activates a default project in the user
+								folder and activates the default Softimage layout.
+								<li>
+									<strong>Animation</strong>: Creates/activates an animation&nbsp;project in
+								the user folder and activates the Dual Softimage layout.&nbsp;
+								<li>
+									<strong>Compositing</strong>:&nbsp;Creates/activates
+									a&nbsp;compositing&nbsp;project in the user folder and activates the Compositing Softimage layout.
+								</li>
+							</ul>
+						</LI>
+					</ul>
+				</div>
+
+				<a name="build"></a>
+				<h2>Building the C# Project Selector Example</h2>
+				<p>
+				Softimage SDK includes a compiled version of C# Project Selector. If you want to modify the
+				code, you can rebuild the example by following these instructions.</p>
+			<div id="windows-build">
+				<p class="proc-head">To build the example on Windows</p>
+				<ol>
+					<li>
+						<p><span class="sishell" cppsrc="cssrc">Open</span>
+							an Softimage command prompt, and type <strong>devenv</strong> to start Visual Studio.</p>
+						<p>Starting Visual Studio from an Softimage command prompt ensures that environment
+							variables such as XSI_HOME are set (otherwise you'll get build and link
+							errors).</p>
+						<p><strong>Tip</strong> To load the
+							<span class="devenv" vcproj="cssrc\CSProjectSelector.csproj">CSProjectSelector</span>
+							project from the command line, type:</p>
+						<pre>devenv <span class="installPath">cssrc\CSProjectSelector.csproj</span></pre>
+					<li>In Visual Studio, open the project file <tt>.csproj</tt>.</li>
+					<li>Select a configuration (Release or Debug) and build the DLL.</li>
+
+				</ol>
+			</div>
+
+				<div id="keywords">
+					<h2>Keywords</h2>
+					<p>This example uses the following keywords:</p>
+					<p>JScript, RegisterEvent, siOnChangeProject, Project, ActivePRoject, Layout,
+						ActiveLayout.
+					</p>
+				</div>
+			</DIV>
+		</div>
+	</body>
+</html>

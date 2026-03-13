@@ -1,0 +1,58 @@
+<html>
+<body>
+<script language="VBScript">
+' This synoptic is used by the "Embedded Synoptic Plugin" example.
+'
+' The example embeds the synoptic in the property page of a custom property,
+' which is attached to a 3D object. Clicking the synoptic image translates
+' the 3D object.
+'
+' The custom property has an Increment parameter that controls
+' how far the object is translated by each click.
+
+
+sub xm(in_obj)
+	' in_obj is the path (a string) to the custom property
+	set l_obj = GetValue(in_obj)
+	translate l_obj.parent,-1*l_obj.increment.value,0,0
+end sub
+sub xp(in_obj)
+	set l_obj = GetValue(in_obj)
+	translate l_obj.parent,1*l_obj.increment.value,0,0
+end sub
+sub ym(in_obj)
+	set l_obj = GetValue(in_obj)
+	translate l_obj.parent,0,-1*l_obj.increment.value,0
+end sub
+sub yp(in_obj)
+	set l_obj = GetValue(in_obj)
+	translate l_obj.parent,0,1*l_obj.increment.value,0
+end sub
+sub zm(in_obj)
+	set l_obj = GetValue(in_obj)
+	translate l_obj.parent,0,0,-1*l_obj.increment.value
+end sub
+sub zp(in_obj)
+	set l_obj = GetValue(in_obj)
+	translate l_obj.parent,0,0,1*l_obj.increment.value
+end sub
+sub reset(in_obj)
+	set l_obj = GetValue(in_obj)
+	ResetTransform l_obj.parent, siObj, siSRT, siXYZ
+end sub
+</SCRIPT>
+
+<map name="SynopticMap">
+<area shape="circle" coords="58,109,10" title="Translate in the minus X direction" NOHREF onClick="xm">
+<area shape="circle" coords="139,111,10" title="Translate in the positive X direction" NOHREF onClick="xp">
+<area shape="circle" coords="244,112,11" title="Translate in the minus Y direction" NOHREF onClick="ym">
+<area shape="circle" coords="246,24,13" title="Translate in the positive Y direction" NOHREF onClick="yp">
+<area shape="circle" coords="368,117,9" title="Translate in the minus Z direction" NOHREF onClick="zm">
+<area shape="circle" coords="409,117,9" title="Translate in the positive Z direction" NOHREF onClick="zp">
+<area shape="poly" coords="220,269,237,173,261,265,242,273" title="Reset transform" NOHREF onClick="reset">
+</map>
+
+<img src="embeddedsynoptic.jpg" usemap="#SynopticMap">
+
+</body>
+</html>

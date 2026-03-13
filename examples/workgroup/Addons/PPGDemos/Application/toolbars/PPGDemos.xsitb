@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<xsi_file type="Shelf" xsi_version="5.0.2005.0518" syntax_version="1.0">
+   <shelf_view name="PPGDemos" clsid="{16966FF0-01A1-447F-A84E-EA82044092C9}">
+      <properties>
+         <showtabs>false</showtabs>
+      </properties>
+      <definition maxinstances="10000" acceptfocus="true" private="false" defaultsize="0,100,200,300" cmdmap="{00000000-0000-0000-0000-000000000000}" supportedtypes="6" category=""></definition>
+      <tabs layout="top" active="DS Toolbar">
+         <tab label="DS Toolbar" type="toolbar">
+            <properties id="{6682C039-B942-4DC0-A8CA-11A8D01E5CD4}" name="" display_preset_as_small="False" display_as_text_only="False"></properties>
+            <item type="script" label="Build Chain" name="PPGBuildChain" cmdid="{13468433-AFF6-C4E5-DB74-95D83208F47D}"></item>
+            <item type="script" label="Config Slider" name="PPGConfigSlider" cmdid="{FE3CCCEB-FE43-D12E-D2DC-5CE159E5CC1B}"></item>
+            <item type="script" label="File Picker" name="PPGFilePicker" cmdid="{127B2FA8-1B4F-5D0C-6803-D60E630532F1}"></item>
+            <item type="script" label="File View" name="PPGFileView" cmdid="{D24AA008-F9F7-4E9E-C49D-E9A68968E2BB}"></item>
+            <item type="script" label="Grid Tester" name="PPGGridTester" cmdid="{8E821AFA-3290-2781-6652-905EC34AD880}"></item>
+            <item type="script" label="Proxy Param" name="PPGProxyParam" cmdid="{79931A2D-5B21-F13E-4474-9FF8D68FEB8C}"></item>
+            <item type="script" label="PPG In View" name="PPGInView" cmdid="{0B9D45FE-1A93-AEC9-0D90-2EA5BD9EA736}"></item>
+            <item type="script" label="Object Lists" name="PPGLists" cmdid="{847D4B0F-BEC1-6E34-A3BB-C66A5E1E3538}"></item>
+            <item type="separator" mode="separator" group_name=""></item>
+            <item type="script" label="FCurve Basic" name="PPGFCurveBasic" cmdid="{1846B6DC-C6BE-F058-BBAB-C1C5E43C178F}"></item>
+            <item type="script" label="FCurve UserData" name="PPGFCurveUserData" cmdid="{DFA109A9-19D5-0C48-A258-40A491BEF0E7}"></item>
+            <item type="script" label="Multi FCurve" name="PPGMultiFCurve" cmdid="{2C06B033-B32B-88AD-B95E-E49662460897}"></item>
+            <item type="script" label="Embedded Synoptic" name="DemoEmbeddedSynoptic" cmdid="{7DC789F3-5139-BE9F-A3E8-10C1B1710C47}"></item>
+            <item type="script" label="Text Editor Widget" name="PPGTextEditor" cmdid="{ABACAF37-1611-47d7-9C6C-928EA831068E}"></item>
+         </tab>
+      </tabs>
+   </shelf_view>
+</xsi_file>

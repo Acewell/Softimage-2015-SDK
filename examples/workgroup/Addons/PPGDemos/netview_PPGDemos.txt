@@ -1,0 +1,1 @@
+This example demonstrates many of the available UI controls, including the embedded synoptic control.

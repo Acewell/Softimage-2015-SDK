@@ -1,0 +1,991 @@
+#Softimage SDK SPDL file example
+#
+#
+# This spdl file demonstrates some of the more advanced capabilities which are possible
+# for custom property sets.  It creates a Property Page that serves no purpose except to show
+# various controls.
+#
+# For more details please refer to the SPDL Reference in the Plug-in Integration Guide
+#
+# Note: SPDL files are fully supported in v4 but we now recommend that users
+# create script based custom properties.  This same example has been ported to
+# Jscript, the C++ API and as a Real-Time Shader.
+
+SPDL
+Version = "2.0.0.1";
+
+#This GUID uniquely defines the identity of this Custom Property,
+#distinguishing it from other Custom Properties.
+#When you install this SPDL it generates a Preset file and
+#it also updates the Registry with this GUID so that Softimage can
+#find the location of this SPDL file.
+#If you create a new Custom Property SPDL 
+#you must make sure this GUID has been changed.
+Reference = "{5C99B33D-0535-4CD5-B149-7CBB7B299524}";
+
+PropertySet "customparamset"
+{
+	#This section of the spdl file defines the parameters, including their ranges and their
+	#individual UI attributes
+
+	Parameter "Name"
+	{
+		#Actual name of the custom property set
+		
+		#This is an internal Parameter, all Custom Properties must have
+		#it as the first parameter.
+		#Do not change the GUID or any other attributes of this parameter
+
+		Name	= "Name";
+		Description	= "Name";
+		Guid	= "{2B91C031-677A-11D1-B0CF-00A024C79287}";
+		Type	= VT_LPWSTR;
+		Caps	= Persistable;
+		Class	= MetaData;
+		UIType	= "String";
+	}
+
+	Parameter "Custom parameter instance ID"
+	{
+		#This Parameter is for internal use, each
+		#Custom Property should have this as the second parameter.
+		#Do not change the GUID or other attributes
+		Name	= "Custom parameter instance ID";
+		Description	= "Custom parameter instance ID";
+		Guid	= "{29347CF0-1EA1-11D3-A612-00A0C9EC5EF7}";
+		Type	= VT_CLSID;
+		Caps	= Persistable, UnInspectable;
+		Class	= Unknown;
+	}
+
+	#The remaining parameters are the ones that you can change
+	#Each of these parameters must have its own unique GUID, you should not
+	#share the GUID even between spdl files.
+
+
+	#
+	# Parameters on the "Numbers" tab
+	# 
+
+	Parameter "NoSliderDemo"
+	{
+		#This is a Double value with no slider, just an edit control for typing in numbers
+		#this can be useful for saving space on a PPG.
+		Guid	= "{A87C5A4C-7F24-4E2C-BE57-C5A7FEF29DFF}";
+		Type	= VT_R8;
+		Range	= 0 to 100;
+		Value   = 1.05;
+		Caps	= Persistable, Animatable;
+		Class	= Unknown;
+		UIType	= "Number"
+		{
+			#See LogarithmicSliderDemo for an explaination of these attributes
+			NumbEdit = True;
+		}
+		UIRange	= 0 to 100;
+	}
+
+	Parameter "ThumbWheelDemo"
+	{
+		Name    = "ThumbWheel";
+		Guid	= "{A14B5B4C-7F24-4E2C-BE57-C5A7FEF291AE}";
+		Type	= VT_R4;
+		Range	= -1000 to 1000;
+		Value   = 99.9;
+		Caps	= Persistable, Animatable;
+		Class	= Unknown;
+		UIType	= "Number"
+		{
+			#This is a good space saver because the slider
+			#does not need to be very wide
+			Thumbwheel = True;
+		}
+	}
+
+	Parameter "LogarithmicSliderDemo"
+	{
+		#This slider demonstrates various attributes that
+		#can be set on a slider
+
+
+		#Give it a long name to show how the description will "wrap"
+		Name	= "Logarithmic Slider Demo";
+		Guid	= "{427C1A4C-7F24-4E2C-BE57-C5A7FEF29DEE}";
+		Type	= VT_R8;
+		Range	= 0 to 100;
+		Value   = 50.0;
+		Caps	= Persistable, Animatable;
+		Class	= Unknown;
+		UIType	= "Number"
+		{
+			Log = True;			# Logarithmic number control, range must be positive only (Default: False)
+			SyncSlider = True;	# Number control updated while you move slider (Default: True)
+			NumbEdit = False;	# No slider, just a number control (Default: False)
+			Decimals = 5;		# Number of decimal places to display (0 for integer values) (Default: 3)
+		}
+		UIRange	= 0 to 100;
+	}
+
+	Parameter "NormalSlider"
+	{
+		#For comparison with the logarithmic slider
+		#(Although both have 50 as the default value the logarithmic slider will be 
+		#almost at the end of its range)
+
+		Name	= "NormalSlider";
+		Guid	= "{914C1A2C-7F24-4E2C-BE57-C5A7FEF29DEE}";
+		Type	= VT_R8;
+		Range	= 0 to 100;
+		Value   = 50.0;
+		Caps	= Persistable, Animatable;
+		Class	= Unknown;
+		UIType	= "Number"
+		{
+			Decimals = 1;
+		}
+		UIRange	= 0 to 100;
+	}
+
+	Parameter "NoLabelDemo"
+	{
+		Name	= "NoLabelDemo";
+		Guid	= "{114B112C-7F24-4E2C-BE57-C5A7FEF29DEE}";
+		Type	= VT_I1;
+		Range	= 10 to 20;
+		Value   = 15;
+		Caps	= Persistable, Animatable;
+		UIType	= "Number";
+
+		#UIRange will be the same as Range by default
+	}
+
+	Parameter "ValueOnlyDemo"
+	{
+		Name	= "ValueOnlyDemo";
+		Guid	= "{711B113B-1F14-4E2C-BE57-C5A7FEF29DEE}";
+		Type	= VT_I2;
+		Range	= 200 to 300;
+		Value   = 215;
+		Caps	= Persistable, Animatable ;
+		UIType	= "Number";
+	}
+
+	Parameter "NoLabelNotAnimatable"
+	{
+		Name	= "NoLabelNotAnimatable";
+		Guid	= "{123A013B-1F14-4E2C-BE57-C5A7FEF29DEE}";
+		Type	= VT_I2;
+		Range	= 200 to 300;
+		Value   = 230;
+		Caps	= Persistable ;
+		UIType	= "Number";
+	}
+
+	#
+	# Parameters on the "File Controls" tab
+	# 
+
+
+
+	Parameter "ExportFilename"
+	{
+		#This edit control will have a button which launchs a "file save" browser
+		#It will give an "overwrite" warning if the file already exists
+
+		#We configure the behavior of the edit control by specifying a specially formatted 
+		#string for the caption attribute.  This is a semicolon delimited list of settings, 
+		#starting with a semicolon
+	
+		#Important attributes for this string are:
+		#
+		#file=1 - specify that we want an edit control with a file browser
+		#         (Alternatively we use folder=1, see below)
+
+		#filefilter - specify the extensions.  The syntax of the filefilter string is 
+		#	same as the standard Win32 syntax, see documentation for OPENFILENAME structure,
+		#	(lpstrFilter member).  Note: In version 3.5 you cannot specify multiple
+		#	extensions for a single item in the file filter.  However in the next version
+		#	it will be possible to do this using the : character.  For example:
+		#	filefilter=HTML files (*.htm,*.html)|*.htm:*.html|All Files (*.*)|*.*||";
+		#
+		#
+		#initialdir - Valid tokens for this variable are "workgroup", "factory", "user" or "project"
+		#subfolder=X- Will open the browser in the X subfolder inside the location specified by initialdir
+		#defdirnopath - A hardcoded path that will be used as the initial path if there is a filename 
+		#				with no path in the edit control when the button is pressed
+		#nopath=1 - Only the filename will be remembered
+		#imagefile=1  Rather than specifying filefilter, use this to have a complete list of Softimage supported images extensions
+		#audiofile=1  Similar to imagefile.
+		#mustexist=1  Use this to force the user to actually pick a file that exists, e.g. for import scenarios
+		#openfile=1   Use this to turn off the warning message about overwritting a file that already exists
+		#(Usually both mustexist and openfile are set to true in the import case and false in the export case)
+
+
+		#Other possible attributes to a control (not all of which apply to file edit controls):
+		#Boolean attributes: numeric, nobrowser, sign
+		#String attributes: format, defdir
+		#Integer attributes: decimals
+		#Double attributes: major, minor, snap, image
+
+		Name	= "Export Filename";
+		Guid	= "{CDEF30A7-7D57-49CE-AFB0-ACC3B4F851A7}";
+		Type	= VT_BSTR;
+		Caps	= Persistable;
+		Class	= Unknown;
+		UIType = "dscontrol"
+		{
+			Class = "edit";
+			Caption = ";file=1;initialdir=project;filefilter=Text files (*.txt)|*.txt|All Files (*.*)|*.*||";
+		}
+	}
+
+	Parameter "ImportFilename"
+	{
+		#This edit control will have a button which launches a "file open" browser
+		#In this case it allows the user to select an existing xsiaddon or spdl file.
+		#The path to the resulting file will become the value of the parameter
+
+		Name	= "Import Filename";
+		Guid	= "{128E99A7-7D57-49CE-AFB0-ACC3B4F851A8}";
+		Type	= VT_BSTR;
+		Caps	= Persistable;
+		Class	= Unknown;
+		UIType = "dscontrol"
+		{
+			Class = "edit";
+			Caption = ";file=1;openfile=1;mustexist=1;filefilter=xsiaddon files (*.xsiaddon)|*.xsiaddon|spdl files (*.spdl)|*.spdl|All Files (*.*)|*.*||";
+		}
+	}
+
+	Parameter "ImportImage"
+	{
+		#There is built in support for picking an image file, which
+		#helps avoid hardcoding a huge file filter list of supported
+		#image extensions
+
+		Name	= "Import Image";
+		Guid	= "{212A99A7-7D57-49CE-AFB0-ACC3B4F851B1}";
+		Type	= VT_BSTR;
+		Caps	= Persistable;
+		Class	= Unknown;
+		UIType = "dscontrol"
+		{
+			Class = "edit";
+			Caption = ";file=1;openfile=1;mustexist=1;imagefile=1";
+		}
+	}
+
+	Parameter "FolderPicker"
+	{
+		# Shows a dialog box for picking a folder instead of a file
+		# (NOTE: This feature was only available starting with v3.5rc2)
+		Name	= "Pick Folder";
+		Guid	= "{921F99A7-7D57-49CE-AFB0-ACC3B4F851A1}";
+		Type	= VT_BSTR;
+		Caps	= Persistable;
+		Class	= Unknown;
+		UIType = "dscontrol"
+		{
+			Class = "edit";
+			Caption = ";folder=1";
+		}
+	}
+
+
+	#
+	# Parameters on the "Text" tab
+	# 
+
+
+	Parameter "MultiLine"
+	{
+		#This edit control allows you to type in text with multiple lines
+		#this can be useful for saving free form annotations or even scripts
+
+		Name	= "MultiLine";
+		Guid	= "{023499A7-1E57-49CE-AFB0-ACC3B4F851A8}";
+		Type	= VT_BSTR;
+		Caps	= Persistable;
+		Class	= Unknown;
+		UIType = "dscontrol"
+		{	
+			Class = "edit";
+
+			#This establishes the height of the control, which is important
+			#for reserving enough space for the amount of text we expect might
+			#be displayed (However there are also scroll bars available to allow longer text)
+			CY = 180;
+
+			#The style flag specifies standard Windows constants for controlling the 
+			#style of a control.  The complete list is defined in winuser.h
+			#
+			#In this case:
+			#ES_MULTILINE        =	0x0004;
+			#ES_WANTRETURN       =	0x1000;		(Means that Ctrl key is not necessary 
+			#									for Enter and Tab keys on multiline)
+			#WS_VSCROLL			 =  0x00200000;
+
+			Style = 0x00201004 ;
+		}
+	}
+
+	Parameter "EnableEdit"
+	{
+		#Check box to control whether the multi-line control is
+		#enabled or not.  See the spdl logic.
+
+		Name	= "Enable Edit";
+		Guid	= "{C1E63C12-B4AF-11D3-A63C-00A0C9EC5123}";
+		Type	= VT_BOOL;
+
+		Range	= 0 to -1;
+		Value   = -1;			#Edit is enabled by default
+
+		Caps	= Persistable;
+		Class	= Unknown;
+		UIType	= "Check";
+	}
+
+	Parameter "CurrentPass"
+	{
+		#This string control will be filled in by the spdl logic
+
+		Name	= "CurrentPass";
+		Guid	= "{22BC74E7-AF0A-4DE3-8D83-237715944522}";
+		Type	= VT_BSTR;
+		Caps	= Persistable, ReadOnly;
+		Class	= Unknown;
+	}
+
+
+	#
+	# Parameters on the "Colors" tab
+	# 
+
+	Parameter "StaticText"
+	{
+		#This is static text, which can look sometimes look nicer than a read-only 
+		#edit box.
+		#Because it is really a parameter you can change its text.
+
+		Name	= "StaticText";
+		Guid	= "{122391B7-1E57-49CE-AFB0-ACC3B4F850B1}";
+		Type	= VT_BSTR;
+		Caps	= Persistable;
+		Class	= Unknown;
+		Value	= "Each color channel is a separate parameter:";
+		UIType	= "static";
+	}
+
+
+
+
+	#It is possible to show the color widget on a custom pset
+	#There are 4 parameter that make up a single RGBA color, 
+	#e.g. a double parameter for each channel
+
+	Parameter "MyRGBAColorR"
+	{
+		Name = "MyRGBAColor";		#Name of the color control
+		Guid	= "{12834B13-B749-482A-98B6-98B74B786DE0}";
+		Type	= VT_R8;
+		Range	= -10000 to 10000;  #Sometimes it is desirable to allow colors 
+									#outside the normal 0-1 range of the color space
+		UIRange = 0 to 1; 			#UI Range should always be this for colors
+		Value   = 0.0;				#Default value
+
+		Caps	= Persistable, Animatable;
+		Class	= Unknown;
+		UIType	= "RGBA",4;			#Tell Softimage to show a RGBA color control
+	}
+	Parameter "MyRGBAColorG"
+	{
+		Name	= "MyRGBAColorG";
+		Guid	= "{1FAC86EB-7985-4EB6-B2EA-2725BEF75A15}";
+		Type	= VT_R8;
+		Range	= -10000 to 10000;
+		UIRange	= 0 to 1;
+		Value   = 0.0 ;
+		Caps	= Persistable, Animatable;
+		Class	= Unknown;
+	}
+	Parameter "MyRGBAColorB"
+	{
+		Name	= "MyRGBAColorB";
+		Guid	= "{187E134A-E4FA-4C42-A0B2-CDAB51781EFC}";
+		Type	= VT_R8;
+		Range	= -10000 to 10000;
+		UIRange	= 0 to 1;
+		Value   = 0.0 ;
+		Caps	= Persistable, Animatable;
+		Class	= Unknown;
+	}
+	Parameter "MyRGBAColorA"
+	{
+		Name	= "MyRGBAColorA";
+		Guid	= "{1688FA6F-2889-4708-968D-701C79C1AEC0}";
+		Type	= VT_R8;
+		Range	= -10000 to 10000;
+		UIRange	= 0 to 1;
+		Value   = 0.0 ;
+		Caps	= Persistable, Animatable;
+		Class	= Unknown;
+	}
+
+	#This grouping of three parameters allows you to place an RGB control
+	#on the pset (there is no alpha parameter)
+
+	Parameter "MyRGBColorR"
+	{
+		Name = "MyRGBColor"; # This is the name that appears to label the parameter
+
+		Guid	= "{45834B13-B749-482A-98B6-98B74B786D99}";
+		Type	= VT_R8;
+		Range	= -10000 to 10000;
+		Value   = 0.4;
+		Caps	= Persistable, Animatable;
+		Class	= Unknown;
+		UIType	= "RGB",3;
+	}
+	Parameter "MyRGBColorG"
+	{
+		Name	= "MyRGBColorG";
+		Guid	= "{45AC86EB-7985-4EB6-B2EA-2725BEF75A88}";
+		Type	= VT_R8;
+		Range	= -10000 to 10000;
+		UIRange	= 0 to 1;
+		Value   = 0.3;
+		Caps	= Persistable, Animatable;
+		Class	= Unknown;
+	}
+	Parameter "MyRGBColorB"
+	{
+		Name	= "MyRGBColorB";
+		Guid	= "{457E134A-E4FA-4C42-A0B2-CDAB51781E77}";
+		Type	= VT_R8;
+		Range	= -10000 to 10000;
+		UIRange	= 0 to 1;
+		Value   = 0.3;
+		Caps	= Persistable, Animatable;
+		Class	= Unknown;
+	}
+
+	#
+	# Parameters on the "Options" tab
+	#
+
+
+
+	Parameter "ComboDemo"
+	{
+		Name	= "ComboDemo";
+		Guid	= "{B81C5A4C-7F24-4E2C-BE57-C5A7FEF29DFF}";
+		Type	= VT_I1;
+		Range	= 5 to 10;									
+		Caps	= Persistable, Animatable;
+		Class	= Unknown;
+
+		UIType = "Combo";
+		Items
+		{
+			#Notice how the values don't strictly have to be 0,1,2
+			"Item 1" = 5
+			"Item 2" = 6
+			"Item 3" = 8	#Specify the text for the drop down item and associated value
+		}
+	}
+	Parameter "DynamicCombo"
+	{
+		Name	= "DynamicCombo";
+		Guid	= "{3647DA24-8AB4-49f6-9896-7D813035140F}";
+		Type	= VT_BSTR;
+		Caps	= Persistable;
+		Class	= Unknown;
+		
+		UIType = "Combo";
+		Items
+		{
+			#This will be replaced inside OnInit
+			"Default" = "Default"
+		}
+	}
+
+	Parameter "RadioBtnDemo"
+	{
+		#Demonstration of a UI control with a Radio Button
+		#This control is basically the same as a Combo Box, in fact 
+		#if you squish the UI it will display as a Combo Box to save space.
+
+		Name	= "Radio Button";
+		Guid	= "{BAAE37C8-5C45-4A92-9F65-2B1C71889783}"; #GUID must be unique for each parameter Softimage
+															#Don't just cut and paste them.
+		Type	= VT_I4;
+		Range	= 0 to 222;							#Three possible values associated with the radio btns
+		Value   = 11;								#Default value
+		Caps	= Persistable, Animatable;
+		Class	= Unknown;
+
+		UIType	= "Radio";
+		Items
+		{
+			#specify the text for the radio button
+			"Val 0" = 0			
+			"Val 11" = 11
+			"Val 222" = 222
+		}
+	}
+
+
+	Parameter "ListBoxDemo"
+	{
+		#Functionaly this ListBox is basically equivalent to 
+		#a Radio Control - you see all the options
+		#and you can only select one of them
+
+
+		Guid	= "{21AE1C12-D2AF-11D3-A63C-00A0C9EC51FB}";
+		Type	= VT_I4;
+		Caps	= Persistable, Animatable;
+
+		UIType = "dscontrol"
+		{
+			Class       = "Listbox";
+
+			#Use CX if you want to control the width
+			CY          = 80;
+			Style 	    = 0x0101;
+		}
+
+		Items
+		{
+			"Item 1" = 1
+			"Item 2" = 2
+			"Item 3" = 3
+		}
+	}
+
+	Parameter "BitMaskDemo"
+	{
+		#Demonstration of a BitMask control
+		#This can be very useful for custom properties for Games
+		#Each bit is shown as a seperate check box and the value of
+		#the parameter will be the sum of the selected bits
+
+		Name	= "BitMaskDemo";
+		Guid	= "{155E534A-E4FA-4C42-A0B2-CDAB51781D71}"; 						
+		Type	= VT_I4;						#Actual parameter should be I2 or I4
+		Range	= 0 to 64;							
+		Value   = 1;								
+		Caps	= Persistable;
+		Class	= Unknown;
+
+		UIType	= "Check";
+		Items
+		{
+			"Flag 1" = 1						#We label the bits that we want exposed			
+			"Flag 4" = 4
+			"Flag 16" = 16
+		}
+	}
+
+	Parameter "StaticText2"
+	{
+		Name	= "StaticText2";
+		Guid	= "{211411B7-1E57-49CE-AFB0-ACC3B4F850B2}";
+		Type	= VT_BSTR;
+		Caps	= Persistable;
+		Class	= Unknown;
+		Value	= "Bitfields are an efficient way to store many boolean values in a single integer";
+		UIType	= "static"
+		{
+			#You can tweak the size of the static control to get a nice
+			#presentation.  Wordwrapping to multiple lines is automatic
+			CX  = 190;
+			CY  = 50;
+		}
+	}
+
+
+
+	Parameter "Selection"
+	{
+		#Boolean parameters are shown as check boxes
+		#The value of this will be set by the spdl logic
+
+		Name	= "Selection?";
+		Guid	= "{A4E63C12-B4AF-11D3-A63C-00A0C9EC5EF7}";
+		Type	= VT_BOOL;
+
+		#Notice the funny range.  This is because vbscript 
+		#considers True to be the value -1
+		Range	= 0 to -1;
+
+		Caps	= Persistable,ReadOnly;
+		Class	= Unknown;
+		UIType	= "Check";
+	}
+
+	#
+	# Parameters on the "Check Boxes" tab
+	#
+
+	Parameter "Check1"
+	{
+		#Because we are using default values the definition
+		#of a check box parameter can actually be very short
+		Name	= "1";
+		Guid	= "{14AE3C12-A4AF-11D3-A63C-00A0C9EC5EF1}";
+		Type	= VT_BOOL;
+		Caps	= Persistable;
+	}
+
+	Parameter "Check2"
+	{
+		Name	= "2";
+		Guid	= "{14AE3C12-B5AF-11D3-A63C-00A0C9EC5FE2}";
+		Type	= VT_BOOL;
+		Caps	= Persistable;
+	}
+
+	Parameter "CheckA"
+	{
+		Name	= "A";
+		Guid	= "{21AE3C12-C3AF-11D3-A63C-00A0C9EC5AB3}";
+		Type	= VT_BOOL;
+		Caps	= Persistable;
+	}
+
+	Parameter "CheckB"
+	{
+		Name	= "B";
+		Guid	= "{32AE3C12-D2AF-11D3-A63C-00A0C9EC51F1}";
+		Type	= VT_BOOL;
+		Caps	= Persistable;
+	}
+
+	#This is a useful trick for saving space.
+	#It is a button that acts just like a checkbox,
+	#but with no need for a label
+	Parameter "CheckButton"
+	{
+		Name	= "CheckButton";
+		Guid	= "{13BF3C12-D2AF-11D3-A63C-00A0C9EC51FA}";
+		Type	= VT_BOOL;
+		Caps	= Persistable;
+
+		UIType = "dscontrol"
+		{
+			Class       = "button";
+
+			#Optional width (if not specified the entire width 
+			#is covered)
+			CX          = 120;
+
+			#This acts like the label
+			Caption     = "Invert";
+
+			#define BS_AUTOCHECKBOX     0x00000003L
+			#define BS_PUSHLIKE         0x00001000L
+			style		= 0x00001003;	
+		}
+
+	}
+	
+	#
+	# Parameters on the "Images" tab
+	#
+	
+	Parameter "ImageClipControl"
+	{
+		guid 	= "{B76300B1-2F4C-4741-ABC9-6C05402FE2DA}";
+		Name 	= "Image Clip 1";
+		Type 	= VT_BSTR;
+		Class 	= Rendering;
+		Value	= "Clips.noIcon_pic";
+		UIType 	= "ImageClipBrowserItem.ImageClipBrowserItem.1";
+	}
+	
+	Parameter "ImageClipControlClipHidden"
+	{
+		guid 	= "{1C4E5A48-8AB5-4503-82F8-4FF9B1EE1102}";
+		Name 	= "Image Clip 2";
+		Type 	= VT_BSTR;
+		Class 	= Rendering;
+		Value	= "Clips.noIcon_pic";
+		UIType 	= "ImageClipBrowserItem.ImageClipBrowserItem.1"
+		{
+			showclip = False;
+		}
+	}
+	
+	Parameter "StaticBitmapControl"
+	{
+		guid 	= "{E5F066F3-A7C7-4e6a-8208-7BBF93E7E67E}";
+		Name 	= "Static Bitmap";
+		Type 	= VT_BSTR;
+		Class 	= Rendering;
+		UIType 	= "bitmapwidget.bitmapwidget.1";
+	}
+}
+
+Defaults
+{
+	#For clarity I decided to put all the information that is sometimes
+	#placed in the Defaults section directly in the Parameter definition
+}
+
+Layout "Default"
+{
+	#Definition of the layout of the PPG.  Each parameter in the parameter section
+	#needs to be listed if it is meant to be displayed.
+
+	tab "Numbers"
+	{
+		#Group with no caption (Note: "ShowFrame" is case sensitive)
+		group, ShowFrame
+		{
+			row
+			{
+				NoSliderDemo;
+				ThumbWheelDemo;
+			}
+		}
+		
+		group "NoLabel and ValueOnly"
+		{
+			NoLabelDemo, NoLabel ;
+
+			#This parameter doesn't have an
+			#animation divot because it is
+			#not animatable
+			NoLabelNotAnimatable, NoLabel ;
+
+			#Not even the animation divot is shown but this
+			#parameter is animatable
+			ValueOnlyDemo, ValueOnly ;
+		}
+
+		NormalSlider;
+		LogarithmicSliderDemo;
+	}
+	
+	tab "File Controls"
+	{
+		ExportFilename ;
+		ImportFilename ;
+		ImportImage;
+		FolderPicker;
+	}
+
+	tab "Text"
+	{
+		group "Multi-Line Edit"
+		{
+			MultiLine,NoLabel;
+			EnableEdit;
+		}
+
+		group "Current Pass Info"
+		{
+			row
+			{
+				#Using percentages we can control how much horizonatal space each
+				#parameter gets
+
+				CurrentPass, 80% ;
+
+				#Buttons do not need to be listed in the Parameter
+				#section
+				Button MyButton, 20% = "Find pass";
+			}
+		}
+	}
+
+	tab "Colors"
+	{
+		StaticText, NoLabel ;
+
+		#We just mention the first component of the color
+		#controls, eg the 'R', but the full widget will
+		#be displayed
+		MyRGBAColorR ;
+		MyRGBColorR ;
+	}
+
+	tab "Options"
+	{
+
+		group, ShowFrame
+		{
+			ComboDemo;
+			DynamicCombo;
+			RadioBtnDemo;
+			ListBoxDemo;
+		} 
+
+		group "Bitmask Demo"
+		{
+			row
+			{
+				BitMaskDemo, NoLabel;
+
+				#Display this multiline text next to the flag control
+				StaticText2, NoLabel;
+			}
+		}
+
+		group "Spdl logic controlled"
+		{
+			Selection;
+		}
+	}
+
+	tab "Check Boxes"
+	{
+		#Show how to put 2 groups side by side
+		#with unequal distribution
+
+		row
+		{
+			group "Letter", 40%
+			{
+				Check1;
+				Check2;
+			}
+			group "Number", 60%
+			{
+				CheckA;
+				CheckB;
+			}
+		}
+
+		CheckButton, NoLabel;
+	}
+	
+	tab "Images"
+	{
+		group "Image Clips Demo"
+		{
+			ImageClipControl;
+			ImageClipControlClipHidden;
+		}
+		group "Static Bitmap Demo"
+		{
+			StaticBitmapControl;
+		}
+	}
+}
+
+#vbscript code associated with the custom pset
+#(Warning: Inside the Logic section you must use ' for comments, not #)
+
+Logic
+{
+	Sub OnInit()
+		'By creating a OnInit() routine we can perform some scripting at the time 
+		'the dialog shows itself
+
+		'The "ppg" object that we access is a global object that is
+		'available only inside the spdl logic.  (It is also available by its old
+		'name "pset") It corresponds to the UI of the property set, not the 
+		'underlying Custom Property object. 
+
+		'It offers access to the individual controls by referring to them by the
+		'parameter name.
+
+		'Each of these control supports the Value and Enable property.
+		
+		'See the PPG object in the SDK Object Model reference for further info.
+
+		'In this case we set the selection check box if there
+		'is a current selection
+		PPG.Selection.Value = ( Application.Selection.Count > 0 )
+
+		'The pset object also provides access to the underlying inspected object(s)
+		
+		'The following code will provide an Object Model pointer
+		'to the actual Custom Property objects that are being inspected
+	
+		for each oItem in PPG.Inspected
+			LogMessage "Inspected object " & oItem.Name & " has " & oItem.Parameters.Count & " parameters"
+			LogMessage oItem.Name & " is nested underneath " & oItem.Parent.FullName
+		next 
+
+		'Demonstrate how to fill in some initial data into the multiline edit control
+		PPG.MultiLine.Value = "From scripting use vbNewLine" & vbNewLine & "to break a string into multiple lines." & _
+								vbNewLine & vbNewLine & vbTab & "vbTab is useful too" & vbNewLine & _
+								"Use Chr(34) and Chr(39) to produce " & Chr(34) & " and " & Chr(39)
+		
+		'Demonstrate how to use the PPGLayout to populate the items inside the ComboBox
+		set oPPGItem = PPG.PPGLayout.Item("DynamicCombo")
+		'Replacing the Default string that was originally defined at the Parameter level
+		aComboItem = Array("StringLabel1","StringValue1","StringLabel2","StringValue2")
+		oPPGItem.UIItems = aComboItem
+
+		'Setting the value for the DynamicCombo to the second value "StringValue2"
+		'This could also have been written this way: PPG.DynamicCombo.value = "StringValue2"
+		PPG.Inspected(0).Parameters("DynamicCombo").Value = "StringValue2"
+		
+		'Set a default static bitmap
+		PPG.PPGLayout.Item("StaticBitmapControl").SetAttribute siUIFilePath, Application.InstallationPath(siFactoryPath) & "/XSISDK/examples/workgroup/Addons/PSetUIDemo/Data/Bitmaps/logo.bmp"
+
+		' Redraw the PPG to show the new combo items
+		PPG.Refresh
+		
+	End Sub
+
+	'Callback routines can be added according to the convention 
+	'<parametername>_OnChanged(), _OnClicked() or _OnInit()
+
+	Sub MyButton_OnClicked()
+		'We can execute code when the button is pressed
+		'In this case we call an Softimage Command
+
+		strCurrentPass = GetCurrentPass
+
+		LogMessage "Current render pass " & strCurrentPass
+		
+		'This updates the value of the "read-only" string
+		'parameter
+		PPG.CurrentPass.Value = strCurrentPass
+	End Sub 
+
+	Sub NoSliderDemo_OnChanged()
+		'You can provide custom reaction code when an parameter changes
+		Logmessage "New value for NoSliderDemo parameter: " & PPG.NoSliderDemo.Value
+	End Sub
+
+	Sub EnableEdit_OnChanged()
+		'Controls can be dynamically disabled and enabled
+		PPG.MultiLine.Enable( PPG.EnableEdit.Value )
+
+		logmessage PPG.EnableEdit.Value
+	End Sub
+
+	Sub MyRGBColorG_OnChanged()
+
+		'The scripting for dealing with colors is basically the same
+		'as any other parameter - we just handle each channel of the
+		'color as seperate parameters
+
+		'In this case we force the blue to follow to green
+		PPG.MyRGBColorB.Value = PPG.MyRGBColorG.Value
+	End Sub
+
+	'Starting with v4.0 you can also get called when
+	'tabs change.  The callback name is based on the tab label
+	'with all spaces removed.
+	'Note: this callback is not called if the PSet is set
+	'to display in list mode.
+	Sub FileControls_OnTab()
+		Logmessage "File Control tab is now visible"
+	end sub
+}
+
+#Starting with v4 you can specify an URL as a help file
+#which gets launched when you click the "?" button
+#Warning: If you want to use the slash character "\" character 
+#in your address use either "\\" or "/"
+HelpFile = "http://www.softimage.com";
+
+

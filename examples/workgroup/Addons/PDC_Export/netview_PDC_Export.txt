@@ -1,0 +1,1 @@
+This C++ example demonstrates writing your own exporter for Maya PDC cache files.

@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>PPGDemos</title>
+<link rel="StyleSheet" href="../../doc/shared/examples.css" type="text/css">
+<script type="text/javascript" src="../../doc/shared/utils.js"></script>
+
+<script type="text/javascript">
+//--------------------------------------------------
+//
+// Add the custom property named "SimpleProperty"
+// to the selected objects. If nothing is selected,
+// add the custom property to the scene root.
+//
+//--------------------------------------------------
+function runExample( s )
+{
+		if (g_app.Selection.Count == 0 )
+		{
+			// Nothing selected. Add the property to the scene root.
+			var prop = g_app.ActiveSceneRoot.AddProperty( "SimpleProperty");
+			g_app.InspectObj( prop );
+		}
+		else
+		{
+			// Add the custom property to each selected object, if possible.
+			var e = new Enumerator( g_app.Selection );
+			for ( ; !e.atEnd(); e.moveNext() )
+			{
+				var o = e.item();
+
+				// Object must be a scene item
+				// siSceneItemID = 66
+				if ( o.IsClassOf( 66 ) )
+				{
+					var prop = o.AddProperty( "SimpleProperty" );
+					g_app.InspectObj( prop );
+				}
+				else
+				{
+					var sMsg = "Cannot add property to " + o.Name + ". ";
+					sMsg = sMsg + o.Name + " is not a SceneItem.";
+
+					g_app.LogMessage( sMsg );
+				}
+			}
+		}
+}
+</script>
+
+</head>
+<body>
+<div class="body"><a name="top"></a>
+
+
+
+<img class="netview" src="netview_PPGDemos.jpg" style="float:left;padding-right:6px;">
+<h1>PPG Demos</h1>
+
+<p>This example includes three different plug-ins that show how to build property pages (PPGs).
+</p>
+
+<ul style="margin-left:78px">
+<li>PPGDemos<br/>
+This plug-in demonstrates many of the controls you can use on a property page.
+</li>
+
+<li>Embedded Synoptics<br/>
+This plug-in shows how to embed a synoptic view in a property page.
+</li>
+
+<li>Simple Property<br/>
+This plug-in shows how to add a property to the selected objects.
+</li>
+</ul>
+
+<h2>Example Files</h2>
+<table><tr>
+<td><strong>Location</strong></td><td><span class="installPath"></span>
+</td>
+</tr>
+
+<tr>
+<td><strong>Files</strong></td>
+<td>
+	<div class="examplefile">ppgdemoplugin.js</div>
+	<div class="examplefile">ppgdemoplugin.vbs</div>
+	<div class="examplefile">simpleproperty.vbs</div>
+	<div class="examplefile">EmbeddedSynoptic.vbs</div>
+</td>
+</tr>
+
+
+</table>
+
+
+<a name="build"></a><h2>Running the Examples</h2>
+
+<div id="toinstall" style="display:none">
+<p class="proc-head">To install the example</p>
+<ul>
+<li><p>Connect to the Softimage SDK workgroup at <span class="workgroupPath">%XSISDK_ROOT%\examples\workgroup</span>.</p>
+	<ol>
+	<li>In the <strong>Plug-in Manager</strong>, click the <strong>Workgroups</strong> tab.</li>
+	<li>Click <strong>File</strong> and then click <strong>Connect</strong>.</li>
+	<li>In the <strong>Connect to Workgroup</strong> dialog box, click <img src="..\..\doc\shared\bBrowse.gif">, locate the workgroup folder and then click <strong>Select</strong>.</li>
+	</ol>
+</li>
+</ul>
+
+<p class="proc-head">To view the help page for an example</p>
+
+<ul>
+<li>Do one of the following:</li>
+<ul>
+<li>In the Plug-in Tree, expand the SDK examples workgroup, right-click the example add-on and then click <strong>Help</strong>.
+</li>
+<li>
+Open a Net View and click <img style="position:relative;bottom:-6px;" src="..\..\doc\shared\xsiweb.png"> to go to Softimage Net local. In the top navigation bar, click <strong>add-ons</strong>, and then click the SDK example add-on.
+</li>
+</ul>
+</ul>
+</div>
+
+
+<div>
+<p class="proc-head">To run the EmbeddedSynoptic example</p>
+
+<ol>
+<li>Run the command <span class="runCmd">DemoEmbeddedSynoptic</span>.
+<p>This command creates a cone and adds a custom property to the cone. The property page includes an embedded synoptic view.
+</li>
+<li>
+In the synoptic view, click a sphere to translate the cone. The <strong>Increment</strong> slider controls how far the object is translated each time you click a sphere.  You can reset the translation by clicking the large cone in the synoptic view.
+</li>
+
+</ol>
+
+</div>
+
+<div>
+<p class="proc-head">To run the PPGDemos example</p>
+
+<ul>
+<li>In the <strong>View > Toolbars</strong> menu, click <strong>PPGDemos</strong>. In the toolbar, click the PPG demo you want to see.</li>
+<p style="margin-top:6px;margin-left:-1.5em;">-or-</p>
+<li>Click the PPG demo you want to see:
+<ul>
+<li><span class="runCommand" id="PPGTextEditor">Text Editor Widget</span></li>
+<li><span class="runCommand" id="PPGBuildChain">Build Chain</span></li>
+<li><span class="runCommand" id="PPGConfigSlider">Config Slider</span></li>
+<li><span class="runCommand" id="PPGFilePicker">File Picker</span></li>
+<li><span class="runCommand" id="PPGFileView">File View</span></li>
+<li><span class="runCommand" id="PPGGridTester">Grid Tester</span></li>
+<li><span class="runCommand" id="PPGProxyParam">Proxy Param</span></li>
+<li><span class="runCommand" id="PPGInView">PPG In View</span></li>
+<li><span class="runCommand" id="PPGLists">Object Lists</span></li>
+<li><span class="runCommand" id="PPGFCurveBasic">FCurve Basic</span></li>
+<li><span class="runCommand" id="PPGFCurveUserData">FCurve UserData</span></li>
+<li><span class="runCommand" id="PPGMultiFCurve">Multi FCurve</span><br/>
+<!--
+Customize the FCurve control with SetUIAttribute
+-->
+</li>
+</li>
+</ul>
+</li>
+
+</ul>
+</div>
+
+
+<div>
+<p class="proc-head">To run the SimpleProperty example</p>
+
+<ol>
+<li>Select the scene root or some other 3D object.</li>
+<li>On the Model toolbar, click <strong>Get &gt; Property &gt; Simple Property Menu</strong> menu.
+<p>The plug-in adds the SimpleProperty property to all selected objects (or, if nothing is selected, to the scene root).</p>
+</li>
+</ol>
+
+<p>-or-</p>
+<ul>
+<li>Click here to <span class="runExample" id="addSimpleProperty" title="Call a script embedded in this page to add the property">add the property</span> to either the scene root or to the selected objects.</li>
+</li>
+</ul>
+
+</div>
+
+<div id="keywords">
+<h2>Keywords</h2>
+<p>This example uses the following keywords:</p>
+<p>
+JScript example, VBScript example,
+RegisterCommand,
+ActiveSceneRoot, AddProperty, CustomProperty,
+AddParameter2, AddParameter3,
+PPGLayout, AddItem, AddButton, Logic, SetAttribute, LogicPrefix,
+AddGroup, EndGroup, AddRow, EndRow,
+InspectObj,
+PSet.Inspected,
+NoLabel, ValueOnly, NoSlider, Decimals,
+Refresh,
+EditParameterDefinition,
+siUIFileFilter,
+siControlFilePath, siUIOpenFile, siUIInitialDir, siUISubFolder, siUIFileMustExist, siUIInitialDir,
+AddString,
+InstallationPath,
+PSet.Scripts.Value,
+PSet.File.Value,
+ActiveXObject,
+Scripting.FileSystemObject,
+Execute, OnInit, OnChanged, OnClicked, CreateLayout,
+Curve, Value, Keys, GetKeyValue,
+AddGeometry, AddCluster, Geometry, Clusters, ActivePrimitive, FindIndex,
+FcurveData,
+BinaryData,
+AddGridParameter, siControlGrid,
+AddItem, AddEnumControl,
+SetAttribute, siUINoSlider, SetRowValues, RowValue, ColumnCount,
+SetColumnLabel, SetRowLabel, SetColumnValues, EndEdit, BeginEdit,
+AddProxyParam,
+AddColor,
+VBArray,
+Desktop, ActiveLayout, Views, Property Panel, targetcontent,
+AddFCurveParameter,
+synoptic, embedded synoptic, property page, PPG, controls,
+TextEditor, Text, Editor, Scintilla, Folding, Margin, LineNumbering, Numbering, LineWrap, Language, syntax, highlighting, keywords
+</p>
+</div>
+
+
+
+</div>
+</body>
+</html>
+
+
