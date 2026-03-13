@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<xsi_file type="RelationalView" xsi_version="4.0.2003.1027" syntax_version="1.0">
+	<relationalview clsid="{1CEEFE7F-7EC7-4D75-B164-D602965AE46A}" name="RV - Shape Explorer" height="476" width="889">
+		<definition maxinstances="10000" acceptfocus="true" private="false" defaultsize="100,100,500,500" cmdmap="{00000000-0000-0000-0000-000000000000}" supportedtypes="6" category="SDK Samples"> </definition>
+		<relations>
+			<relation driver="main" driven="shapes" event="selectionfunc" cmd="getshapekeys"> </relation>
+		</relations>
+		<frameset orientation="horizontal" name="Frameset1" splitter="movable" sizechild="30%,*">
+			<frame name="main" type="Explorer" primary="true" toolbar="shared"> </frame>
+			<frame name="shapes" type="Thumbnail Shelf" primary="false" toolbar="none"> </frame>
+		</frameset>
+
+
+<script language="VBScript"><![CDATA[
+
+'--------------------------------------------------------------
+' Gets the shape keys associated with the selected element(s),
+' either an object, a cluster, or shapekeys.
+'--------------------------------------------------------------
+function getshapekeys( in_pList, in_driverName, in_drivenName, in_rv )
+
+	' if there's nothing selected (should not happen), return empty collection
+	if ( TypeName( in_pList ) = "Nothing" ) then
+		exit function
+	end if
+
+	set out_coll = CreateObject("XSI.Collection")
+	strProperties = ""
+
+	for each l_obj in in_pList
+
+		if ( ClassName( l_obj ) = "X3DObject" ) then
+			set l_clusters = l_obj.ActivePrimitive.Geometry.Clusters
+			for each oCluster in l_clusters
+
+				'Only search for the shape keys, which have type "clskey"
+				set oProperties = oCluster.LocalProperties.filter( "clskey" )
+
+				for each oProperty in oProperties
+
+					'Found a shape key (filter out result cluster keys)
+					if oProperty.keytype.value < 3 then
+						strProperties = strProperties & oProperty.FullName & ","
+					end if 
+
+				next
+			next
+		elseif ( ClassName( l_obj ) = "Cluster" ) then
+
+			'Only search for the shape keys, which have type "clskey"
+			set oProperties = l_obj.LocalProperties.filter( "clskey" )
+
+			for each oProperty in oProperties
+
+				'Found a shape key (filter out result cluster keys)
+				if oProperty.keytype.value < 3 then
+					strProperties = strProperties & oProperty.FullName & ","
+				end if 
+
+			next
+
+		elseif ( ClassName( l_obj ) = "ShapeKey" ) then
+
+			'Found a shape key (filter out result cluster keys)
+			if l_obj.keytype.value < 3 then
+				strProperties = strProperties & l_obj.FullName & ","
+			end if 
+
+		end if
+	next
+
+	' set as text so that we are sure we get the latest copy in the stack
+	if not strProperties = "" then
+		out_coll.SetAsText strProperties
+	end if
+
+	set getshapekeys = out_coll
+
+end function
+
+
+]]></script>
+
+	</relationalview>
+</xsi_file> 

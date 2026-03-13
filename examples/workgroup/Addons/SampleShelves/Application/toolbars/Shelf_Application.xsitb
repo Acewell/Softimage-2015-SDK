@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<xsi_file type="Shelf" xsi_version="4.0.2003.1006" syntax_version="1.0">
+   <shelf_view name="Shelf - Application" clsid="{8965A42C-8931-4C36-ABA7-D35021B366F3}">
+      <definition maxinstances="10000" acceptfocus="true" private="false" defaultsize="105,100,600,100" cmdmap="{00000000-0000-0000-0000-000000000000}" supportedtypes="6" category="SDK Samples"></definition>
+      <tabs layout="top" active="My Toolbars">
+         <tab label="Sys Layouts" type="folder" path="$XSI_HOME\Application\layouts" ext="*.xsily" mode="thumbnail" navigation="False"></tab>
+         <tab label="Sys Views" type="folder" path="$XSI_HOME\Application\views" ext="*.xsivw" mode="thumbnail" navigation="False"></tab>
+         <tab label="Sys Toolbars" type="folder" path="$XSI_HOME\Application\toolbars" ext="*.xsitb" mode="thumbnail" navigation="False"></tab>
+         <tab label="My Layouts" type="folder" path="$XSI_USERHOME\Application\layouts" ext="*.xsily" mode="thumbnail" navigation="False"></tab>
+         <tab label="My Views" type="folder" path="$XSI_USERHOME\Application\Views" ext="*.xsivw" mode="thumbnail" navigation="False"></tab>
+         <tab label="My Toolbars" type="folder" path="$XSI_USERHOME\Application\Toolbars" ext="*.xsitb" mode="thumbnail" navigation="False"></tab>
+         <tab label="My DSToolbars" type="folder" path="$XSI_USERHOME\Data\Preferences\Toolbars" ext="*.DSToolbar" mode="thumbnail" navigation="False"></tab>
+      </tabs>
+   </shelf_view>
+</xsi_file>

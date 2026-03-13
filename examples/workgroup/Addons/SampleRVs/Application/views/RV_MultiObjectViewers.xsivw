@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<xsi_file type="RelationalView" xsi_version="4.0" syntax_version="1.0">
+	<relationalview clsid="{E74772C9-084F-4DA0-8E1E-F4CDE53FB5A2}" name="RV - Six Object Viewers" height="500" width="900">
+		<definition maxinstances="10000" acceptfocus="true" private="false" defaultsize="105,500,900,500" cmdmap="{00000000-0000-0000-0000-000000000000}" supportedtypes="6" category="SDK Samples"> </definition>
+		<relations>
+			<relation driver="explorer" driven="v1" event="selection" cmd=""> </relation>
+			<relation driver="explorer" driven="v2" event="selection" cmd=""> </relation>
+			<relation driver="explorer" driven="v3" event="selection" cmd=""> </relation>
+			<relation driver="explorer" driven="v4" event="selection" cmd=""> </relation>
+			<relation driver="explorer" driven="v5" event="selection" cmd=""> </relation>
+			<relation driver="explorer" driven="v6" event="selection" cmd=""> </relation>
+		</relations>
+		<frameset orientation="horizontal" splitter="movable" sizechild="*,25%,25%,25%">
+			<frame name="explorer" type="Explorer" primary="true" toolbar="shared"> </frame>
+			<frameset orientation="vertical" name="col1" splitter="movable" sizechild="50%,*">
+				<frame name="v1" type="Object View" primary="false" toolbar="none">
+					<properties>
+						<displaymode>wireframe</displaymode>
+						<camera>front</camera>
+					</properties>
+				</frame>
+				<frame name="v2" type="Object View" primary="false" toolbar="none">
+					<properties>
+						<displaymode>hidden line removal</displaymode>
+						<camera>back</camera>
+					</properties>
+				</frame>
+			</frameset>
+			<frameset orientation="vertical" name="col2" splitter="movable" sizechild="50%,*">
+				<frame name="v3" type="Object View" primary="false" toolbar="none">
+					<properties>
+						<displaymode>constant</displaymode>
+						<camera>left</camera>
+					</properties>
+				</frame>
+				<frame name="v4" type="Object View" primary="false" toolbar="none">
+					<properties>
+						<displaymode>shaded</displaymode>
+						<camera>right</camera>
+					</properties>
+				</frame>
+			</frameset>
+			<frameset orientation="vertical" name="col3" splitter="movable" sizechild="50%,*">
+				<frame name="v5" type="Object View" primary="false" toolbar="none">
+					<properties>
+						<displaymode>textured</displaymode>
+						<camera>top</camera>
+					</properties>
+				</frame>
+				<frame name="v6" type="Object View" primary="false" toolbar="none">
+					<properties>
+						<displaymode>realtime shaders</displaymode>
+						<camera>bottom</camera>
+					</properties>
+				</frame>
+			</frameset>
+		</frameset>
+	</relationalview> 
+</xsi_file>

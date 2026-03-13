@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<xsi_file type="RelationalView" xsi_version="4.0" syntax_version="1.0">
+	<relationalview clsid="{E478D36E-5823-4AC5-AE8C-7A28C6BE4BD6}" name="RV - Material and Texture Explorer" height="548" width="816">
+		<definition maxinstances="10000" acceptfocus="true" private="false" defaultsize="105,500,450,450" cmdmap="{00000000-0000-0000-0000-000000000000}" supportedtypes="6" category="SDK Samples"> </definition>
+		<relations>
+			<relation driver="Explorer" driven="Materials" event="selectionfunc" cmd="findmaterials"> </relation>
+			<relation driver="Explorer" driven="Textures" event="selectionfunc" cmd="findclips"> </relation>
+			<relation driver="Explorer" driven="Shaders" event="selectionfunc" cmd="findshaders"> </relation>
+			<relation driver="Explorer" driven="Objects" event="selectionfunc" cmd="findobjects"> </relation>
+			<relation driver="Explorer" driven="Clusters" event="selectionfunc" cmd="findclusters"> </relation>
+		</relations>
+		<frameset orientation="horizontal" splitter="movable" sizechild="30%,*">
+			<frame name="Explorer" type="Explorer" primary="true" toolbar="shared"> </frame>
+			<switcher type="tray" buttonside="bottom" active="1" orientation="horizontal" name="MatTex" buttonsize="66,24" splitter="none" sizechild="*,*,*,*,*">
+				<frame name="Materials" type="Thumbnail Shelf" primary="false" toolbar="none"> </frame>
+				<frame name="Textures" type="Thumbnail Shelf" primary="false" toolbar="none"> </frame>
+				<frame name="Shaders" type="Thumbnail Shelf" primary="false" toolbar="none"> </frame>
+				<frame name="Objects" type="Thumbnail Shelf" primary="false" toolbar="none"> </frame>
+				<frame name="Clusters" type="Thumbnail Shelf" primary="false" toolbar="none"> </frame>
+			</switcher>
+		</frameset>
+
+<script language="VBScript"><![CDATA[
+
+'===============================================================================================
+' Function for the Materials Tab
+'===============================================================================================
+function FindMaterials( in_list, in_driverName, in_drivenName, in_rv )
+
+	dim explist, oMatList, oObj, oMat, oShd, oItem, oObjList, vw, owners, itm
+
+	'logmessage "FindMaterials ------"
+
+	'set vw = in_rv.views( in_drivenName )
+	'if ( vw.visible ) then
+
+		set oMatList = CreateObject( "XSI.Collection" )
+		oMatList.Unique = true
+
+		set explist = ExpandList( in_list )
+
+		for each oItem in explist
+
+			'logmessage " FindMaterials for " & oItem & "," & ClassName( oItem ) & "," & oItem.type
+
+			'--------------------------------------------------------------------------------
+			' If a 3D Object is selected 
+			'--------------------------------------------------------------------------------
+			if ClassName( oItem ) = "X3DObject" and not (oItem.type = "Texture Support") then
+
+				for each oMat in oItem.Materials
+					oMatList.Add oMat
+				next
+
+			'--------------------------------------------------------------------------------
+			' If a cluster is selected 
+			'--------------------------------------------------------------------------------
+			elseif ClassName( oItem ) = "Cluster" and oItem.type = "poly" then
+
+				oMatList.Add oItem.Material
+
+			'--------------------------------------------------------------------------------
+			' If a material is selected 
+			'--------------------------------------------------------------------------------
+			elseif ClassName( oItem ) = "Material" then
+
+				oMatList.Add oItem
+
+			'--------------------------------------------------------------------------------
+			' If a material proxy is selected 
+			'--------------------------------------------------------------------------------
+			elseif oItem.type = "material" then
+
+				set oProxyList = EnumElements( oItem, FALSE )
+				for each oProxy in oProxyList
+					if oProxy.type = "material" then		' material proxy
+						oMatList.Add oItem
+					end if
+				next
+
+			'--------------------------------------------------------------------------------
+			' If a shader is selected 
+			'--------------------------------------------------------------------------------
+			elseif ClassName( oItem ) = "Shader" then
+
+				set itm = FindMaterialFromShader( oItem )
+				oMatList.Add itm
+
+			'--------------------------------------------------------------------------------
+			' If an image clip is selected 
+			'--------------------------------------------------------------------------------
+			elseif ClassName( oItem ) = "ImageClip" then
+
+				'logmessage " IMAGE CLIP ------------- " & oItem
+				' in the owners of the image clip, must first pick the shaders
+				set oParentList = EnumElements( oItem, FALSE )
+				for each oParent in oParentList
+					'logmessage " check parent " & oParent & ">" & ClassName(oParent) & ">" & oParent.type
+					if ClassName(oParent) = "Parameter" and not oParent.type = "Image" then
+
+						' then for each of those shaders, find the material
+						set itm = FindMaterialFromShader( oParent )
+						oMatList.Add itm
+
+					end if
+				next
+
+			'----------------------------------------------------
+			' If an material library source is selected...
+			'----------------------------------------------------
+			elseif ( oItem.type = "library_source" ) then
+			
+				' for now that's the only way we can enumerate, until the library becomes a 
+				' real container, in which case we will be able to use enumelements.
+				set tempList = CreateObject("XSI.Collection")
+				tempList.Items = oItem.fullname & ".*"	  ' will get all the items below the library node
+
+				for each itm in tempList
+					if ( not itm.type = "Parameter" ) then
+						oMatList.Add itm
+					end if
+				next
+
+			end if
+
+		next
+
+		set FindMaterials = oMatList
+
+	'end if
+
+end function
+
+'===============================================================================================
+' Function for the Shaders Tab
+'===============================================================================================
+function FindShaders( in_list, in_driverName, in_drivenName, in_rv )
+
+	dim explist, oShaderList, oObj, oMat, oShd, oItem, oObjList, vw, owners, itm
+
+	'logmessage "FindShaders ------"
+
+	'set vw = in_rv.views( in_drivenName )
+	'if ( vw.visible ) then
+
+		set oShaderList = CreateObject( "XSI.Collection" )
+		oShaderList.Unique = true
+
+		set explist = ExpandList( in_list )
+
+		for each oItem in explist
+
+			'logmessage " FindShaders for " & oItem & "," & ClassName( oItem ) & "," & oItem.type
+
+			'--------------------------------------------------------------------------------
+			' If a 3D Object is selected 
+			'--------------------------------------------------------------------------------
+			if ClassName( oItem ) = "X3DObject" and not (oItem.type = "Texture Support") then
+
+				for each oMat in oItem.Materials
+					for each oShd in oMat.Shaders
+						oShaderList.Add oShd
+					next
+				next
+
+			'--------------------------------------------------------------------------------
+			' If a cluster is selected 
+			'--------------------------------------------------------------------------------
+			elseif ClassName( oItem ) = "Cluster" and oItem.type = "poly" then
+
+				set oMat = oItem.Material
+				for each oClip in oMat.Shaders
+					oShaderList.Add oClip
+				next
+
+			'--------------------------------------------------------------------------------
+			' If a material is selected 
+			'--------------------------------------------------------------------------------
+			elseif ClassName( oItem ) = "Material" then
+			
+				for each oShd in oItem.Shaders
+					oShaderList.Add oShd
+				next
+
+			'--------------------------------------------------------------------------------
+			' If a material proxy is selected 
+			'--------------------------------------------------------------------------------
+			elseif oItem.type = "material" then
+
+				set oProxyList = EnumElements( oItem, FALSE )
+				for each oProxy in oProxyList
+					if oProxy.type = "material" then		' material proxy
+						for each oShd in oProxy.Shaders
+							oShaderList.Add oShd
+						next
+					end if
+				next
+
+			'--------------------------------------------------------------------------------
+			' If a shader is selected 
+			'--------------------------------------------------------------------------------
+			elseif ClassName( oItem ) = "Shader" then
+
+				oShaderList.Add oItem
+
+			'--------------------------------------------------------------------------------
+			' If an image clip is selected 
+			'--------------------------------------------------------------------------------
+			elseif ClassName( oItem ) = "ImageClip" then
+
+				'logmessage " IMAGE CLIP ------------- " & oItem
+				' in the owners of the image clip, must first pick the shaders
+				set oParentList = EnumElements( oItem, FALSE )
+				for each oParent in oParentList
+					'logmessage " check parent " & oParent & ">" & ClassName(oParent) & ">" & oParent.type
+					if ClassName(oParent) = "Parameter" and not oParent.type = "Image" then
+
+						' then for each of those shaders, find the material
+						set itm = FindMaterialFromShader( oParent )
+
+						for each oShd in itm.Shaders
+							oShaderList.Add oShd
+						next
+
+					end if
+				next
+
+			end if
+		next
+
+		set FindShaders = oShaderList
+
+	'end if
+
+
+end function
+
+
+'===============================================================================================
+' Function for the Texture Clips Tab
+'===============================================================================================
+function FindClips( in_list, in_driverName, in_drivenName, in_rv )
+
+	dim explist, oImageClipList, oObj, oMat, oShd, oClip, oItem, oObjList, vw
+
+	'logmessage "FindClips ------"
+	'set vw = in_rv.views( in_drivenName )
+	'if ( vw.visible ) then
+
+		set oImageClipList = CreateObject( "XSI.Collection" )
+		oImageClipList.Unique = true
+
+		set explist = ExpandList( in_list )
+
+		for each oItem in explist
+
+			'logmessage " FindClips for " & oItem & "," & ClassName( oItem ) & "," & oItem.type
+			'--------------------------------------------------------------------------------
+			' If a 3D Object is selected 
+			'--------------------------------------------------------------------------------
+			if ClassName( oItem ) = "X3DObject" and not (oItem.type = "Texture Support") then
+
+				for each oMat in oItem.Materials
+					for each oClip in oMat.ImageClips
+						oImageClipList.Add oClip
+					next
+				next
+
+			'--------------------------------------------------------------------------------
+			' If a cluster is selected 
+			'--------------------------------------------------------------------------------
+			elseif ClassName( oItem ) = "Cluster" and oItem.type = "poly" then
+
+				set oMat = oItem.Material
+				for each oClip in oMat.ImageClips
+					oImageClipList.Add oClip
+				next
+
+			'--------------------------------------------------------------------------------
+			' If a Material or Shader is selected 
+			'--------------------------------------------------------------------------------
+			elseif ClassName( oItem ) = "Material" or oItem.type = "Shader" then
+
+				for each oClip in oItem.ImageClips
+					oImageClipList.Add oClip
+				next
+
+			'--------------------------------------------------------------------------------
+			' If a material proxy is selected 
+			'--------------------------------------------------------------------------------
+			elseif oItem.type = "material" then
+
+				set oProxyList = EnumElements( oItem, FALSE )
+				for each oProxy in oProxyList
+					if oProxy.type = "material" then		' material proxy
+						for each oClip in oItem.ImageClips
+							oImageClipList.Add oClip
+						next
+					end if
+				next
+
+			'--------------------------------------------------------------------------------
+			' If an image clip is selected 
+			'--------------------------------------------------------------------------------
+			elseif ClassName( oItem ) = "ImageClip" then
+				oImageClipList.Add oItem
+
+			'----------------------------------------------------
+			' If a source or clip container is selected...
+			' Later we should have an easier way to detect the containers...
+			' for now we check if the user has clicked on a source or clip container using the name 
+			'----------------------------------------------------
+			elseif ( InStr( oItem.fullname, "Sources." ) > 0 or _
+				     InStr( oItem.fullname, "Clips." ) > 0 ) then
+
+				' in certain conditions, we will be listing all of the 
+				' children nodes of the container
+				set children_list = EnumElements( oItem.fullname )
+
+				if not isempty( children_list ) then
+
+					'logmessage typename( children_list(0) )
+					for each itm in children_list
+						
+						'logmessage " subitem " & subitem & " typename " & typename( itm )
+						if ( typename( itm ) = "CollectionItem" ) or _
+						   ( instr( typename( itm ), "Source" ) > 0 ) or _
+						   ( instr( typename( itm ), "Clip" ) > 0 ) then
+							
+							'logmessage "expanding " & itm
+							oImageClipList.Add itm
+						end if
+					next
+				end if
+
+			end if
+		next
+
+		set FindClips = oImageClipList
+
+	'end if
+
+end function
+
+'===============================================================================================
+' Function for the Objects Tab
+'===============================================================================================
+function FindObjects( in_list, in_driverName, in_drivenName, in_rv )
+
+	dim explist, oObjectList, oObj, oMat, oShd, oItem, oParentList, oParent, oProxyList, oProxy, vw, owners, itm
+
+	'logmessage "FindObjects ------"
+
+	'set vw = in_rv.views( in_drivenName )
+	'if ( vw.visible ) then
+
+		set oObjectList = CreateObject( "XSI.Collection" )
+		oObjectList.Unique = true
+
+		set explist = ExpandList( in_list )
+
+		for each oItem in explist
+
+			'logmessage " FindObjects for " & oItem & " >" & ClassName( oItem ) & " >" & oItem.type
+
+			'--------------------------------------------------------------------------------
+			' If a 3D Object is selected 
+			'--------------------------------------------------------------------------------
+			if ClassName( oItem ) = "X3DObject" and not (oItem.type = "Texture Support") then
+
+				oObjectList.Add oItem
+
+			'--------------------------------------------------------------------------------
+			' If a cluster is selected 
+			'--------------------------------------------------------------------------------
+			elseif ClassName( oItem ) = "Cluster" then
+
+				' go up to get the object  (object < primitive < clusters)
+				oObjectList.Add oItem.parent.parent.parent
+
+			'--------------------------------------------------------------------------------
+			' If a material is selected 
+			'--------------------------------------------------------------------------------
+			elseif ClassName( oItem ) = "Material" then		' material
+
+				set oMatUsedBy = oItem.UsedBy
+				if typename( oMatUsedBy ) <> "Nothing" then
+					for each oMatOwner in oMatUsedBy
+						if oMatOwner.Type <> "poly" then
+							'logmessage oMatOwner.Type
+							oObjectList.Add oMatOwner
+						end if
+					next
+				end if
+
+			'--------------------------------------------------------------------------------
+			' If a material proxy is selected 
+			'--------------------------------------------------------------------------------
+			elseif oItem.type = "material" then
+			
+				for each itm in oItem.owners
+					'logmessage itm & " classname=" & ClassName( itm )
+					if ClassName( itm ) = "X3DObject" then
+						oObjectList.Add itm
+					elseif ClassName( itm ) = "Cluster" then
+						' go up to get the object  (object < primitive < clusters)
+						oObjectList.Add itm.parent.parent.parent
+					end if
+				next
+
+			'--------------------------------------------------------------------------------
+			' If a shader is selected 
+			'--------------------------------------------------------------------------------
+			elseif ClassName( oItem ) = "Shader" then
+
+				set itm = FindMaterialFromShader( oItem )
+
+				set oMatUsedBy = itm.UsedBy
+				if typename( oMatUsedBy ) <> "Nothing" then
+					for each oMatOwner in oMatUsedBy
+						oObjectList.Add oMatOwner
+					next
+				end if
+			'--------------------------------------------------------------------------------
+			' If an image clip is selected 
+			'--------------------------------------------------------------------------------
+			elseif ClassName( oItem ) = "ImageClip" then
+
+				'logmessage " IMAGE CLIP ------------- " & oItem
+				' in the owners of the image clip, must first pick the shaders
+				set oParentList = EnumElements( oItem, FALSE )
+				for each oParent in oParentList
+					'logmessage " check parent " & oParent & ">" & ClassName(oParent) & ">" & oParent.type
+					if ClassName(oParent) = "Parameter" and not oParent.type = "Image" then
+
+						' then for each of those shaders, find the material
+						set itm = FindMaterialFromShader( oParent )
+
+						set oMatUsedBy = itm.UsedBy
+						if typename( oMatUsedBy ) <> "Nothing" then
+							for each oMatOwner in oMatUsedBy
+								oObjectList.Add oMatOwner
+							next
+						end if
+
+					end if
+				next
+
+			end if
+		next
+
+		set FindObjects = oObjectList
+
+	'end if
+
+
+end function
+
+
+'===============================================================================================
+' Function for the Clusters Tab
+'===============================================================================================
+function FindClusters( in_list, in_driverName, in_drivenName, in_rv )
+
+	dim explist, oClusterList, oObj, oMat, oShd, oItem, oParentList, oParent, oProxyList, oProxy, vw, owners, itm
+
+	'logmessage "FindClusters ------"
+
+	'set vw = in_rv.views( in_drivenName )
+	'if ( vw.visible ) then
+
+		set oClusterList = CreateObject( "XSI.Collection" )
+		oClusterList.Unique = true
+
+		set explist = ExpandList( in_list )
+
+		for each oItem in explist
+
+			'logmessage " FindClusters for " & oItem & " >" & ClassName( oItem ) & " >" & oItem.type
+
+			'--------------------------------------------------------------------------------
+			' If a 3D Object is selected 
+			'--------------------------------------------------------------------------------
+			if ClassName( oItem ) = "X3DObject" and not (oItem.type = "Texture Support") then
+
+				set oGeometry = oItem.activeprimitive.geometry
+				set oClusters = oGeometry.Clusters
+				for each itm in oClusters
+					oClusterList.Add itm
+				next
+
+			'--------------------------------------------------------------------------------
+			' If a cluster is selected 
+			'--------------------------------------------------------------------------------
+			elseif ClassName( oItem ) = "Cluster" then
+
+				oClusterList.Add oItem
+
+			'--------------------------------------------------------------------------------
+			' If a material is selected 
+			'--------------------------------------------------------------------------------
+			elseif ClassName( oItem ) = "Material" then
+
+				set oMatUsedBy = oItem.UsedBy
+				if typename( oMatUsedBy ) <> "Nothing" then
+					for each oMatOwner in oMatUsedBy
+						if oMatOwner.Type = "poly" then
+							'logmessage oMatOwner.Type
+							oClusterList.Add oMatOwner
+						end if
+					next
+				end if
+
+			'--------------------------------------------------------------------------------
+			' If a material proxy is selected 
+			'--------------------------------------------------------------------------------
+			elseif oItem.type = "material" then
+			
+				for each itm in oItem.owners
+					'logmessage itm & " classname=" & ClassName( itm )
+					if ClassName( itm ) = "Cluster" then
+						oClusterList.Add itm
+					end if
+				next
+
+			'--------------------------------------------------------------------------------
+			' If a shader is selected 
+			'--------------------------------------------------------------------------------
+			elseif ClassName( oItem ) = "Shader" then
+
+				set itm = FindMaterialFromShader( oItem )
+
+				set oMatUsedBy = itm.UsedBy
+				if typename( oMatUsedBy ) <> "Nothing" then
+					for each oMatOwner in oMatUsedBy
+						if oMatOwner.Type = "poly" then
+							'logmessage oMatOwner.Type
+							oClusterList.Add oMatOwner
+						end if
+					next
+				end if
+			'--------------------------------------------------------------------------------
+			' If an image clip is selected 
+			'--------------------------------------------------------------------------------
+			elseif ClassName( oItem ) = "ImageClip" then
+
+				'logmessage " IMAGE CLIP ------------- " & oItem
+				' in the owners of the image clip, must first pick the shaders
+				set oParentList = EnumElements( oItem, FALSE )
+				for each oParent in oParentList
+					'logmessage " check parent " & oParent & ">" & ClassName(oParent) & ">" & oParent.type
+					if ClassName(oParent) = "Parameter" and not oParent.type = "Image" then
+
+						' then for each of those shaders, find the material
+						set itm = FindMaterialFromShader( oParent )
+
+						set oMatUsedBy = itm.UsedBy
+						if typename( oMatUsedBy ) <> "Nothing" then
+							for each oMatOwner in oMatUsedBy
+								if oMatOwner.Type = "poly" then
+									'logmessage oMatOwner.Type
+									oClusterList.Add oMatOwner
+								end if
+							next
+						end if
+
+					end if
+				next
+
+
+			end if
+		next
+
+		set FindClusters = oClusterList
+
+	'end if
+
+
+end function
+
+
+'===============================================================================================
+' Expands incoming list to get all nodes in models
+'===============================================================================================
+function ExpandList( in_list )
+
+	dim list, oItem, mdlobjlst, oMdlObj, mdlstr
+
+	set list = CreateObject( "XSI.Collection" )
+
+	for each oItem in in_list
+
+		' For Models, we expand the list to include all subnodes.
+		if ClassName( oItem ) = "Model" then
+
+			if oItem.name = "Scene_Root" then
+				set mdlobjlst =  SIFilter( "*", "geometry",,siQuickSearch)
+			else
+				mdlstr = "B:" & oItem
+				set mdlobjlst = SelectChildNodes(mdlstr,FALSE)
+			end if
+
+			for each oMdlObj in mdlobjlst
+				list.Add oMdlObj
+			next
+
+		else  'add the item as is
+
+			list.Add oItem
+
+		end if
+
+	next
+	set ExpandList = list
+
+end function
+
+
+'===============================================================================================
+'
+'===============================================================================================
+function FindMaterialFromShader( in_shd )
+
+	'logmessage " FindMaterialFromShader  -----------------------"
+
+	FindMaterialFromShader = ""
+	set itm = in_shd.Parent
+		'logmessage "start to go up " & itm
+	while not ClassName(itm) = "Material"		' while we haven't reached the material
+		'logmessage "going up " & itm
+		set itm = EnumElements( itm, FALSE )(0)
+	wend
+
+	'logmessage "arrived " & itm
+
+	set FindMaterialFromShader = itm
+end function
+
+
+
+
+]]></script>
+
+
+
+	</relationalview>
+</xsi_file>

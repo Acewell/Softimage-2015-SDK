@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<xsi_file type="RelationalView" xsi_version="4.0.2003.1127" syntax_version="1.0">
+	<relationalview clsid="{50272E5B-1C15-41A5-B194-10D7DD073E96}" name="RV - Mixer Explorer" height="484" width="1031">
+		<definition maxinstances="10000" acceptfocus="true" private="false" defaultsize="100,100,500,500" cmdmap="{00000000-0000-0000-0000-000000000000}" supportedtypes="6" category="SDK Samples"> </definition>
+		<relations>
+			<relation driver="explorer" driven="am" event="selection" cmd=""> </relation>
+		</relations>
+		<frameset orientation="horizontal" name="Frameset1" buttonsize="80,30" splitter="movable" sizechild="20%,*">
+			<frame name="explorer" type="Explorer" primary="true" toolbar="shared"> </frame>
+			<frameset orientation="vertical" name="Frameset2" buttonsize="80,30" splitter="movable" sizechild="*,28">
+				<frame name="am" type="Animation Mixer" primary="false" toolbar="none" timeline="timeline1">
+					<properties>
+						<filtermode>selection only</filtermode>
+					</properties>
+				</frame>
+				<frame name="timeline1" type="Timeline" primary="false" toolbar="none"> </frame>
+			</frameset>
+		</frameset>
+	</relationalview>
+</xsi_file> 

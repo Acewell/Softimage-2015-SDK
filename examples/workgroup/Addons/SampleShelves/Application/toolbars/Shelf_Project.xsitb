@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<xsi_file type="Shelf" xsi_version="4.0.2003.1205" syntax_version="1.0">
+   <shelf_view name="Shelf - My Project" clsid="{2807105F-6F26-4AEA-9872-BCC15334C824}">
+      <definition maxinstances="10000" acceptfocus="true" private="false" defaultsize="0,100,200,300" cmdmap="{00000000-0000-0000-0000-000000000000}" supportedtypes="6" category="SDK Samples"></definition>
+      <tabs layout="top" active="Scenes">
+         <tab label="Scenes" type="folder" path="$MYPROJECTPATH/Scenes" ext="*.scn" mode="thumbnail" navigation="False" scrollbar="0"></tab>
+         <tab label="Models" type="folder" path="$MYPROJECTPATH/Models" ext="*.mdl;*.emdl" mode="thumbnail" navigation="False" scrollbar="0"></tab>
+         <tab label="Actions" type="folder" path="$MYPROJECTPATH/Actions" ext="*.eani;*.ani;*.xsi;*.preset" mode="thumbnail" navigation="False" scrollbar="0"></tab>
+         <tab label="dotXSI" type="folder" path="$MYPROJECTPATH/dotXSI" ext="*.xsi" mode="thumbnail" navigation="False" scrollbar="0"></tab>
+         <tab label="Pictures" type="folder" path="$MYPROJECTPATH/Pictures" ext="*.avi;*.als;*.gen;*.omf;*.bmp;*.dpx;*.cin;*.fido;*.gif;*.jpg;*.jpeg;*.jfif;*.map;*.pcx;*.pgm;*.ppm;*.psd;*.pct;*.mov;*.qt;*.hdr;*.sgi;*.rgb;*.msk;*.scr;*.pic;*.zpic;*.tga;*.tif;*.tiff;*.rla;*.yuv;*.st;*.st16;*.ct;*.ct16;*.ctfp;*.zt;*.mt;*.norm;*.tag;*.tt" mode="thumbnail" navigation="False" scrollbar="0"></tab>
+         <tab label="Render Pics" type="folder" path="$MYPROJECTPATH/Render_Pictures" ext="*.avi;*.als;*.gen;*.omf;*.bmp;*.dpx;*.cin;*.fido;*.gif;*.jpg;*.jpeg;*.jfif;*.map;*.pcx;*.pgm;*.ppm;*.psd;*.pct;*.mov;*.qt;*.hdr;*.sgi;*.rgb;*.msk;*.scr;*.pic;*.zpic;*.tga;*.tif;*.tiff;*.rla;*.yuv;*.st;*.st16;*.ct;*.ct16;*.ctfp;*.zt;*.mt;*.norm;*.tag;*.tt" mode="thumbnail" navigation="False" scrollbar="0"></tab>
+      </tabs>
+   </shelf_view>
+</xsi_file>

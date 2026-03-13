@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<xsi_file type="Shelf" xsi_version="4.0.2003.1205" syntax_version="1.0">
+   <shelf_view name="Shelf - Softimage Samples" clsid="{787C7E0F-4E1B-4B77-BEEC-9057759C0595}">
+      <definition maxinstances="10000" acceptfocus="true" private="false" defaultsize="0,100,200,300" cmdmap="{00000000-0000-0000-0000-000000000000}" supportedtypes="6" category="SDK Samples"></definition>
+      <tabs layout="top" active="Scenes">
+         <tab label="Scenes" type="folder" path="$XSI_HOME/Data/XSI_Samples/Scenes" ext="*.scn" mode="thumbnail" navigation="False" scrollbar="0"></tab>
+         <tab label="Models" type="folder" path="$XSI_HOME/Data/XSI_Samples/Models" ext="*.*" mode="thumbnail" navigation="False" scrollbar="0"></tab>
+         <tab label="Actions" type="folder" path="$XSI_HOME/Data/XSI_Samples/Actions" ext="*.*" mode="thumbnail" navigation="False" scrollbar="0"></tab>
+         <tab label="Pictures" type="folder" path="$XSI_HOME/Data/XSI_Samples/Pictures" ext="*.avi;*.als;*.gen;*.omf;*.bmp;*.dpx;*.cin;*.fido;*.gif;*.jpg;*.jpeg;*.jfif;*.map;*.pcx;*.pgm;*.ppm;*.psd;*.pct;*.mov;*.qt;*.hdr;*.sgi;*.rgb;*.msk;*.scr;*.pic;*.zpic;*.tga;*.tif;*.tiff;*.rla;*.yuv;*.st;*.st16;*.ct;*.ct16;*.ctfp;*.zt;*.mt;*.norm;*.tag;*.tt" mode="thumbnail" navigation="False" scrollbar="0"></tab>
+      </tabs>
+   </shelf_view>
+</xsi_file>

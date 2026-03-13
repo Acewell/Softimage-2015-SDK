@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<xsi_file type="RelationalView" xsi_version="4.0" syntax_version="1.0">
+	<relationalview clsid="{322D791B-C563-4156-BF3C-107E4B8B6A5E}" name="RV - Material Editor" height="673" width="1034">
+		<definition maxinstances="10000" acceptfocus="true" private="false" defaultsize="100,100,500,500" cmdmap="{00000000-0000-0000-0000-000000000000}" supportedtypes="6" category="SDK Samples"> </definition>
+		<relations>
+			<relation driver="explorer"  driven="thumbview"    event="selectionfunc" cmd="getexpandedlist"> </relation>
+			<relation driver="explorer"  driven="rtree"        event="selection"     cmd=""> </relation>
+			<relation driver="thumbview" driven="ownerview"    event="selectionfunc" cmd="getownerexpandlist"></relation>
+			<relation driver="thumbview" driven="rtree"        event="selection"     cmd=""></relation>
+			<relation driver="rtree"     driven="ppg"          event="selection"     cmd=""> </relation>
+			<relation driver="explorer"  driven="ov"           event="selectionfunc" cmd="setshaderball"> </relation>
+			<relation driver="thumbview" driven="ov"           event="selectionfunc" cmd="setshaderball"> </relation>
+			<relation driver="explorer"  driven="ppg"          event="selection"     cmd=""> </relation>
+			<relation driver="thumbview" driven="textures"     event="selectionfunc" cmd="gettextures"> </relation>
+			<relation driver="thumbview" driven="alltextures"  event="selectionfunc" cmd="getalltextures"> </relation>
+		</relations>
+		<frameset orientation="vertical" name="FramesetMenu" buttonsize="80,30" sizechild="10%,*">
+			<frame name="cmd" type="Property Panel" primary="false" toolbar="none"> </frame>
+			<frameset orientation="horizontal" name="FramesetBottom" buttonsize="80,30" splitter="movable" sizechild="33%,*">
+				<frameset orientation="vertical" name="FramesetLeft" splitter="movable" sizechild="25%,35%,*">
+					<frame name="explorer"    type="Explorer"        primary="true"  toolbar="none">
+						<properties>
+							<scope>Material Sources</scope>
+						</properties>
+					</frame>
+					<frame name="ov"          type="Object View"     primary="false" toolbar="own">
+						<properties>
+							<displaymode>textured</displaymode>
+						</properties>
+					</frame>
+					<frame name="ppg"         type="Property Panel"  primary="false" toolbar="none"> 
+					</frame>
+				</frameset>
+				<frameset orientation="vertical" name="FramesetRight" buttonsize="80,30" splitter="movable" sizechild="15%,15%,15%,*">
+					<frame name="thumbview"   type="Thumbnail Shelf" primary="false" toolbar="none"> 
+					</frame>
+					<frame name="ownerview"   type="Thumbnail Shelf" primary="false" toolbar="none"> 
+					</frame>
+					<switcher type="tray" buttonside="bottom" active="0" orientation="horizontal" name="MatTex" buttonsize="66,24" splitter="none" sizechild="50%,*">
+						<frame name="textures"    type="Thumbnail Shelf" primary="false" toolbar="none"> 
+						</frame>
+						<frame name="alltextures" type="Thumbnail Shelf" primary="false" toolbar="none"> 
+						</frame>
+					</switcher>
+					<frame name="rtree"       type="Render Tree"     primary="false" toolbar="own"> 
+					</frame>
+				</frameset>
+			</frameset>
+		</frameset>
+
+
+<script language="VBScript"><![CDATA[
+
+
+sub RV_Init( in_rv )
+	logmessage "init - " & in_rv.name
+
+	'
+	' Disable AutoInspect
+	'
+	PreviousAutoInspect = GetUserPref("AutoInspectEnabled")
+	SetUserPref "AutoInspectEnabled", False
+
+	'
+	' Deselect All so as not to affect the scene.
+	'
+	DeselectAll
+
+	set oRoot = activeproject.activescene.Root
+	set oModel = oRoot.FindChild("RVMaterialEditorModel")
+	if typename( oModel ) = "Nothing" then
+		CreateModel ,"RVMaterialEditorModel"
+		set oModel = oRoot.FindChild("RVMaterialEditorModel")
+		oModel.sclx = 0.05
+		oModel.scly = 0.05
+		oModel.sclz = 0.05
+		set oMeshSphere = oModel.AddGeometry( "Sphere", "MeshSurface", "Sphere" )
+		oMeshSphere.sclx = 0.05
+		oMeshSphere.scly = 0.05
+		oMeshSphere.sclz = 0.05
+		CreateProjection oMeshSphere.fullname, siTxtSpherical, , , "Texture_Projection"
+		set oMeshCube = oModel.AddGeometry( "Cube", "MeshSurface", "Cube" )
+		oMeshCube.sclx = 0.05
+		oMeshCube.scly = 0.05
+		oMeshCube.sclz = 0.05
+		CreateProjection oMeshCube.fullname, siTxtCubic, , , "Texture_Projection"
+		set oMeshTorus = oModel.AddGeometry( "Torus", "MeshSurface", "Torus" )
+		oMeshTorus.sclx = 0.05
+		oMeshTorus.scly = 0.05
+		oMeshTorus.sclz = 0.05
+		CreateProjection oMeshTorus.fullname, siTxtSpherical, , , "Texture_Projection"
+		set oMeshCylinder = oModel.AddGeometry( "Cylinder", "MeshSurface", "Cylinder" )
+		oMeshCylinder.sclx = 0.05
+		oMeshCylinder.scly = 0.05
+		oMeshCylinder.sclz = 0.05
+		CreateProjection oMeshCylinder.fullname, siTxtCylindrical, , , "Texture_Projection"
+		'
+		' Create the light
+		'
+		set oLight = oModel.AddLight( "Point", false, "Point" )
+		oLight.posx = 0.0
+		oLight.posy = 5.0
+		oLight.posz = 0.0
+		'
+		' Cannot access this group directly yet.
+		'
+		selectobj oLight.fullname & ".light.Associated Models"
+		selection(0).AddMember oMeshSphere
+		selection(0).AddMember oMeshCube
+		selection(0).AddMember oMeshTorus
+		selection(0).AddMember oMeshCylinder
+	end if
+	set oGlobalPSet = oModel.Properties("MaterialEditorSettings")
+	'
+	' Set global settings
+	'
+	if typename( oGlobalPSet ) = "Nothing" then
+		set oPSet = oModel.AddCustomProperty ( "MaterialEditorSettings", false )
+		oPSet.AddParameter3 "View", siString, in_rv.name
+		oPSet.AddParameter3 "CurrentMaterial", siString, ""
+		oPSet.AddParameter3 "CurrentMaterialFullName", siString, ""
+		oPSet.AddParameter3 "ObjectType", siInt4, 0
+
+		set oLayout = oPSet.PPGLayout
+
+		oLayout.AddRow
+		oLayout.AddButton "AssignMaterial"
+		oLayout.AddButton "CreateMaterial"
+		oLayout.AddButton "RemoveAllUnusedMaterial"
+		oLayout.AddButton "SetThumbnailFromRegion"
+		oLayout.AddButton "ExportLibrary"
+		oLayout.AddButton "ImportLibrary"
+		oLayout.AddEnumControl "ObjectType", Array("Sphere", 0, "Cylinder", 1, "Torus", 2, "Cube", 3), "Geometry" 
+		oLayout.EndRow
+
+		oLayout.Logic =     "sub AssignMaterial_OnClicked" & vbCrlf & _
+							"    Dim xsiRef" & vbCrlf & _
+							"    set xsiRef = CreateObject(""XSI.Application"") " & vbCrlf & _
+							"    Dim Application"  & vbCrlf & _
+							"    set Application = xsiRef.Application"  & vbCrlf & _
+							"    set t = desktop.activelayout.views(PPG.View.value)" & vbCrlf & _
+							"    tKeep = t.state" & vbCrLf & _
+							"    t.state = siMinimized"  & vbCrlf & _
+							"    on error resume next" & vbCrlf & _
+							"    call Application.AssignMaterial" & vbCrlf & _
+							"    t.state = tKeep"  & vbCrlf & _
+							"end sub" & vbCrlf & _
+							"    " & vbCrlf & _
+							"sub CreateMaterial_OnClicked" & vbCrlf & _
+							"    Dim xsiRef" & vbCrlf & _
+							"    set xsiRef = CreateObject(""XSI.Application"") " & vbCrlf & _
+							"    Dim Application"  & vbCrlf & _
+							"    set Application = xsiRef.Application"  & vbCrlf & _
+							"    Application.SICreateMaterial """","""","""","""" " & vbCrlf & _
+							"end sub" & vbCrlf & _
+							"    " & vbCrlf & _
+							"sub RemoveAllUnusedMaterial_OnClicked" & vbCrlf & _
+							"    Dim xsiRef" & vbCrlf & _
+							"    set xsiRef = CreateObject(""XSI.Application"") " & vbCrlf & _
+							"    Dim Application"  & vbCrlf & _
+							"    set Application = xsiRef.Application"  & vbCrlf & _
+							"    Application.DeleteAllUnusedMaterials" & vbCrlf & _
+							"end sub" & vbCrlf & _
+							"    " & vbCrlf & _
+							"sub SetThumbnailFromRegion_OnClicked" & vbCrlf & _
+							"    Dim xsiRef" & vbCrlf & _
+							"    set xsiRef = CreateObject(""XSI.Application"") " & vbCrlf & _
+							"    Dim Application"  & vbCrlf & _
+							"    set Application = xsiRef.Application"  & vbCrlf & _
+							"    set oRoot = activeproject.activescene.Root" & vbCrlf & _
+							"    set oModel= oRoot.FindChild(""RVMaterialEditorModel"")" & vbCrlf & _
+							"    set oGlobalPSet = oModel.Properties(""MaterialEditorSettings"")" & vbCrlf & _
+							"    if ( oGlobalPSet.Parameters(""CurrentMaterialFullName"").Value <> """" and oGlobalPSet.Parameters(""CurrentMaterial"").Value <> """" ) then" & vbCrlf & _
+							"        Application.SetThumbnailFromRegion oGlobalPSet.Parameters(""CurrentMaterialFullName"").Value, oGlobalPSet.Parameters(""CurrentMaterial"").Value & "".jpg"", True " & vbCrlf & _
+							"    else" & vbCrlf & _
+							"    logmessage ""SetThumbnailFromRegion: You must select a material from the explorer first."" " & vbCrlf & _
+							"    end if" & vbCrlf & _
+							"    " & vbCrlf & _
+							"end sub" & vbCrlf & _
+							"    " & vbCrlf & _
+							"sub ExportLibrary_OnClicked" & vbCrlf & _
+							"    if (selection(0).type = ""library_source"") then" & vbCrlf & _
+							"        Dim xsiRef" & vbCrlf & _
+							"        set xsiRef = CreateObject(""XSI.Application"") " & vbCrlf & _
+							"        Dim Application"  & vbCrlf & _
+							"        set Application = xsiRef.Application"  & vbCrlf & _
+							"        Application.ExportMaterialLibrary ,selection(0)" & vbCrlf & _
+							"    end if" & vbCrlf & _
+							"end sub" & vbCrlf & _
+							"    " & vbCrlf & _
+							"sub ImportLibrary_OnClicked" & vbCrlf & _
+							"    SIImportMatLib ,0" & vbCrlf & _
+							"end sub" & vbCrlf 
+
+	else
+		set oPSet = oGlobalPSet
+	end if
+
+	set proppanel = in_rv.views("cmd")
+	proppanel.setattributevalue "targetcontent", oPSet.fullname
+	SetUserPref "AutoInspectEnabled", PreviousAutoInspect
+end sub
+
+sub RV_Term( in_rv )
+	logmessage "term - " & in_rv.name
+	set oMeshModel = activeproject.activescene.Root.FindChild("RVMaterialEditorModel")
+
+	deleteobj "B:" & oMeshModel
+
+end sub
+
+function getownerexpandlist( in_list, in_driverName, in_drivenName, in_rv )
+	setshaderball in_list, in_driverName, in_drivenName, in_rv 
+	set expanded_list = CreateObject( "XSI.Collection" )
+
+	expanded_list.Unique = True
+
+	if in_list.count < 1 Then
+		set getownerexpandlist = expanded_list
+		exit function
+	end if	
+
+	if ( in_list(0).type = "MaterialReferenced"  or in_list(0).type = "material" ) then
+		for each oItem in in_list(0).UsedBy
+			if (not oItem.type = "library_source") then
+				expanded_list.Add oItem
+			end if
+		next
+	end if	
+
+	set getownerexpandlist = expanded_list
+end function
+
+function getexpandedlist( in_list, in_driverName, in_drivenName, in_rv )
+
+	set expanded_list = CreateObject( "XSI.Collection" )
+
+	if in_list.count < 1 Then
+		set getexpandedlist = expanded_list
+		exit function
+	end if	
+
+	if ( in_list(0).type = "MaterialReferenced"  or in_list(0).type = "material" ) then
+		set tempList = CreateObject("XSI.Collection")
+		tempList.Items = in_list(0).Library.fullname & ".*"	  ' will get all the items below the library node
+
+		for each subitem in tempList
+			if ( not subitem.type = "Parameter" ) then
+				expanded_list.add subitem
+			end if
+		next
+	
+	else
+		for each item in in_list
+			if ( item.type = "library_source" ) then
+				' for now that's the only way we can enumerate, until the library becomes a 
+				' real container, in which case we will be able to use enumelements (B2)
+				set tempList = CreateObject("XSI.Collection")
+				tempList.Items = item.fullname & ".*"	  ' will get all the items below the library node
+
+				for each subitem in tempList
+					if ( not subitem.type = "Parameter" ) then
+						expanded_list.add subitem
+					end if
+				next
+			else
+				expanded_list.add item
+			end if
+		next
+	end if
+	set getexpandedlist = expanded_list
+end function
+
+function setshaderball( in_list, in_driverName, in_drivenName, in_rv )
+	set vw = in_rv.views( in_drivenName )
+
+	set oColl = CreateObject("XSI.Collection")
+
+	set oRoot = activeproject.activescene.Root
+
+	set oModel = oRoot.FindChild("RVMaterialEditorModel")
+
+	set oGlobalPSet = oModel.Properties("MaterialEditorSettings")
+
+	my_type = oGlobalPSet.Parameters("ObjectType").value
+
+	if my_type = "0" then
+		set oMesh = oModel.FindChild("Sphere")
+		SetValue "RVMaterialEditorModel.Cylinder.visibility.viewvis", False
+		SetValue "RVMaterialEditorModel.Cylinder.visibility.Rendvis", False
+		SetValue "RVMaterialEditorModel.Torus.visibility.viewvis", False
+		SetValue "RVMaterialEditorModel.Torus.visibility.Rendvis", False
+		SetValue "RVMaterialEditorModel.Cube.visibility.viewvis", False
+		SetValue "RVMaterialEditorModel.Cube.visibility.Rendvis", False
+		SetValue "RVMaterialEditorModel.Sphere.visibility.viewvis", True
+		SetValue "RVMaterialEditorModel.Sphere.visibility.Rendvis", True
+	end if
+	if my_type = "1" then
+		set oMesh = oModel.FindChild("Cylinder")
+		SetValue "RVMaterialEditorModel.Cylinder.visibility.viewvis", True
+		SetValue "RVMaterialEditorModel.Cylinder.visibility.Rendvis", True
+		SetValue "RVMaterialEditorModel.Torus.visibility.viewvis", False
+		SetValue "RVMaterialEditorModel.Torus.visibility.Rendvis", False
+		SetValue "RVMaterialEditorModel.Cube.visibility.viewvis", False
+		SetValue "RVMaterialEditorModel.Cube.visibility.Rendvis", False
+		SetValue "RVMaterialEditorModel.Sphere.visibility.viewvis", False
+		SetValue "RVMaterialEditorModel.Sphere.visibility.Rendvis", False
+	end if
+	if my_type = "2" then
+		set oMesh = oModel.FindChild("Torus")
+		SetValue "RVMaterialEditorModel.Cylinder.visibility.viewvis", False
+		SetValue "RVMaterialEditorModel.Cylinder.visibility.Rendvis", False
+		SetValue "RVMaterialEditorModel.Torus.visibility.viewvis", True
+		SetValue "RVMaterialEditorModel.Torus.visibility.Rendvis", True
+		SetValue "RVMaterialEditorModel.Cube.visibility.viewvis", False
+		SetValue "RVMaterialEditorModel.Cube.visibility.Rendvis", False
+		SetValue "RVMaterialEditorModel.Sphere.visibility.viewvis", False
+		SetValue "RVMaterialEditorModel.Sphere.visibility.Rendvis", False
+	end if
+	if my_type = "3" then
+		set oMesh = oModel.FindChild("Cube")
+		SetValue "RVMaterialEditorModel.Cylinder.visibility.viewvis", False
+		SetValue "RVMaterialEditorModel.Cylinder.visibility.Rendvis", False
+		SetValue "RVMaterialEditorModel.Torus.visibility.viewvis", False
+		SetValue "RVMaterialEditorModel.Torus.visibility.Rendvis", False
+		SetValue "RVMaterialEditorModel.Cube.visibility.viewvis", True
+		SetValue "RVMaterialEditorModel.Cube.visibility.Rendvis", True
+		SetValue "RVMaterialEditorModel.Sphere.visibility.viewvis", False
+		SetValue "RVMaterialEditorModel.Sphere.visibility.Rendvis", False
+	end if
+
+	oColl.Add oMesh
+
+	if typename(in_list(0)) = "Material" then
+		set oMaterial = in_list(0)
+		oMesh.SetMaterial oMaterial
+		oGlobalPSet.Parameters("CurrentMaterial").Value = oMaterial.name
+		oGlobalPSet.Parameters("CurrentMaterialFullName").Value = oMaterial.fullname
+	end if
+	set setshaderball = oColl
+end function
+
+function gettextures( in_list, in_drivername, in_drivenname, in_rv )
+	set oTexList = CreateObject("XSI.Collection")
+
+	if in_list.count < 1 Then
+		set gettextures = oTexList
+		exit function
+	end if	
+
+	On Error Resume Next
+	for each oTex in in_list(0).ImageClips
+		oTexList.Add oTex
+	next
+	set gettextures = oTexList
+end function
+
+function getalltextures( in_list, in_drivername, in_drivenname, in_rv )
+	set oTexList = CreateObject( "XSI.Collection" )
+
+	oTexList.Unique = True
+
+	set oClips = CreateObject( "XSI.Collection" )
+	oClips.SetAsText( "Clips.*" )
+	 for each oTex in oClips
+		if typename( oTex ) = "ImageClip" then
+			oTexList.Add oTex
+		end if
+	 next
+	set getalltextures = oTexList
+
+end function
+' Created by Softimage
+' RLB
+
+]]></script>
+
+
+
+	</relationalview>
+</xsi_file> 

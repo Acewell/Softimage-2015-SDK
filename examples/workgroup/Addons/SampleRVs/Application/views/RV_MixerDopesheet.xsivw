@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<xsi_file type="RelationalView" xsi_version="4.0.2003.1006" syntax_version="1.0">
+	<relationalview clsid="{CCE20ED9-7A61-4D2D-BAC9-D8F71AEAE83C}" name="RV - Timeline Mix Dop" height="450" width="1028">
+		<definition maxinstances="1000" acceptfocus="true" private="false" defaultsize="105,500,200,200" cmdmap="{00000000-0000-0000-0000-000000000000}" supportedtypes="6" category="SDK Samples"> </definition>
+		<relations>
+		</relations>
+		<frameset orientation="vertical" name="Frameset1" buttonsize="80,30" splitter="movable" sizechild="100,*,28">
+			<frame name="DS" type="Standalone DopeSheet" primary="true" toolbar="own" timeline="timeline1" > </frame>
+			<frame name="AM" type="Animation Mixer" primary="false" toolbar="own" timeline="timeline1" > </frame>
+			<frame name="timeline1" primary="false" type="Timeline"> </frame>
+		</frameset>
+	</relationalview>
+</xsi_file> 

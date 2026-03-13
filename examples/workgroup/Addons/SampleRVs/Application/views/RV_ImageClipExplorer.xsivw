@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+   <xsi_file type="RelationalView" xsi_version="4.0.2003.1006" syntax_version="1.0">
+   <relationalview clsid="{3950A596-0051-4785-AC3C-DD0501F02EF2}" name="RV - Image Clip Viewer" height="473" width="890">
+	<definition maxinstances="1000" acceptfocus="true" private="false" defaultsize="100,500,900,800" cmdmap="{00000000-0000-0000-0000-000000000000}" supportedtypes="6" category="SDK Samples"> </definition>
+	<relations>
+		<relation driver="main" driven="icv" event="selection" cmd=""></relation>
+	</relations>
+	<frameset orientation="horizontal" name="Frameset1" buttonsize="80,30" splitter="movable" sizechild="30%,*">
+		<frame name="main" type="Explorer" primary="true" toolbar="shared">
+			<properties>
+				<scope>Image Sources and Clips</scope>
+			</properties>
+		</frame>
+		<frame name="icv" type="Image Clip Viewer" primary="false" toolbar="none"> </frame>
+	</frameset>
+	</relationalview>
+</xsi_file> 

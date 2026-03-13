@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<xsi_file type="Shelf" xsi_version="4.0.2003.1105" syntax_version="1.0">
+   <shelf_view name="Shelf - My Media" clsid="{7E1C8F3A-4354-40A6-B82F-2767C3C8DE09}">
+      <definition maxinstances="10000" acceptfocus="true" private="false" defaultsize="0,100,200,300" cmdmap="{00000000-0000-0000-0000-000000000000}" supportedtypes="6" category="SDK Samples"></definition>
+      <tabs layout="top" active="Speech">
+         <tab label="Sounds" type="folder" path="$MYMEDIAPATH/Audio" ext="*.wav" mode="thumbnail" navigation="False"></tab>
+         <tab label="Images" type="folder" path="$MYMEDIAPATH/Images" ext="*.avi;*.bmp;*.gif;*.jpg;*.jpeg;*.jfif;*.scr;*.pic;*.tif;*.tiff" mode="thumbnail" navigation="False"></tab>
+         <tab label="Sprites" type="folder" path="$MYMEDIAPATH/Sprites" ext="*.avi;*.bmp;*.gif;*.jpg;*.jpeg;*.jfif;*.scr;*.pic;*.tif;*.tiff" mode="thumbnail" navigation="False"></tab>
+         <tab label="Speech" type="folder" path="$MYMEDIAPATH/Speech" ext="*.avi;*.aif;*.aiff;*.aifc;*.wav" mode="thumbnail" navigation="False"></tab>
+         <tab label="Video" type="folder" path="$MYMEDIAPATH/Video" ext="*.avi;*.aif;*.aiff;*.aifc;*.wav" mode="thumbnail" navigation="False"></tab>
+      </tabs>
+   </shelf_view>
+</xsi_file>

@@ -1,0 +1,166 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>SampleDisplayCallback</title>
+<link rel="StyleSheet" href="../../doc/shared/examples.css" type="text/css">
+<script type="text/javascript" src="../../doc/shared/utils.js"></script>
+<script type="text/javascript" >
+
+function showFigure( figure, w, h )
+{
+	var w = window.open( figure, "_blank", "height=" + h + ",width=" + h + ",status=yes,toolbar=no,menubar=no,location=no");
+}
+
+function doItForMe()
+{
+		try {
+			var xsiapp = new ActiveXObject('XSI.Application');
+			var app = xsiapp.Application;
+			app.SetDisplayMode("Camera", "MyCustomPass")
+		}
+		catch ( e ) {
+			alert( "Cannot change the display type if you're not running Softimage. This page must be viewed in an Softimage NetView,\nand scripting and ActiveX controls must be enabled in Internet Explorer." );
+		}
+
+}
+
+</script>
+</head>
+<body>
+<div class="body"><a name="top"></a>
+
+
+
+<img class="netview" src="netview_SampleDisplayCallback.jpg" style="float:left;padding-right:6px;">
+<h1>SampleDisplayCallback</h1>
+
+<p>This example contains a Display Callback (MyClearScreenBuffer) and a Display Pass (MyCustomPass).</p>
+
+<h2>Example Files</h2>
+<table><tr>
+<td><strong>Location</strong></td><td><span class="installPath"></span>
+</td>
+</tr>
+
+<tr>
+<td><strong>Files</strong></td>
+<td>
+	<div class="examplefile">ClearScreenBuffer.cpp</div>
+	<div class="examplefile">CustomPass.cpp</div>
+	<div class="examplefile">SampleDisplayCallback.cpp</div>
+	<div class="examplefile">SampleDisplayCallback.h</div>
+	<div class="examplefile">GNUmakefile</div>
+	<div class="examplefile">SampleDisplayCallback.vcproj</div>
+</td>
+</tr>
+
+
+</table>
+
+
+<a name="build"></a><h2>Running the Example</h2>
+
+<div id="toinstall" style="display:none">
+<p class="proc-head">To install the example</p>
+<ul>
+<li><p>Connect to the Softimage SDK workgroup at <span class="workgroupPath">%XSISDK_ROOT%\examples\workgroup</span>.</p>
+	<ol>
+	<li>In the <strong>Plug-in Manager</strong>, click the <strong>Workgroups</strong> tab.</li>
+	<li>Click <strong>File</strong> and then click <strong>Connect</strong>.</li>
+	<li>In the <strong>Connect to Workgroup</strong> dialog box, click <img src="..\..\doc\shared\bBrowse.gif">, locate the workgroup folder and then click <strong>Select</strong>.</li>
+	</ol>
+</li>
+</ul>
+
+<p class="proc-head">To view the help page for an example</p>
+
+<ul>
+<li>Do one of the following:</li>
+<ul>
+<li>In the Plug-in Tree, expand the SDK examples workgroup, right-click the example add-on and then click <strong>Help</strong>.
+</li>
+<li>
+Open a Net View and click <img style="position:relative;bottom:-6px;" src="..\..\doc\shared\xsiweb.png"> to go to Softimage Net local. In the top navigation bar, click <strong>add-ons</strong>, and then click the SDK example add-on.
+</li>
+</ul>
+</ul>
+</div>
+
+<div>
+<p class="proc-head">To run the example</p>
+<ul>
+<li>
+<p>In a viewport, click the display type (for example, Wireframe) and then choose <strong>Realtime Shaders &gt; MyCustomPass</strong>. <a href="..\..\doc\shared\MyCustomPass.gif" onclick="showFigure( this.href, 340, 420 ); return false;">Show me</a>
+<!--
+<a href="MyCustomPass" onclick="doItForMe();return false;">Do it for me</a> (works only if View B is visible)
+-->
+</p>
+<p>After you select MyCustomPass, the MyClearScreenBuffer display callback changes the background color.</p>
+</li>
+</ul>
+</div>
+
+
+<a name="build"></a><h2>Building the C++ Example</h2>
+<p>
+The Softimage SDK includes a compiled version of SampleDisplayCallback. If you want to modify the code, you can rebuild the example by following these instructions.</p>
+
+<div id="windows-build">
+<p class="proc-head">To build the example on Windows</p>
+<ol>
+<li><p><span class="sishell">Open</span> an Softimage command prompt, and type <strong>devenv</strong> to start Visual Studio .NET.</p>
+<p>Starting Visual Studio .NET from an Softimage command prompt ensures that environment variables such as XSISDK_ROOT are set (otherwise you'll get build and link errors).</p>
+
+<p><strong>Tip</strong> To load the <span class="devenv" vcproj="SampleDisplayCallback.vcproj">SampleDisplayCallback</span> project from the command line, type:</p>
+<pre>devenv <span class="installPath">SampleDisplayCallback.vcproj</span></pre>
+
+
+</li>
+<li>In Visual Studio .NET, open the project file .vcproj.</li>
+<li>Select a configuration (Win32 Release or Win32 Debug) and build the DLL.</li>
+</ol>
+</div>
+
+
+<div id="linux-build">
+<p class="proc-head">To build the example on Linux</p>
+<ol>
+<li>
+<p>In a shell (tcsh) window, type:</p>
+<pre>source $XSI_HOME/<span class="linuxExt">.xsi_&lt;xsi_version&gt;</span></pre>
+</li>
+
+<li>
+<p>Change directories to</p>
+<pre><span class="installPath">cppsrc</span></pre>
+</li>
+
+<li>
+<p>To remove all intermediate files before building the example, run this command:</p>
+<pre>gmake clean</pre>
+</li>
+
+<li>
+<p>To compile the example, run this command:<p>
+<pre>gmake</pre>
+</li>
+</ol>
+</div>
+
+<div id="keywords">
+<h2>Keywords</h2>
+<p>This example uses the following keywords:</p>
+<p>
+C++ example,
+RegisterDisplayCallback, RegisterDisplayPass,
+GraphicSequencerContext, CGraphicSequencer, RenderSceneUsingMode, RenderListUsingMode, siRealtimePortMaterial,
+siPostBeginFrame, GetGraphicSequencer
+</p>
+</div>
+
+
+</div>
+</body>
+</html>
+

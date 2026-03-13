@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<xsi_file type="RelationalView" xsi_version="4.0.2003.1027" syntax_version="1.0">
+	<relationalview clsid="{06221208-56CF-48D4-94DB-43E942C09405}" name="RV - Thumbnail Viewer" height="500" width="500">
+		<definition maxinstances="10000" acceptfocus="true" private="false" defaultsize="100,100,500,500" cmdmap="{00000000-0000-0000-0000-000000000000}" supportedtypes="6" category="SDK Samples"> </definition>
+		<relations>
+			<relation driver="explorer" driven="thumbview" event="selectionfunc" cmd="getexpandedlist"> </relation>
+		</relations>
+		<frameset orientation="horizontal" name="Frameset1" splitter="movable" sizechild="30%,*">
+			<frame name="explorer" type="Explorer" primary="true" toolbar="shared"> </frame>
+			<frame name="thumbview" type="Thumbnail Shelf" primary="false" toolbar="none"> </frame>
+		</frameset>
+
+<script language="VBScript"><![CDATA[
+
+
+' This function takes the input list of nodes and expands the list content
+' if it encounters the following nodes:
+' - folders
+' - groups
+' - source or clip containers
+' - library containers (material libs in v4)
+function getexpandedlist( in_list, in_driverName, in_drivenName, in_rv )
+
+	set expanded_list = CreateObject( "XSI.Collection" )
+
+	for each item in in_list
+
+		'logmessage " ---++++-------- item = " & item & " type " & typename(item) & "," & item.type
+		found = false
+
+		'----------------------------------------------------
+		' First expand groups...
+		'----------------------------------------------------
+		if ( typename( item ) = "Group" ) then
+
+			set children_list = EnumElements( item.fullname & ".members" )
+			for each subitem in children_list
+				expanded_list.add subitem
+				found = true
+			next
+
+		'----------------------------------------------------
+		' ...else expand folders...
+		'----------------------------------------------------
+		elseif ( item.type = "Folder" ) then
+
+			set children_list = EnumElements( item.fullname & ".list" )
+			for each subitem in children_list
+				expanded_list.add subitem
+				found = true
+			next
+
+		'----------------------------------------------------
+		' ...else expand library container...
+		'----------------------------------------------------
+		elseif ( item.type = "library_source" ) then
+		
+			' for now that's the only way we can enumerate, until the library becomes a 
+			' real container, in which case we will be able to use enumelements (B2)
+			set tempList = CreateObject("XSI.Collection")
+			tempList.Items = item.fullname & ".*"	  ' will get all the items below the library node
+
+			for each subitem in tempList
+				if ( not subitem.type = "Parameter" ) then
+					expanded_list.add subitem
+					found = true
+				end if
+			next
+
+		'----------------------------------------------------
+		' ...else expand source and clip containers...
+		' Later we should have an easier way to detect the containers...
+		' for now we check if the user has clicked on a source or clip container using the name 
+		'----------------------------------------------------
+		elseif ( InStr( item.fullname, "Sources." ) > 0 or _
+			 InStr( item.fullname, "Clips." ) > 0 ) then
+
+			' in certain conditions, we will be listing all of the 
+			' children ndoes of the container
+			set children_list = EnumElements( item.fullname )
+
+			if not isempty( children_list ) then
+
+				'logmessage typename( children_list(0) )
+				for each subitem in children_list
+					
+					'logmessage " subitem " & subitem & " typename " & typename( subitem )
+					if ( typename( subitem ) = "CollectionItem" ) or _
+					   ( instr( typename( subitem ), "Source" ) > 0 ) or _
+					   ( instr( typename( subitem ), "Clip" ) > 0 ) then
+						
+						'logmessage "expanding " & subitem
+						expanded_list.add subitem
+						found = true
+					end if
+				next
+			end if
+
+		end if
+
+
+		'----------------------------------------------------
+		' if we didn't find a container to expand, then add the selected item as is
+		'----------------------------------------------------
+		if not found then
+			expanded_list.add item
+		end if
+
+	next
+	set getexpandedlist = expanded_list
+
+end function
+
+
+]]></script>
+
+	</relationalview>
+</xsi_file> 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<xsi_file type="RelationalView" xsi_version="4.0.2003.1022" syntax_version="1.0">
+	<relationalview clsid="{67D87B29-11E9-4F3D-9E5A-5EC0234A1509}" name="RV - Script Editor Dual-Pane" height="540" width="1028">
+		<definition maxinstances="10000" acceptfocus="true" private="false" defaultsize="100,100,500,500" cmdmap="{00000000-0000-0000-0000-000000000000}" supportedtypes="6" category="SDK Samples"> </definition>
+		<relations>
+		</relations>
+		<frameset orientation="vertical" name="Frameset1" buttonsize="80,30" splitter="movable" sizechild="*,200">
+			<frameset orientation="horizontal" name="Frameset2" buttonsize="80,30" splitter="movable" sizechild="50%,*">
+				<frame name="file1" type="Text Editor" primary="false" toolbar="own"> </frame>
+				<frame name="file2" type="Text Editor" primary="false" toolbar="own"> </frame>
+			</frameset>
+			<frame name="log" type="Script History" primary="false" toolbar="none"> </frame>
+		</frameset>
+	</relationalview>
+</xsi_file> 

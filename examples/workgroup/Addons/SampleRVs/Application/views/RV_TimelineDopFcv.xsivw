@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<xsi_file type="RelationalView" xsi_version="4.0.2003.1031" syntax_version="1.0">
+	<relationalview clsid="{552BA518-2CD5-4794-980F-2618EE447703}" name="RV - Timeline Dop Fcv" height="473" width="1028">
+		<definition maxinstances="10000" acceptfocus="true" private="false" defaultsize="100,100,500,500" cmdmap="{00000000-0000-0000-0000-000000000000}" supportedtypes="6" category="SDK Samples"> </definition>
+		<relations>
+		</relations>
+		<frameset orientation="vertical" name="Frameset1" buttonsize="80,30" splitter="movable" sizechild="*,150,28">
+			<frame name="FCV" type="Fcurve Editor" primary="true" toolbar="own"  timeline="timeline1"> </frame>
+			<frame name="DS" type="Standalone DopeSheet" primary="true" toolbar="own"  timeline="timeline1"> </frame>
+			<frame name="timeline1" type="Timeline" primary="false" toolbar="none"> </frame>
+		</frameset>
+	</relationalview>
+</xsi_file> 

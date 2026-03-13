@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<xsi_file type="RelationalView" xsi_version="4.0" syntax_version="1.0">
+	<relationalview clsid="{F2D13BF9-1636-42ED-B39E-35853813DCC3}" name="RV - Object Viewer" height="500" width="900">
+		<definition maxinstances="10000" acceptfocus="true" private="false" defaultsize="105,500,900,500" cmdmap="{00000000-0000-0000-0000-000000000000}" category="SDK Samples" supportedtypes="6"> </definition>
+		<relations>
+			<relation driver="left" driven="right" event="selection" cmd=""> </relation>
+		</relations>
+		<frameset orientation="horizontal" splitter="movable" sizechild="300,*">
+			<frame name="left" type="Explorer" primary="true" toolbar="own"> </frame>
+			<frame name="right" type="Object View" primary="false" toolbar="own"> </frame>
+		</frameset>
+	</relationalview>
+</xsi_file> 

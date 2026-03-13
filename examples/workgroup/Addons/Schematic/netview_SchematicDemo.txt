@@ -1,0 +1,1 @@
+This example contains a python plugin to demonstrate the Schematic and SchematicNode API.
