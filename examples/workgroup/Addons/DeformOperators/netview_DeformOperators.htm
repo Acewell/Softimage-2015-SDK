@@ -1,0 +1,310 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>DeformOperators</title>
+<link rel="StyleSheet" href="../../doc/shared/examples.css" type="text/css">
+<script type="text/javascript" src="../../doc/shared/utils.js"></script>
+<script type="text/javascript">
+function runExample(s)
+{
+	// [JScript] Demo script for the Splatter example
+	g_app.NewScene( null,false) ;
+
+	var oSphere = g_app.ActiveSceneRoot.AddGeometry("Sphere", "MeshSurface");
+
+
+	if ( s == 'SplatterJs' )
+	{
+			g_app.SelectObj( oSphere ) ;
+			runCommand( "ApplySplatterRuntime" );
+	}
+	else if ( s == 'SplatterJsP' )
+	{
+		g_app.AddCustomOp( "JScriptSplatter",
+				 oSphere.ActivePrimitive,
+				 [oSphere.ActivePrimitive, oSphere.posy]  ) ;
+	}
+	else
+	{
+		g_app.AddCustomOp( "SplatterCpp",
+				oSphere.ActivePrimitive,
+				 [oSphere.ActivePrimitive, oSphere.posy] ) ;
+	}
+}
+</script>
+</head>
+<body>
+<div class="body"><a name="top"></a>
+
+
+
+<img class="netview" src="netview_DeformOperators.jpg" style="float:left;padding-right:6px;">
+<h1>Deform Operators</h1>
+
+
+<p>
+This example shows how to create deform operators. These are operators which change an existing polygon or nurbs mesh.
+</p>
+
+<p><strong>Custom Deform</strong><br/>
+The Custom Deform example is a self-installed plug-in that defines two custom commands:</p>
+<ul>
+<li><strong>DemoCustomDeformExample</strong> demonstrates the plug-in.</li>
+<li><strong>ApplyCustomDeformExample</strong> applies a new runtime operator to the selected objects. To support the same workflow as built-in deformations, this command is available from the <strong>Model &gt; Deform</strong> menu.</li>
+</ul>
+
+<p>
+There is no Self-Installed Custom Operator in this example. Instead, the <span class="showFile1" file="Application\Plugins\CustomDeformExample.js" id="function ApplyCustomDeformExample_Execute">ApplyCustomDeformExample_Execute callback</span> creates the operator on the fly using
+<span class="getHelp" id="XSIFactory_CreateScriptedOp">XSIFactory.CreateScriptedOp</span> and the <span class="getHelp" id="CustomOperator">Object Model</span>. The <span class="showFile1" file="Application\Plugins\CustomDeformExample.js" id="function CustomDeformOp_Update">CustomDeformOp_Update</span> function contains the implementation of the operator.
+</p>
+
+<p>
+The operator has no parameters. Instead, the user controls it by working with a custom property that is connected to the operator. This allows the user interface for the plugin to use new features like the <span class="getHelp" id="CustomProperty_AddFCurveParameter">FCurve</span> parameter type.  There is no SPDL file for the custom property, instead it is defined entirely in this script file.  An instance of the custom property is created whenever the operator is applied and can be found nested underneath the Polygon Mesh object.
+</p>
+
+
+
+<p><strong>Splatter (JScript version)</strong><br/>
+The Splatter example has been a "classic" operator example for many versions of Softimage.  For this release, two JScript variations of Splatter are included, to demonstrate the difference between Runtime and Plugin based operators.
+</p>
+
+<p>
+You can apply Splatter to any polygon or Nurbs mesh and it will "squish" all points with negative values in the y-axis.  You can use this used to simulate a ball being squished as it hits a flat surface.
+</p>
+
+<p>The disadvantage of the runtime operator version is that, unlike the plugin-based operator, every instance of the operator contains its own copy of the source code for the Update method. So, if you later discover a bug in the operator, it may be hard to find and fix all scenes where the operator was applied. On the positive side, after the runtime version is applied, it continues to work, even if the Splatter plug-in is deleted.
+</p>
+<p>The plugin version provides a custom layout for the Property Page of the operator, by implementing the _DefineLayout callback.  This gives precise control over the parameters which are shown on the Operators property page.  This feature is not available for the runtime version.
+</p>
+
+<p><strong>Splatter (C++ version)</strong><br/>
+<p>
+The C++ version uses a self-installed custom operator and is identical to the plug-in JScript version
+</p>
+
+<p><strong>Splatter (C# version)</strong><br/>
+<p>
+The C# version uses a self-installed custom operator and is identical to the plug-in JScript version
+</p>
+
+
+<h2>Example Files</h2>
+<table>
+<tr>
+<td><strong>Location</strong></td><td><span class="installPath"></span>
+</td>
+</tr>
+
+<tr>
+<td><strong>Files</strong></td>
+<td>
+	<div class="examplefile">ApplySplatterRuntime.js</div>
+	<div class="examplefile">ApplySplatterPlugin.js</div>
+	<div class="examplefile">CustomDeformExample.js</div>
+	<div class="examplefile" folder="cppsrc_Splatter">SplatterCpp.cpp</div>
+	<div class="examplefile" folder="cppsrc_Splatter">SplatterCpp.vcproj</div>
+	<div class="examplefile" folder="cppsrc_Splatter">GNUmakefile</div>
+	<div class="examplefile" folder="cssrc_Splatter">CSSplatterOp.cs</div>
+	<div class="examplefile" folder="cssrc_Splatter">CSSplatterOp.csproj</div>
+</td>
+</tr>
+
+
+</table>
+
+
+
+<a name="build"></a><h2>Running the Example</h2>
+
+<div id="toinstall" style="display:none">
+<p class="proc-head">To install the example</p>
+<ul>
+<li><p>Connect to the Softimage SDK workgroup at <span class="workgroupPath">%XSISDK_ROOT%\examples\workgroup</span>.</p>
+	<ol>
+	<li>In the <strong>Plug-in Manager</strong>, click the <strong>Workgroups</strong> tab.</li>
+	<li>Click <strong>File</strong> and then click <strong>Connect</strong>.</li>
+	<li>In the <strong>Connect to Workgroup</strong> dialog box, click <img src="..\..\doc\shared\bBrowse.gif">, locate the workgroup folder and then click <strong>Select</strong>.</li>
+	</ol>
+</li>
+</ul>
+
+<p class="proc-head">To view the help page for an example</p>
+
+<ul>
+<li>Do one of the following:</li>
+<ul>
+<li>In the Plug-in Tree, expand the SDK examples workgroup, right-click the example add-on and then click <strong>Help</strong>.
+</li>
+<li>
+Open a Net View and click <img style="position:relative;bottom:-6px;" src="..\..\doc\shared\xsiweb.png"> to go to Softimage Net local. In the top navigation bar, click <strong>add-ons</strong>, and then click the SDK example add-on.
+</li>
+</ul>
+</ul>
+</div>
+
+<div>
+<p class="proc-head">To run the CustomDeform example</p>
+<ul>
+<li>
+In a script editor, run the command <span class="runCmd">DemoCustomDeformExample</span>.
+</li>
+</ul>
+</div>
+
+
+
+<div>
+<p class="proc-head">To run the Runtime JScript Splatter example</p>
+<ul>
+<li><p>In a script editor, <span class="runExample" id="SplatterJs">run</span> this <span class="loadScript">demo script</span>:</p>
+<pre>
+// [JScript] Demo script for the JScript version of Splatter
+NewScene( null,false) ;
+CreatePrim("Sphere", "MeshSurface", null, null);
+ApplySplatterRuntime();
+</pre>
+</li>
+</ul>
+</div>
+
+<div>
+<p class="proc-head">To run the Plugin JScript Splatter example</p>
+<ul>
+<li><p>In a script editor, <span class="runExample" id="SplatterJsP">run</span> this <span class="loadScript">demo script</span>:</p>
+<pre>
+// [JScript] Demo script for the JScript  version of Splatter
+NewScene( null,false) ;
+var oSphere = ActiveSceneRoot.AddGeometry("Sphere", "MeshSurface");
+
+AddCustomOp( "JScriptSplatter",
+			oSphere.ActivePrimitive,
+			 [oSphere.ActivePrimitive, oSphere.posy] ) ;
+</pre>
+</li>
+</ul>
+</div>
+
+
+<div>
+<p class="proc-head">To run the C++ Splatter example</p>
+<ul>
+<li><p>In a script editor, <span class="runExample" id="SplatterCpp">run</span> this <span class="loadScript">demo script</span>:</p>
+<pre>
+// [JScript] Demo script for the C++ version of Splatter
+NewScene( null,false) ;
+var oSphere = ActiveSceneRoot.AddGeometry("Sphere", "MeshSurface");
+
+AddCustomOp( "SplatterCpp",
+			oSphere.ActivePrimitive,
+			 [oSphere.ActivePrimitive, oSphere.posy] ) ;
+</pre>
+</li>
+</ul>
+</div>
+
+<div>
+<p class="proc-head">To run the C# Splatter example</p>
+<ul>
+<li>
+Select CSSplatterOp_Menu | Demo item on the top menu bar.
+<li>
+Move the cylinder around.
+</li>
+<li>
+Also open the property page for the CSSplatterOp (found under the geometry of the cylinder) and adjust the parameters to change the CSSplatterOp behavior.
+</li>
+</ul>
+</div>
+
+
+<a name="build"></a><h2>Building the C++ Splatter Example</h2>
+<p>
+Softimage SDK includes a compiled version of SplatterCpp. If you want to modify the code, you can rebuild the example by following these instructions.</p>
+
+<div id="windows-build">
+<p class="proc-head">To build the example on Windows</p>
+<ol>
+<li><p><span class="sishell" cppsrc="cppsrc_Splatter">Open</span> an Softimage command prompt, and type <strong>devenv</strong> to start Visual Studio .NET.</p>
+<p>Starting Visual Studio .NET from an Softimage command prompt ensures that environment variables such as XSISDK_ROOT are set (otherwise you'll get build and link errors).</p>
+
+<p><strong>Tip</strong> To load the <span class="devenv" vcproj="cppsrc_Splatter/SplatterCpp.vcproj">SplatterCpp</span> project from the command line, type:</p>
+<pre>devenv <span class="installPath">cppsrc_Splatter/SplatterCpp.vcproj</span></pre>
+
+
+</li>
+<li>In Visual Studio .NET, open the project file <tt>.vcproj</tt>.</li>
+<li>Select a configuration (Release or Debug) and build the DLL.</li>
+</ol>
+</div>
+
+
+<div id="linux-build">
+<p class="proc-head">To build the example on Linux</p>
+<ol>
+<li>
+<p>In a shell (tcsh) window, type:</p>
+<pre>source $XSI_HOME/<span class="linuxExt">.xsi_&lt;xsi_version&gt;</span></pre>
+</li>
+
+<li>
+<p>Change directories to</p>
+<pre><span class="installPath">cppsrc_Splatter</span></pre>
+</li>
+
+<li>
+<p>To remove all intermediate files before building the example, run this command:</p>
+<pre>gmake clean</pre>
+</li>
+
+<li>
+<p>To compile the example, run this command:<p>
+<pre>gmake</pre>
+</li>
+</ol>
+</div>
+
+<a name="build"></a>
+<h2>Building the CSSplatterOp Example</h2>
+<p>
+Softimage SDK includes a compiled version of CSSplatterOp. If you want to modify the code, you can rebuild the example by following these instructions.
+</p>
+<div id="windows-build">
+<p class="proc-head">To build the example on Windows</p>
+<ol>
+<li>
+<p><span class="sishell" cssrc="cssrc_Splatter">Open</span>
+an Softimage command prompt, and type <strong>devenv</strong> to start Visual Studio .NET.
+</p>
+<p>Starting Visual Studio .NET from an Softimage command prompt ensures that environment
+variables such as XSI_HOME are set (otherwise you'll get build and link errors).
+</p>
+<p>
+<strong>Tip</strong> To load the <span class="devenv" csproj="cssrc_Splatter\CSSplatterOp.csproj">CSSplatterOp</span>
+project from the command line, type:
+</p>
+<pre>devenv <span class="installPath">cssrc_SplatterOp\CSSplatterOp.csproj</span></pre>
+<li>In Visual Studio .NET, open the project file <tt>.csproj</tt>.</li>
+<li>Select a configuration (Release or Debug) and build the DLL.</li>
+</ol>
+</div>
+
+
+<div id="keywords">
+<h2>Keywords</h2>
+<p>This example uses the following keywords:</p>
+<p>
+C++ example, JScript example, dynamic operator,
+C++, operator, SPDL, self-installed operator, self-installed plug-in,
+deform, deformations,
+Custom Operator, AddIOPort, AddInputPort, Connect, AddFCurveParameter,
+FCurve, FCurve.BeginEdit, FCurve.AddKeys, FCurve.RemoveKey,
+XSIFactory.CreateScriptedOp,RegisterOperator,OperatorContext,
+Update,
+AddCommandItem, AddParameter2, Geometry.Points.PositionArray,
+</p>
+</div>
+
+
+</div>
+</body>
+</html>

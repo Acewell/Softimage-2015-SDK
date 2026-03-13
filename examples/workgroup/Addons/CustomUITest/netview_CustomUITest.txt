@@ -1,0 +1,1 @@
+This C++ example is a custom display that handles Softimage notifications and Win32 messages.

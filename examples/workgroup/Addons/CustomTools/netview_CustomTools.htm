@@ -1,0 +1,506 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>CustomTools</title>
+		<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<link rel="StyleSheet" href="../../doc/shared/examples.css" type="text/css">
+			<script type="text/javascript" src="../../doc/shared/utils.js"></script>
+	</head>
+	<body>
+		<div class="body"><a name="top"></a> <img class="netview" src="netview_CustomTools.jpg" style="PADDING-RIGHT:6px;FLOAT:left">
+			<h1>Custom Tool Examples</h1>
+			<p>This addon shows various self-installing custom tools.<br><br>
+			</p>
+
+			<p><strong>AddSmoothEdgeLoopTool</strong><br>
+			This sample is the <strong>Model &gt; Modify &gt; Poly. Mesh &gt; Add Smooth Edge Loop Tool</strong> that is shipped with Softimage.
+
+			<p><strong>SpotLightCreateTool</strong><br>
+			This sample demonstrates how to create a custom spotlight creation tool.
+
+			<p><strong>PickTestTool</strong><br>
+			This sample demonstrates how to use picking to identify objects under the cursor.
+
+			<p><strong>SnapTestTool</strong><br>
+			This sample demonstrates how to use snapping to identify objects under the cursor.
+
+			<p><strong>AnnotationTool</strong><br>
+			This sample demonstrates how to use a custom tool to pick and launch URL strings from an annotation object.
+
+			<p><strong>BoxTransformTool</strong><br>
+			This sample demonstrates how to create a complex manipulator-style tool that uses
+			highlighting, shortcut keys, context menus and on-screen controls.
+
+			<p><strong>BoneCreateTool</strong><br>
+			This sample is the <strong>Model &gt; Create &gt; Skeleton &gt; Draw Bones</strong> tool that is shipped with Softimage.
+
+			<h2>Example Files</h2>
+				<table>
+					<tr>
+						<td><strong>Location</strong></td>
+						<td><span class="installPath"></span>
+						</td>
+					</tr>
+					<tr>
+						<td><strong>AddSmoothEdgeLoopTool Files</strong></td>
+						<td>
+							<div class="examplefile" folder="cppsrc_addsmoothedgelooptool">AddSmoothEdgeLoopTool.cpp</div>
+					</tr>
+					<tr>
+						<td><strong>SpotLightCreateTool Files</strong></td>
+						<td>
+							<div class="examplefile" folder="cppsrc_spotlightcreatetool">SpotLightCreateTool.cpp</div>
+					</tr>
+					<tr>
+						<td><strong>PickTestTool Files</strong></td>
+						<td>
+							<div class="examplefile" folder="cppsrc_picktesttool">PickTestTool.cpp</div>
+					</tr>
+					<tr>
+						<td><strong>SnapTestTool Files</strong></td>
+						<td>
+							<div class="examplefile" folder="cppsrc_snaptesttool">SnapTestTool.cpp</div>
+					</tr>
+					<tr>
+						<td><strong>AnnotationTool Files</strong></td>
+						<td>
+							<div class="examplefile" folder="cppsrc_annotationtool">AnnotationTool.cpp</div>
+					</tr>					
+					<tr>
+						<td><strong>BoxTransformTool Files</strong></td>
+						<td>
+							<div class="examplefile" folder="cppsrc_boxtransformtool">BoxTransformTool.cpp</div>
+							<div class="examplefile" folder="cppsrc_boxtransformtool">Constants.h</div>
+							<div class="examplefile" folder="cppsrc_boxtransformtool">BBox.h</div>
+							<div class="examplefile" folder="cppsrc_boxtransformtool">BBox.cpp</div>
+							<div class="examplefile" folder="cppsrc_boxtransformtool">BoxTransformToolDelegate.h</div>
+							<div class="examplefile" folder="cppsrc_boxtransformtool">ToolHandle.h</div>
+							<div class="examplefile" folder="cppsrc_boxtransformtool">ToolHandle.cpp</div>
+							<div class="examplefile" folder="cppsrc_boxtransformtool">TranslateToolHandle.h</div>
+							<div class="examplefile" folder="cppsrc_boxtransformtool">TranslateToolHandle.cpp</div>
+							<div class="examplefile" folder="cppsrc_boxtransformtool">ScaleToolHandle.h</div>
+							<div class="examplefile" folder="cppsrc_boxtransformtool">ScaleToolHandle.cpp</div>
+							<div class="examplefile" folder="cppsrc_boxtransformtool">RotateToolHandle.h</div>
+							<div class="examplefile" folder="cppsrc_boxtransformtool">RotateToolHandle.cpp</div>
+							<div class="examplefile" folder="cppsrc_boxtransformtool">RotateStickToolHandle.h</div>
+							<div class="examplefile" folder="cppsrc_boxtransformtool">RotateStickToolHandle.cpp</div>
+							<div class="examplefile" folder="cppsrc_boxtransformtool">RotateWheelToolHandle.h</div>
+							<div class="examplefile" folder="cppsrc_boxtransformtool">RotateWheelToolHandle.cpp</div>
+							<div class="examplefile" folder="cppsrc_boxtransformtool">DimensionToolHandle.h</div>
+							<div class="examplefile" folder="cppsrc_boxtransformtool">DimensionToolHandle.cpp</div>
+							<div class="examplefile" folder="cppsrc_boxtransformtool">ButtonToolHandle.h</div>
+							<div class="examplefile" folder="cppsrc_boxtransformtool">ButtonToolHandle.cpp</div>
+							<div class="examplefile" folder="cppsrc_boxtransformtool">ToolButton.h</div>
+							<div class="examplefile" folder="cppsrc_boxtransformtool">ToolButton.cpp</div>
+						</td>
+					</tr>
+					<tr>
+						<td><strong>BoneCreateTool Files</strong></td>
+						<td>
+							<div class="examplefile" folder="cppsrc_bonecreatetool">BoneCreateTool.cpp</div>
+						</td>
+					</tr>
+				</table>
+
+				<a name="build"></a>
+				<h2>Running the Examples</h2>
+				<div id="toinstall" style="DISPLAY:none">
+					<p class="proc-head">To install the example</p>
+					<ul>
+						<li>
+							<p>Connect to the Softimage SDK workgroup at
+								<span class="workgroupPath">%XSISDK_ROOT%\examples\workgroup</span>.</p>
+							<ol>
+						<li>
+							In the <strong>Plug-in Manager</strong>, click the <strong>Workgroups</strong>
+						tab.
+						<li>
+							Click <strong>File</strong> and then click <strong>Connect</strong>.
+						<li>
+							In the <strong>Connect to Workgroup</strong> dialog box, click <img src="..\..\doc\shared\bBrowse.gif">,
+							locate the workgroup folder and then click <strong>Select</strong>.</li>
+						</ol> </li>
+					</ul>
+					<p class="proc-head">To view the help page for an example</p>
+					<ul>
+						<li>
+							Do one of the following:
+							<ul>
+								<li>
+									In the Plug-in Tree, expand the SDK examples workgroup, right-click the example
+									add-on and then click <strong>Help</strong>.
+								<li>
+									Open a Net View and click <img style="BOTTOM:-6px;POSITION:relative" src="..\..\doc\shared\xsiweb.png">
+									to go to XSI Net local. In the top navigation bar, click <strong>add-ons</strong>,
+									and then click the SDK example add-on.
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div>
+					<p class="proc-head">To run the AddSmoothEdgeLoopTool example</p>
+					<ul>
+						<li>
+						    Activate the tool using <strong>Model &gt; Modify &gt; Poly. Mesh &gt; Add Smooth Edge Loop Tool</strong>
+							or by running the <strong>AddSmoothEdgeLoopTool</strong> command from the command prompt. Tools can also
+							be assigned shortcut keys from the Keyboard Mapping dialog. (they appear under the
+							<strong>Custom Script Commands</strong> group)
+						<li>
+						  	Select a mesh and activate the tool. Click and drag on an edge to add a parallel loop 
+							to the selected edge. Edge loops added using this tool automatically follow the surface curvature of the mesh.
+							Middle click on an edge to split the selected edge in half. The last split operator can be inspected
+							from the tool's right click context menu where curvature continuity and other parameters can be modified.
+					</ul>
+				</div>
+				<div>
+					<p class="proc-head">To run the SpotLightCreateTool example</p>
+					<ul>
+						<li>
+						    Activate the tool using <strong>Get &gt; Primitive &gt; Light &gt; SpotLight Tool</strong>
+							or by running the <strong>SpotLightCreateTool</strong> command from the command prompt. Tools can also
+							be assigned shortcut keys from the Keyboard Mapping dialog. (they appear under the
+							<strong>Custom Script Commands</strong> group)
+						<li>
+						    Click and drag in the 3D view on the grid to set the interest and set the spotlight's position.
+							At any point during dragging hold the shift key and drag upwards to set the spotlight's elevation.
+						<li>
+						    When finished release the mouse button and the spotlight creation will be finalized. The tool will
+							then exit since this is a one-shot creation tool.
+					</ul>
+				</div>
+				<div>
+					<p class="proc-head">To run the PickTestTool example</p>
+					<ul>
+						<li>
+						    Activate the tool by running the <strong>PickTestTool</strong> command from the command prompt. Tools can also
+							be assigned shortcut keys from the Keyboard Mapping dialog. (they appear under the
+							<strong>Custom Script Commands</strong> group)
+						<li>
+						    Create a mesh object. Activate the tool and move the mouse over the mesh and the tool will display the object or point under the cursor. Use the right-mouse button context menu to change the picking options.
+					</ul>
+				</div>
+				<div>
+					<p class="proc-head">To run the SnapTestTool example</p>
+					<ul>
+						<li>
+						    Activate the tool by running the <strong>SnapTestTool</strong> command from the command prompt. Tools can also
+							be assigned shortcut keys from the Keyboard Mapping dialog. (they appear under the
+							<strong>Custom Script Commands</strong> group)
+						<li>
+						    Create a mesh object. Activate the tool and move the mouse over the mesh and the tool will display the closest snap target to the cursor.
+					</ul>
+				</div>
+				<div>
+					<p class="proc-head">To run the AnnotationTool example</p>
+					<ul>
+						<li>
+						    Activate the tool by running the <strong>AnnotationTool</strong> command from the command prompt. Tools can also
+							be assigned shortcut keys from the Keyboard Mapping dialog. (they appear under the <strong>Custom Script Commands</strong> group)
+						<li>
+						    Create an annotation object by clicking on the Model toolbar menu Get|Primitives|Annotation. Enter this string in the text edit control: http://softimage.wiki.softimage.com. Activate the tool and move the mouse over the object, click on the URL.
+					</ul>
+				</div>
+				<div>
+					<p class="proc-head">To run the BoxTransformTool example</p>
+					<ul>
+						<li>
+						    Activate the tool using <strong>Get &gt; Transform &gt; Box Transform Tool</strong>
+							or by running the <strong>BoxTransformTool</strong> command from the command prompt. Tools can also
+							be assigned shortcut keys from the Keyboard Mapping dialog. (they appear under the
+							<strong>Custom Script Commands</strong> group)
+						<li>
+						    Select or create a 3D object and activate the tool. A box is displayed with various manipulators
+							that highlight as the mouse moves over them.
+						<li>
+						    To translate grab one of the small handles on the box and it will translate the object parallel
+							to the visible grid. Holding down <strong>&lt;Shift&gt;</strong> and clicking will constrain
+							the translation along the bounding box axis that best matches the mouse drag direction.
+						<li>
+						  	To rotate use either the wheel or the stick handles. The stick handle automatically snaps to
+							the closest rotation axis based on the mouse drag direction.
+						<li>
+						  	To switch from translate to scaling mode use the on-screen buttons, context
+							menu or the <strong>&lt;Tab&gt;</strong> shortcut key. The scaling handles will scale along
+							the closest bounding box axis based on the mouse drag direction. Holding down
+							<strong>&lt;Shift&gt;</strong> will enable uniform scaling along all three axes.
+							<strong>Note:</strong>When multiple objects with different orientations are selected
+							then the only scaling option is uniform.
+						<li>
+							Clicking on the dimension labels allows the object to be scaled numerically.
+						<li>
+							The box transform tool works in local space unless multiple objects are selected with differing
+							orientations. In this situation it will use global space.
+					</ul>
+				</div>
+				<div>
+					<p class="proc-head">To run the BoneCreateTool example</p>
+					<ul>
+						<li>
+						    Activate the tool using <strong>Model &gt; Create &gt; Skeleton &gt; Draw Bones</strong> 
+							or by running the <strong>BoneCreateTool</strong> command from the command prompt. Tools can also
+							be assigned shortcut keys from the Keyboard Mapping dialog. (they appear under the
+							<strong>Custom Script Commands</strong>. 
+						</li>
+						<li>
+						  	Click and drag in the scene to position the root of the bone. 
+							Click and drag again to define the tip of the bone. 
+							Subsequent clicks will append a new bone from the tip of the previous bone. 
+							Middle click to end the current chain creation. Right click to exit the tool.
+						</li>
+						<li>
+							Hold down control to turn on snapping.
+						</li>
+					</ul>
+				</div>
+				<a name="build"></a>
+				<h2>Building the Examples</h2>
+			<p>
+				Use the following instructions to build the CustomTool samples.</p>
+
+			<div id="windows-build">
+				<p class="proc-head">To build the AddSmoothEdgeLoopTool example on Windows</p>
+				<ol>
+					<li>
+						<p><span class="sishell" cppsrc="cppsrc_addsmoothedgelooptool">Open</span>
+							a Softimage command prompt, and type <strong>devenv</strong> to start Visual Studio
+							.NET.</p>
+						<p>Starting Visual Studio .NET from a Softimage command prompt ensures that environment
+							variables such as XSISDK_ROOT are set (otherwise you'll get build and link
+							errors).</p>
+						<p><strong>Tip</strong> To load the
+							<span class="devenv" vcproj="cppsrc_addsmoothedgelooptool\AddSmoothEdgeLoopTool.vcproj">AddEdgeLoopTool</span>
+							project from the command line, type:</p>
+						<pre>devenv <span class="installPath">cppsrc_addsmoothedgelooptool\AddSmoothEdgeLoopTool.vcproj</span></pre>
+					<li>In Visual Studio .NET, open the project file <tt>.vcproj</tt>.</li>
+					<li>Select a configuration (Release or Debug) and build the DLL.</li>
+				</ol>
+				<p class="proc-head">To build the SpotLightCreateTool example on Windows</p>
+				<ol>
+					<li>
+						<p><span class="sishell" cppsrc="cppsrc_spotlightcreatetool">Open</span>
+							a Softimage command prompt, and type <strong>devenv</strong> to start Visual Studio
+							.NET.</p>
+						<p>Starting Visual Studio .NET from a Softimage command prompt ensures that environment
+							variables such as XSISDK_ROOT are set (otherwise you'll get build and link
+							errors).</p>
+						<p><strong>Tip</strong> To load the
+							<span class="devenv" vcproj="cppsrc_spotlightcreatetool\SpotLightCreateTool.vcproj">SpotLightCreateTool</span>
+							project from the command line, type:</p>
+						<pre>devenv <span class="installPath">cppsrc_spotlightcreatetool\SpotLightCreateTool.vcproj</span></pre>
+					<li>In Visual Studio .NET, open the project file <tt>.vcproj</tt>.</li>
+					<li>Select a configuration (Release or Debug) and build the DLL.</li>
+				</ol>
+				<p class="proc-head">To build the PickTestTool example on Windows</p>
+				<ol>
+					<li>
+						<p><span class="sishell" cppsrc="cppsrc_picktesttool">Open</span>
+							a Softimage command prompt, and type <strong>devenv</strong> to start Visual Studio
+							.NET.</p>
+						<p>Starting Visual Studio .NET from a Softimage command prompt ensures that environment
+							variables such as XSISDK_ROOT are set (otherwise you'll get build and link
+							errors).</p>
+						<p><strong>Tip</strong> To load the
+							<span class="devenv" vcproj="cppsrc_picktesttool\PickTestTool.vcproj">PickTestTool</span>
+							project from the command line, type:</p>
+						<pre>devenv <span class="installPath">cppsrc_picktesttool\PickTestTool.vcproj</span></pre>
+					<li>In Visual Studio .NET, open the project file <tt>.vcproj</tt>.</li>
+					<li>Select a configuration (Release or Debug) and build the DLL.</li>
+				</ol>
+				<p class="proc-head">To build the SnapTestTool example on Windows</p>
+				<ol>
+					<li>
+						<p><span class="sishell" cppsrc="cppsrc_snaptesttool">Open</span>
+							a Softimage command prompt, and type <strong>devenv</strong> to start Visual Studio
+							.NET.</p>
+						<p>Starting Visual Studio .NET from a Softimage command prompt ensures that environment
+							variables such as XSISDK_ROOT are set (otherwise you'll get build and link
+							errors).</p>
+						<p><strong>Tip</strong> To load the
+							<span class="devenv" vcproj="cppsrc_snaptesttool\SnapTestTool.vcproj">SnapTestTool</span>
+							project from the command line, type:</p>
+						<pre>devenv <span class="installPath">cppsrc_snaptesttool\SnapTestTool.vcproj</span></pre>
+					<li>In Visual Studio .NET, open the project file <tt>.vcproj</tt>.</li>
+					<li>Select a configuration (Release or Debug) and build the DLL.</li>
+				</ol>
+				<p class="proc-head">To build the AnnotationTool example on Windows</p>
+				<ol>
+					<li>
+						<p><span class="sishell" cppsrc="cppsrc_annotationtool">Open</span>
+							a Softimage command prompt, and type <strong>devenv</strong> to start Visual Studio
+							.NET.</p>
+						<p>Starting Visual Studio .NET from a Softimage command prompt ensures that environment
+							variables such as XSISDK_ROOT are set (otherwise you'll get build and link
+							errors).</p>
+						<p><strong>Tip</strong> To load the
+							<span class="devenv" vcproj="cppsrc_annotationtool\AnnotationTool.vcproj">AnnotationTool</span>
+							project from the command line, type:</p>
+						<pre>devenv <span class="installPath">cppsrc_annotationtool\AnnotationTool.vcproj</span></pre>
+					<li>In Visual Studio .NET, open the project file <tt>.vcproj</tt>.</li>
+					<li>Select a configuration (Release or Debug) and build the DLL.</li>
+				</ol>
+				<p class="proc-head">To build the BoxTransformTool example on Windows</p>
+				<ol>
+					<li>
+						<p><span class="sishell" cppsrc="cppsrc_boxtransformtool">Open</span>
+							a Softimage command prompt, and type <strong>devenv</strong> to start Visual Studio
+							.NET.</p>
+						<p>Starting Visual Studio .NET from a Softimage command prompt ensures that environment
+							variables such as XSISDK_ROOT are set (otherwise you'll get build and link
+							errors).</p>
+						<p><strong>Tip</strong> To load the
+							<span class="devenv" vcproj="cppsrc_boxtransformtool\BoxTransformTool.vcproj">BoxTransformTool</span>
+							project from the command line, type:</p>
+						<pre>devenv <span class="installPath">cppsrc_boxtransformtool\BoxTransformTool.vcproj</span></pre>
+					<li>In Visual Studio .NET, open the project file <tt>.vcproj</tt>.</li>
+					<li>Select a configuration (Release or Debug) and build the DLL.</li>
+				</ol>
+				<p class="proc-head">To build the BoneCreateTool example on Windows</p>
+				<ol>
+					<li>
+						<p><span class="sishell" cppsrc="cppsrc_bonecreatetool">Open</span>
+							a Softimage command prompt, and type <strong>devenv</strong> to start Visual Studio
+							.NET.</p>
+						<p>Starting Visual Studio .NET from a Softimage command prompt ensures that environment
+							variables such as XSISDK_ROOT are set (otherwise you'll get build and link
+							errors).</p>
+						<p><strong>Tip</strong> To load the
+							<span class="devenv" vcproj="cppsrc_bonecreatetool\BoneCreateTool.vcxproj">BoneCreateTool</span>
+							project from the command line, type:</p>
+						<pre>devenv <span class="installPath">cppsrc_bonecreatetool\BoneCreateTool.vcxproj</span></pre>
+					<li>In Visual Studio .NET, open the project file <tt>.vcxproj</tt>.</li>
+					<li>Select a configuration (Release or Debug) and build the DLL.</li>
+				</ol>
+			</div>
+			<div id="linux-build">
+				<p class="proc-head">To build the AddSmoothEdgeLoopTool example on Linux</p>
+				<ol>
+					<li>
+						<p>In a shell (tcsh) window, type:</p>
+						<pre>source $XSI_HOME/<span class="linuxExt">.xsi_&lt;xsi_version&gt;</span></pre>
+					<li>
+						<p>Change directories to</p>
+						<pre><span class="installPath">cppsrc_addsmoothedgelooptool</span></pre>
+					<li>
+						<p>To remove all intermediate files before building the example, run this command:</p>
+						<pre>gmake clean</pre>
+					<li>
+						<p>
+						To compile the example, run this command:<p>
+							<pre>gmake</pre>
+					</li>
+				</ol>
+				<p class="proc-head">To build the SpotLightCreateTool example on Linux</p>
+				<ol>
+					<li>
+						<p>In a shell (tcsh) window, type:</p>
+						<pre>source $XSI_HOME/<span class="linuxExt">.xsi_&lt;xsi_version&gt;</span></pre>
+					<li>
+						<p>Change directories to</p>
+						<pre><span class="installPath">cppsrc_spotlightcreatetool</span></pre>
+					<li>
+						<p>To remove all intermediate files before building the example, run this command:</p>
+						<pre>gmake clean</pre>
+					<li>
+						<p>
+						To compile the example, run this command:<p>
+							<pre>gmake</pre>
+					</li>
+				</ol>
+				<p class="proc-head">To build the PickTestTool example on Linux</p>
+				<ol>
+					<li>
+						<p>In a shell (tcsh) window, type:</p>
+						<pre>source $XSI_HOME/<span class="linuxExt">.xsi_&lt;xsi_version&gt;</span></pre>
+					<li>
+						<p>Change directories to</p>
+						<pre><span class="installPath">cppsrc_picktesttool</span></pre>
+					<li>
+						<p>To remove all intermediate files before building the example, run this command:</p>
+						<pre>gmake clean</pre>
+					<li>
+						<p>
+						To compile the example, run this command:<p>
+							<pre>gmake</pre>
+					</li>
+				</ol>
+				<p class="proc-head">To build the SnapTestTool example on Linux</p>
+				<ol>
+					<li>
+						<p>In a shell (tcsh) window, type:</p>
+						<pre>source $XSI_HOME/<span class="linuxExt">.xsi_&lt;xsi_version&gt;</span></pre>
+					<li>
+						<p>Change directories to</p>
+						<pre><span class="installPath">cppsrc_snaptesttool</span></pre>
+					<li>
+						<p>To remove all intermediate files before building the example, run this command:</p>
+						<pre>gmake clean</pre>
+					<li>
+						<p>
+						To compile the example, run this command:<p>
+							<pre>gmake</pre>
+					</li>
+				</ol>
+				<p class="proc-head">To build the AnnotationTool example on Linux</p>
+				<ol>
+					<li>
+						<p>In a shell (tcsh) window, type:</p>
+						<pre>source $XSI_HOME/<span class="linuxExt">.xsi_&lt;xsi_version&gt;</span></pre>
+					<li>
+						<p>Change directories to</p>
+						<pre><span class="installPath">cppsrc_annotationtool</span></pre>
+					<li>
+						<p>To remove all intermediate files before building the example, run this command:</p>
+						<pre>gmake clean</pre>
+					<li>
+						<p>
+						To compile the example, run this command:<p>
+							<pre>gmake</pre>
+					</li>
+				</ol>
+				<p class="proc-head">To build the BoxTransformTool example on Linux</p>
+				<ol>
+					<li>
+						<p>In a shell (tcsh) window, type:</p>
+						<pre>source $XSI_HOME/<span class="linuxExt">.xsi_&lt;xsi_version&gt;</span></pre>
+					<li>
+						<p>Change directories to</p>
+						<pre><span class="installPath">cppsrc_boxtransformtool</span></pre>
+					<li>
+						<p>To remove all intermediate files before building the example, run this command:</p>
+						<pre>gmake clean</pre>
+					<li>
+						<p>
+						To compile the example, run this command:<p>
+							<pre>gmake</pre>
+					</li>
+				</ol>
+				<p class="proc-head">To build the BoneCreateTool example on Linux</p>
+				<ol>
+					<li>
+						<p>In a shell (tcsh) window, type:</p>
+						<pre>source $XSI_HOME/<span class="linuxExt">.xsi_&lt;xsi_version&gt;</span></pre>
+					<li>
+						<p>Change directories to</p>
+						<pre><span class="installPath">cppsrc_bonecreatetool</span></pre>
+					<li>
+						<p>To remove all intermediate files before building the example, run this command:</p>
+						<pre>gmake clean</pre>
+					<li>
+						<p>
+						To compile the example, run this command:<p>
+							<pre>gmake</pre>
+					</li>
+				</ol>
+			</div>
+
+			<div id="keywords">
+				<h2>Keywords</h2>
+				<p>This example uses the following keywords:</p>
+				<p>
+					ToolContext C++
+				</p>
+			</div>
+		</div>
+	</body>
+</html>
