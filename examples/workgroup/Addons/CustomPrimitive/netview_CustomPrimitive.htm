@@ -1,0 +1,94 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>CustomPrimitive</title>
+<link rel="StyleSheet" href="../../doc/shared/examples.css" type="text/css">
+<script type="text/javascript" src="../../doc/shared/utils.js"></script>
+</head>
+<body>
+<div class="body"><a name="top"></a>
+
+<img class="netview" src="netview_CustomPrimitive.jpg" style="float:left;padding-right:6px;">
+<h1>Custom Primitive</h1>
+
+<p>This example demonstrates several C++ implementation of custom primitives.</p>
+
+<h2>Example Files</h2>
+<table>
+	<tr>
+		<td><strong>Location</strong></td>
+		<td><span class="installPath"></span>
+		</td>
+	</tr>
+	<tr>
+		<td><strong>Files</strong></td>
+		<td>
+			<div class="examplefile" folder="cppsrc_customprimitive">CustomBox.cpp</div>
+			<div class="examplefile" folder="cppsrc_customprimitive">CustomCapsule.cpp</div>
+			<div class="examplefile" folder="cppsrc_customprimitive">CustomCylinder.cpp</div>
+			<div class="examplefile" folder="cppsrc_customprimitive">CustomPyramid.cpp</div>
+			<div class="examplefile" folder="cppsrc_customprimitive">CustomQuad.cpp</div>
+			<div class="examplefile" folder="cppsrc_customprimitive">CustomQuadPrism.cpp</div>
+			<div class="examplefile" folder="cppsrc_customprimitive">CustomRect.cpp</div>
+			<div class="examplefile" folder="cppsrc_customprimitive">CustomTest.cpp</div>
+			<div class="examplefile" folder="cppsrc_customprimitive">CustomTri.cpp</div>
+		</td>
+	</tr>
+</table>
+<a name="build"></a><h2>Running the Example</h2>
+
+<div id="toinstall" style="display:none">
+<p class="proc-head">To install the example</p>
+<ul>
+<li><p>Connect to the Softimage SDK workgroup at <span class="workgroupPath">%XSISDK_ROOT%\examples\workgroup</span>.</p>
+	<ol>
+	<li>In the <strong>Plug-in Manager</strong>, click the <strong>Workgroups</strong> tab.</li>
+	<li>Click <strong>File</strong> and then click <strong>Connect</strong>.</li>
+	<li>In the <strong>Connect to Workgroup</strong> dialog box, click <img src="..\..\doc\shared\bBrowse.gif">, locate the workgroup folder and then click <strong>Select</strong>.</li>
+	</ol>
+</li>
+</ul>
+
+<p class="proc-head">To view the help page for an example</p>
+
+<ul>
+<li>Do one of the following:</li>
+<ul>
+<li>In the Plug-in Tree, expand the SDK examples workgroup, right-click the example add-on and then click <strong>Help</strong>.
+</li>
+<li>
+Open a Net View and click <img style="position:relative;bottom:-6px;" src="..\..\doc\shared\xsiweb.png"> to go to Softimage Net local. In the top navigation bar, click <strong>add-ons</strong>, and then click the SDK example add-on.
+</li>
+</ul>
+</ul>
+</div>
+
+<div>
+<p class="proc-head">To run the example</p>
+<ul>
+<li>
+<p>After loading the plugin, the example custom primitives can be created from Get > Primitive > Implicit menu. There are 9 custom primitives in this example, Box, Capsule, Cylinder, Pyramid, Quad, QuadPrism, Rect, Test and Tri.</p>
+<p>ConvertToGeom callback</p>
+The Custom Tri example demonstrates the ConvertToGeom callback. Call SIConvert on a Tri object to convert it into a normal mesh.
+<br>
+<br>
+<p>PPGEvent callback</p>
+The Custom Box example demonstrates the PPGEvent callback. Create a custom Box object. In the PPG displayed, try changing the values and notice the events logged in the script log. 
+<br>
+<br>
+
+
+</div>
+
+<div id="keywords">
+<h2>Keywords</h2>
+<p>This example uses the following keywords:</p>
+<p>
+CPP example, CustomPrimitive, self-installed plug-in
+</p>
+</div>
+</div>
+</body>
+</html>
+
