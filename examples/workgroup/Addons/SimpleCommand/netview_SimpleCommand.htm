@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>SimpleCommand</title>
+		<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<LINK href="../../doc/shared/examples.css" type="text/css" rel="StyleSheet">
+			<script src="../../doc/shared/utils.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<div class="body"><a name="top"></a><IMG class="netview" style="PADDING-RIGHT: 6px; FLOAT: left" src="netview_SimpleCommand.jpg">
+			<h1>Custom Command Examples</h1>
+			<p>These examples demonstrate how to implement self-installing custom commands using various implementation languages.
+			</p><br>
+			<p><strong>Simple Command</strong><br>
+			This example implements a simple custom command that takes one argument and logs
+			the argument value to the command history. The example includes JScript,
+			Python, VBScript, C++ and C# versions of the command. You can run the command from
+			the Script Editor or add the command to a toolbar.
+
+			The C# version included is more elaborated as it takes a selected object as input and logs all its parameters.
+			<p>Custom commands are one of the main building blocks for more sophisticated
+			plug-in tools. The SimpleCommand example shows the basic code framework for a
+			custom command. When you're ready to start writing your own custom commands,
+			you could use it as a starting point. Or, even better, you can use the Command
+			Wizard to generate a more complete code skeleton.
+			</p>
+			<p><strong>Simple Undoable Command</strong><br>
+			This example demonstrates how to implement an undoable custom command using the C++ API. This example creates a NetView view
+			at <tt>0,100</tt> and the undoable command moves the window to<tt> 200,100</tt>. The positioning of the window can be undone
+			and redone through the Undo and Redo built-in Softimage commands. The sample command can be accessed from the
+			'Undoable Custom Command' menu located in the main menu bar.
+			</p>
+			<h2>Example Files</h2>
+			<table>
+				<tr>
+					<td><strong>Location</strong></td>
+					<td><span class="installPath"></span></td>
+				</tr>
+				<tr>
+					<td><strong>Files</strong></td>
+					<td>
+						<div class="examplefile">simplejscommand.js</div>
+						<div class="examplefile">simplepycommand.py</div>
+						<div class="examplefile">simplevbscommand.vbs</div>
+						<div class="examplefile">simplecommand.cpp</div>
+						<div class="examplefile">GNUmakefile</div>
+						<div class="examplefile">simplecommand.vcproj</div>
+						<div class="examplefile">simplecscommand.cs</div>
+						<div class="examplefile">simplecscommand.csproj</div>
+						<div class="examplefile" folder="UndoRedo">simpleundoredocommand.cpp</div>
+						<div class="examplefile" folder="UndoRedo">simpleundoredocommand.vcproj</div>
+						<div class="examplefile" folder="UndoRedo">GNUmakefile</div>
+					</td>
+				</tr>
+			</table>
+			<a name="build"></a>
+			<h2>Running the Examples</h2>
+			<div id="toinstall" style="DISPLAY: none">
+				<p class="proc-head">To install the example</p>
+				<ul>
+					<li>
+						<p>Connect to the Softimage SDK workgroup at
+							<span class="workgroupPath">%XSISDK_ROOT%\examples\workgroup</span>.</p>
+						<ol>
+					<li>
+						In the <strong>Plug-in Manager</strong>, click the <strong>Workgroups</strong> tab.
+					<li>
+						Click <strong>File</strong> and then click <strong>Connect</strong>.
+					<li>
+						In the <strong>Connect to Workgroup</strong> dialog box, click <IMG src="..\..\doc\shared\bBrowse.gif">,
+						locate the workgroup folder and then click <strong>Select</strong>.
+					</li>
+					</OL></LI></ul>
+				<p class="proc-head">To view the help page for an example</p>
+				<ul>
+					<li>
+						Do one of the following:
+						<ul>
+							<li>
+								In the Plug-in Tree, expand the SDK examples workgroup, right-click the example
+								add-on and then click <strong>Help</strong>.
+							<li>
+								Open a Net View and click <IMG style="BOTTOM: -6px; POSITION: relative" src="..\..\doc\shared\xsiweb.png">
+								to go to XSI Net local. In the top navigation bar, click <strong>add-ons</strong>,
+								and then click the SDK example add-on.
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div>
+				<p class="proc-head">To run the Simple Command example</p>
+				<ul>
+					<li>
+						<p>In the script editor, type the command and click <strong>Run</strong>:</p>
+						<pre><span class=comment>// [JScript]</SPAN>
+SimpleJSCommand( "Hello" );
+SimpleJSCommand();
+SimpleJSCommand( 33 );
+						<pre><span class=comment># [Python] </SPAN>
+Application.SimplePYCommand( "Python" )
+						<PRE><SPAN class=comment>' [VBScript]</SPAN>
+SimpleVBSCommand "How you doing?"
+						<pre><span class=comment>// [C++]</SPAN>
+SimpleCPPCommand( "Goodbye" );
+						<pre><span class=comment>// [C#]</SPAN>
+CreatePrim( "Cone", "MeshSurface" )
+SimpleCSCommand( null, True );
+</pre>
+					</LI>
+				</ul>
+			</div>
+			<div>
+				<p class="proc-head">To run the Simple Undoable Custom Command example</p>
+				<ul>
+					<li>
+						From the <strong>Undoable Custom Command</strong> menu in the main menu bar, select <strong>Create Sample View</strong>
+						to create one or more NetView windows.
+					<li>
+						Select the Undo menu item in the Edit menu of the main menu bar. The first NetView window created should go
+						back to its original position.
+					<li>
+						Select Redo to move the window back in place.</li>
+				</ul>
+			</div>
+
+			<a name="build"></a>
+			<h2>Building the C++ Examples</h2>
+			<p>Follow the instructions below to build the examples.</p>
+			<div id="windows-build">
+				<p class="proc-head">To build the Simple Command example on Windows</p>
+				<ol>
+					<li>
+						<p><span class="sishell">Open</span>
+							a Softimage command prompt, and type <strong>devenv</strong> to start Visual Studio
+							.NET.</p>
+						<p>Starting Visual Studio .NET from a Softimage command prompt ensures that environment
+							variables such as XSISDK_ROOT are set (otherwise you'll get build and link
+							errors).</p>
+						<p><strong>Tip</strong> To load the
+							<span class="devenv" vcproj="simplecommand.vcproj">Simple Command</span>
+							project from the command line, type:</p>
+						<pre>devenv <span class="installPath">cppsrc\simplecommand.vcproj</SPAN></pre>
+					<li>
+					In Visual Studio .NET, open the project file .vcproj.
+					<li>
+						Select a configuration (Win32/Win64 Release or Debug) and build the DLL.
+					</li>
+				</ol>
+			</div>
+			<div id="linux-build">
+				<p class="proc-head">To build the Simple Command example on Linux</p>
+				<ol>
+					<li>
+						<p>In a shell (tcsh) window, type:</p>
+						<pre>source $XSI_HOME/<span class="linuxExt">.xsi_&lt;xsi_version&gt;</span></pre>
+					<li>
+						<p>Change directories to</p>
+						<pre><span class="installPath">cppsrc</SPAN></pre>
+					<li>
+						<p>To remove all intermediate files before building the example, run this command:</p>
+						<pre>gmake clean</pre>
+					<li>
+						<p>
+						To compile the example, run this command:
+						<p><pre>gmake</pre>
+					</li>
+				</ol>
+			</div>
+			<div id="windows-build">
+				<p class="proc-head">To build the Simple Undoable Command example on Windows</p>
+				<ol>
+					<li>
+						<p><span class="sishell">Open</span>
+							a Softimage command prompt, and type <strong>devenv</strong> to start Visual Studio
+							.NET.</p>
+						<p>Starting Visual Studio .NET from a Softimage command prompt ensures that environment
+							variables such as XSISDK_ROOT are set (otherwise you'll get build and link
+							errors).</p>
+						<p><strong>Tip</strong> To load the
+							<span class="devenv" vcproj="simpleundoredocommand.vcproj">Simple Undoable Command</span>
+							project from the command line, type:</p>
+						<pre>devenv <span class="installPath">UndoRedo\simpleundoredocommand.vcproj</SPAN></pre>
+					<li>
+					In Visual Studio .NET, open the project file .vcproj.
+					<li>
+						Select a configuration (Win32/Win64 Release or Debug) and build the DLL.
+					</li>
+				</ol>
+			</div>
+			<div id="linux-build">
+				<p class="proc-head">To build the Simple Undoable Command example on Linux</p>
+				<ol>
+					<li>
+						<p>In a shell (tcsh) window, type:</p>
+						<pre>source $XSI_HOME/<span class="linuxExt">.xsi_&lt;xsi_version&gt;</span></pre>
+					<li>
+						<p>Change directories to</p>
+						<pre><span class="installPath">UndoRedo</SPAN></pre>
+					<li>
+						<p>To remove all intermediate files before building the example, run this command:</p>
+						<pre>gmake clean</pre>
+					<li>
+						<p>
+						To compile the example, run this command:
+						<p><pre>gmake</pre>
+					</li>
+				</ol>
+			</div>
+			<h2>Building the C# Simple Custom Example</h2>
+			<p>Follow these instructions to build the C# plug-in.</p>
+			<p><b>Note:</b> You can either use Visual Stusio .NET 2005 or Visual C# 2005 Express Edition to build the example. Visual C# Express can be dowloaded freely at http://msdn.microsoft.com/vstudio/express/visualcsharp/.</p>
+			<div id="windows-build">
+				<p class="proc-head">To build the example on Windows</p>
+				<ol>
+					<li>
+						<p><span class="sishell" cssrc="cssrc">Open</span>
+							a Softimage command prompt, and type <strong>devenv</strong> to start Visual Studio .NET.</p>
+						<p>Starting Visual Studio .NET or Visual C# Express from a Softimage command prompt ensures that environment variables such as XSI_USERHOME are set (otherwise you'll get build and link errors).</p>
+						<p><strong>Tip</strong> To load the <span class="devenv" csproj="cssrc\SimpleCSCommand.csproj">SimpleCommand</span> project from the command line, type:</p>
+						<pre>devenv <span class="installPath">cssrc\SimpleCSCommand.csproj</SPAN></pre>
+					<li>
+					In Visual Studio .NET, open the project file .csproj.
+					<li>
+						Select a configuration (Release or Debug) and build the DLL.
+					</li>
+				</ol>
+			</div>
+
+			<div id="keywords">
+				<h2>Keywords</h2>
+				<p>This example uses the following keywords:</p>
+				<p>C++, JScript, Python, VBScript, C++ example, JScript example, Python example, VBScript example, C# example,
+					RegisterCommand, Init, Execute, ArgumentArray, GetArguments, PutUserData, Undo, Redo,
+					CValue::siPtrType, Command, Context, GetSource,
+				</p>
+			</div>
+		</div>
+	</body>
+</html>

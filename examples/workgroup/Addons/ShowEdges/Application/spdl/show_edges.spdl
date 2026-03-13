@@ -1,0 +1,107 @@
+#Softimage-Wizard
+SPDL
+Version = "2.0.0.0";
+Reference = "{1AC592BC-DEA4-11d5-92BD-009027219F81}";
+PropertySet "show_edges_params"
+{
+	Parameter "out" output
+	{
+		title = "show_edges output parameter";
+		guid = "{4C6879FF-7EC8-11D0-8E3B-00A0C90640EC}";
+		type = color;
+		flags = 0;
+		texturable = off;
+	}
+	Parameter "thickness" input
+	{
+		title = "Thickness of the edges.";
+		guid = "{1AC592BD-DEA4-11d5-92BD-009027219F81}";
+		type = scalar;
+		flags = 0;
+		texturable = on;
+		value = 0.05;
+		writable = on;
+		animatable = on;
+		persistable = on;
+		readable = on;
+		inspectable = on;
+	}
+	Parameter "edgecolor" input
+	{
+		title = "Color to use for the edges";
+		guid = "{1AC592BE-DEA4-11d5-92BD-009027219F81}";
+		type = color;
+		flags = 0;
+		texturable = on;
+		value = 1.0 1.0 1.0 1.0;
+		writable = on;
+		animatable = on;
+		persistable = on;
+		readable = on;
+		inspectable = on;
+	}
+	Parameter "incolor" input
+	{
+		title = "Color to use for the interior";
+		guid = "{1AC592BF-DEA4-11d5-92BD-009027219F81}";
+		type = color;
+		flags = 0;
+		texturable = on;
+		value = 0.0 0.0 0.0 1.0;
+		writable = on;
+		animatable = on;
+		persistable = on;
+		readable = on;
+		inspectable = on;
+	}
+}
+MetaShader "show_edges_declare"
+{
+	Name = "show_edges";
+	Type = material, texture;
+	Renderer "mental ray"
+	{
+		Name = "show_edges";
+		Options
+		{
+			"version" = 1;
+		}
+	}
+}
+
+# NOTE: You must use this same GUID when you make your own shader spdls.
+BEGIN "{24810490-56FF-11d2-BF23-00A0C982CE5D}"
+Defaults
+{
+	thickness
+	{
+		Name = "thickness";
+		Description = "Thickness of the edges.";
+	}
+	edgecolor
+	{
+		Name = "edgecolor";
+		Description = "Color to use for the edges";
+		UIType = "rgba",4;
+	}
+	incolor
+	{
+		Name = "incolor";
+		Description = "Color to use for the interior";
+		UIType = "rgba",4;
+	}
+}
+Layout "Default"
+{
+	thickness;
+	edgecolor;
+	incolor;
+}
+
+# This optional section allows you to use a different DLL 
+# name than the name of the spdl file.
+Plugin = Shader
+{
+	Filename = "show_edges";
+}
+END

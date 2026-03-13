@@ -1,0 +1,253 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>ShaderDefinitions</title>
+		<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<LINK href="../../doc/shared/examples.css" type="text/css" rel="StyleSheet">
+			<script src="../../doc/shared/utils.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<div class="body"><a name="top"></a><IMG class="netview" style="PADDING-RIGHT: 6px; FLOAT: left" src="netview_ShaderDefs.jpg">
+			<h1>Custom Shader Examples</h1>
+			<p>These examples show how to create self-installing custom shader definitions using various implementation languages.
+			</p><br>
+			<p><strong>Color Sampler</strong><br>
+			These examples were ported from the SPDL-based <emph>Color Sampler</emph> Lightmap
+			shader. They demonstrate how to create a custom lightmap output parameter, and
+			how to create a property page widget that allows the user to specify a texture
+			space id. This example is available in C++ and JScript.
+			</p>
+			<p><strong>Environment Blur</strong><br>
+			These examples were ported from the SPDL-based <emph>Environment Blur</emph>
+			shader. It demonstrates how to create a property page widget that allows the user to
+			select a shader. This example is available in C# and JScript.
+			</p>
+			<p><strong>Fast Volume Effects</strong><br>
+			These examples were ported from the SPDL-based <emph>Fast Volume Effects</emph>
+			shader. It demonstrates how to define structure and array parameters and how
+			to modify the property page layout. This example is available in VBScript and JScript.
+			</p>
+			<p><strong>Model Map</strong><br>
+			These examples were ported from the SPDL-based <emph>Model Map</emph> shader. It
+			demonstrates how to create property page widgets that allow the user to specify a
+			texture space id and a CAV. They also demonstrate how to define a drop-down list of
+			values. This example is available in Python and JScript.
+			</p>
+			<h2>Example Files</h2>
+			<table>
+				<tr>
+					<td><strong>Location</strong></td>
+					<td><span class="installPath"></span></td>
+				</tr>
+				<tr>
+					<td><strong>Files</strong></td>
+					<td>
+						<div class="examplefile">JSShaderExample.js</div>
+						<div class="examplefile">PYSShaderExample.py</div>
+						<div class="examplefile">VBShaderExample.vbs</div>
+						<div class="examplefile" folder="cssrc_CSEnvBlur">CSShaderExample.cs</div>
+						<div class="examplefile" folder="cssrc_CSEnvBlur">CSShaderExample.csproj</div>
+						<div class="examplefile" folder="cppsrc_CPPColorSampler">CPPShaderExample.cpp</div>
+						<div class="examplefile" folder="cppsrc_CPPColorSampler">CPPShaderExample.vcproj</div>
+						<div class="examplefile" folder="cppsrc_CPPColorSampler">GNUmakefile</div>
+					</td>
+				</tr>
+			</table>
+			<a name="build"></a>
+			<h2>Running the Examples</h2>
+			<div id="toinstall" style="DISPLAY: none">
+				<p class="proc-head">To install the example</p>
+				<ul>
+					<li>
+						<p>Connect to the Softimage SDK workgroup at
+							<span class="workgroupPath">%XSISDK_ROOT%\examples\workgroup</span>.</p>
+						<ol>
+					<li>
+						In the <strong>Plug-in Manager</strong>, click the <strong>Workgroups</strong> tab.
+					<li>
+						Click <strong>File</strong> and then click <strong>Connect</strong>.
+					<li>
+						In the <strong>Connect to Workgroup</strong> dialog box, click <IMG src="..\..\doc\shared\bBrowse.gif">,
+						locate the workgroup folder and then click <strong>Select</strong>.
+					</li>
+					</OL></LI></ul>
+				<p class="proc-head">To view the help page for an example</p>
+				<ul>
+					<li>
+						Do one of the following:
+						<ul>
+							<li>
+								In the Plug-in Tree, expand the SDK examples workgroup, right-click the example
+								add-on and then click <strong>Help</strong>.
+							<li>
+								Open a Net View and click <IMG style="BOTTOM: -6px; POSITION: relative" src="..\..\doc\shared\xsiweb.png">
+								to go to XSI Net local. In the top navigation bar, click <strong>add-ons</strong>,
+								and then click the SDK example add-on.
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div>
+				<p class="proc-head">To run the Color Sampler example</p>
+				<ul>
+					<li>
+						<p>In the script editor, type the command and click <strong>Run</strong>:</p>
+						<pre><span class=comment>// [JScript]</SPAN>
+NewScene(null, false);
+CreatePrim("Cube", "MeshSurface");
+CreateShaderFromProgID("JSShaders.JSColorSampler.1.0", "Sources.Materials.DefaultLib.Scene_Material");
+SIConnectShaderToCnxPoint("Sources.Materials.DefaultLib.Scene_Material.JS_Color_Sampler.out",
+	"Sources.Materials.DefaultLib.Scene_Material.lightmap", false);
+</pre>
+						<pre><span class=comment>// [C++]</SPAN>
+NewScene(null, false);
+CreatePrim("Cube", "MeshSurface");
+CreateShaderFromProgID("CPPShaders.CPPColorSampler.1.0", "Sources.Materials.DefaultLib.Scene_Material");
+SIConnectShaderToCnxPoint("Sources.Materials.DefaultLib.Scene_Material.CPP_Color_Sampler.out",
+	"Sources.Materials.DefaultLib.Scene_Material.lightmap", false);
+</pre>
+					</LI>
+				</ul>
+			</div>
+			<div>
+				<p class="proc-head">To run the Environment Blur example</p>
+				<ul>
+					<li>
+						<p>In the script editor, type the command and click <strong>Run</strong>:</p>
+						<pre><span class=comment>// [JScript]</SPAN>
+NewScene(null, false);
+CreatePrim("Cube", "MeshSurface");
+CreateShaderFromProgID("JSShaders.JSEnvBlur.1.0", "Sources.Materials.DefaultLib.Scene_Material");
+SIConnectShaderToCnxPoint("Sources.Materials.DefaultLib.Scene_Material.JS_Environment_Blur.out",
+	"Sources.Materials.DefaultLib.Scene_Material.photon", false);
+</pre>
+						<pre><span class=comment>// [C#]</SPAN>
+NewScene(null, false);
+CreatePrim("Cube", "MeshSurface");
+CreateShaderFromProgID("CSShaderExample.CSEnvBlur.1.0", "Sources.Materials.DefaultLib.Scene_Material");
+SIConnectShaderToCnxPoint("Sources.Materials.DefaultLib.Scene_Material.CS_Environment_Blur.out",
+	"Sources.Materials.DefaultLib.Scene_Material.photon", false);
+</pre>
+					</LI>
+				</ul>
+			</div>
+			<div>
+				<p class="proc-head">To run the Fast Volume Effects example</p>
+				<ul>
+					<li>
+						<p>In the script editor, type the command and click <strong>Run</strong>:</p>
+						<pre><span class=comment>// [JScript]</SPAN>
+NewScene(null, false);
+CreatePrim("Cube", "MeshSurface");
+CreateShaderFromProgID("JSShaders.JSBionicVolume.1.0", "Sources.Materials.DefaultLib.Scene_Material");
+SIConnectShaderToCnxPoint("Sources.Materials.DefaultLib.Scene_Material.JS_Fast_Volume_Effects.out",
+	"Sources.Materials.DefaultLib.Scene_Material.volume", false);
+</pre>
+						<pre><span class=comment>' [VBScript]</SPAN>
+NewScene , false
+CreatePrim "Cube", "MeshSurface"
+CreateShaderFromProgID "VBShaders.VBBionicVolume.1.0", "Sources.Materials.DefaultLib.Scene_Material"
+SIConnectShaderToCnxPoint "Sources.Materials.DefaultLib.Scene_Material.VBS_Fast_Volume_Effects.out", _
+	"Sources.Materials.DefaultLib.Scene_Material.volume", false
+</pre>
+					</LI>
+				</ul>
+			</div>
+			<div>
+				<p class="proc-head">To run the Model Map example</p>
+				<ul>
+					<li>
+						<p>In the script editor, type the command and click <strong>Run</strong>:</p>
+						<pre><span class=comment>// [JScript]</SPAN>
+NewScene(null, false);
+CreatePrim("Cube", "MeshSurface");
+CreateShaderFromProgID("JSShaders.JSModelMap.1.0", "Sources.Materials.DefaultLib.Scene_Material");
+SIConnectShaderToCnxPoint("Sources.Materials.DefaultLib.Scene_Material.JS_Model_Map.out",
+	"Sources.Materials.DefaultLib.Scene_Material.Phong.ambient", false);
+</pre>
+						<pre><span class=comment># [Python]</SPAN>
+app = Application
+app.NewScene("", False)
+app.CreatePrim("Cube", "MeshSurface")
+app.CreateShaderFromProgID("PYSShaders.PYSModelMap.1.0", "Sources.Materials.DefaultLib.Scene_Material")
+app.SIConnectShaderToCnxPoint("Sources.Materials.DefaultLib.Scene_Material.PYS_Model_Map.out",
+	"Sources.Materials.DefaultLib.Scene_Material.Phong.ambient", False)
+</pre>
+					</LI>
+				</ul>
+			</div>
+
+			<a name="build"></a>
+			<h2>Building the C++ Color Sampler Example</h2>
+			<p>Follow the instructions below to build the examples.</p>
+			<div id="windows-build">
+				<p class="proc-head">To build the Color Sampler example on Windows</p>
+				<ol>
+					<li>
+						<p><span class="sishell">Open</span>
+							a Softimage command prompt, and type <strong>devenv</strong> to start Visual Studio
+							.NET.</p>
+						<p>Starting Visual Studio .NET from a Softimage command prompt ensures that environment
+							variables such as XSISDK_ROOT are set (otherwise you'll get build and link
+							errors).</p>
+						<p><strong>Tip</strong> To load the
+							<span class="devenv" vcproj="CPPShaderExample.vcproj">Simple Command</span>
+							project from the command line, type:</p>
+						<pre>devenv <span class="installPath">cppsrc_CPPColorSampler\CPPShaderExample.vcproj</SPAN></pre>
+					<li>
+					In Visual Studio .NET, open the project file .vcproj.
+					<li>
+						Select a configuration (Win32/Win64 Release or Debug) and build the DLL.
+					</li>
+				</ol>
+			</div>
+			<div id="linux-build">
+				<p class="proc-head">To build the Color Sampler example on Linux</p>
+				<ol>
+					<li>
+						<p>In a shell (tcsh) window, type:</p>
+						<pre>source $XSI_HOME/<span class="linuxExt">.xsi_&lt;xsi_version&gt;</span></pre>
+					<li>
+						<p>Change directories to</p>
+						<pre><span class="installPath">cppsrc_CPPColorSampler</SPAN></pre>
+					<li>
+						<p>To remove all intermediate files before building the example, run this command:</p>
+						<pre>gmake clean</pre>
+					<li>
+						<p>
+						To compile the example, run this command:
+						<p><pre>gmake</pre>
+					</li>
+				</ol>
+			</div>
+			<h2>Building the C# Environment Blur Example</h2>
+			<p>Follow these instructions to build the C# plug-in.</p>
+			<p><b>Note:</b> You can either use Visual Studio .NET 2005 or Visual C# 2005 Express Edition to build the example. Visual C# Express can be downloaded freely at http://msdn.microsoft.com/vstudio/express/visualcsharp/.</p>
+			<div id="windows-build">
+				<p class="proc-head">To build the example on Windows</p>
+				<ol>
+					<li>
+						<p><span class="sishell" cssrc="cssrc">Open</span>
+							a Softimage command prompt, and type <strong>devenv</strong> to start Visual Studio .NET.</p>
+						<p>Starting Visual Studio .NET or Visual C# Express from a Softimage command prompt ensures that environment variables such as XSI_USERHOME are set (otherwise you'll get build and link errors).</p>
+						<p><strong>Tip</strong> To load the <span class="devenv" csproj="cssrc_CSEnvBlur\CSShaderExample.csproj">CSShaderExample</span> project from the command line, type:</p>
+						<pre>devenv <span class="installPath">cssrc_CSEnvBlur\CSShaderExample.csproj</SPAN></pre>
+					<li>
+					In Visual Studio .NET, open the project file .csproj.
+					<li>
+						Select a configuration (Release or Debug) and build the DLL.
+					</li>
+				</ol>
+			</div>
+
+			<div id="keywords">
+				<h2>Keywords</h2>
+				<p>This example uses the following keywords:</p>
+				<p>C++, JScript, Python, VBScript, C++ example, JScript example, Python example, VBScript example, C# example,
+					RegisterShader, Define, DefineInfo, ShaderDef, Context, GetSource
+				</p>
+			</div>
+		</div>
+	</body>
+</html>

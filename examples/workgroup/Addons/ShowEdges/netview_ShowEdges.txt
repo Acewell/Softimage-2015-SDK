@@ -1,0 +1,1 @@
+This example is a mental ray shader that draws borders on polygon edges to show the triangulated mesh sent to mental ray.

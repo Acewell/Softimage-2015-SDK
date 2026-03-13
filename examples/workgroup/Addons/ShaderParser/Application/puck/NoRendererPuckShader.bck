@@ -1,0 +1,9 @@
+# 'Puck' definition file has no renderer defined but does not cause 
+# an error because the parser only reports an error if there is a 
+# line beginning with '%' that has less than 3 items defined (the
+# name of the renderer, the procedure to run, and the location of
+# the renderer engine/code)
+=NoRendererPuckShader 1 0
+@in_dummystring string in yes
+@out_dummyout string out yes
+@in_mute boolean in no

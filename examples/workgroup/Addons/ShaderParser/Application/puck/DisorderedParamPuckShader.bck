@@ -1,0 +1,10 @@
+# 'Puck' definition file - companion file to WellorderedParamPuckShader.pck
+#  - demonstrates that declaring output parameter in the middle of the list
+#    of input parameters creates a shader node identical to the 'good' version
+=DisorderedParamPuckShader 1 0
+@in_dummystr string in yes
+@out_dummy string out yes
+@out_shade color4 out yes
+@in_shade color4 in yes
+@in_mute boolean in no
+%PretendRend main_proc {LIBS}/../rendercore.{EXT}

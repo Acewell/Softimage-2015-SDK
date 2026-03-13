@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>ShaderParser</title>
+		<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<LINK href="../../doc/shared/examples.css" type="text/css" rel="StyleSheet">
+			<script src="../../doc/shared/utils.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<div class="body"><a name="top"></a><IMG class="netview" style="PADDING-RIGHT: 6px; FLOAT: left" src="netview_ShaderParser.jpg">
+			<h1>Custom Shader Parser Example</h1>
+			<p>This example shows how to create a self-installing custom shader language parser in JScript. A number of parseable file
+			definitions (with the .bck and .pck extensions) are included to demonstrate how the parser system works, both valid and invalid.
+			</p><br>
+			<h2>Example Files</h2>
+			<table>
+				<tr>
+					<td><strong>Location</strong></td>
+					<td><span class="installPath"></span></td>
+				</tr>
+				<tr>
+					<td><strong>Files</strong></td>
+					<td>
+						<div class="examplefile">ShaderParserExample.js</div>
+						<div class="examplefile" folder="puck">AnotherBadParamPuckShader.bck</div>
+						<div class="examplefile" folder="puck">BadParamPuckShader.bck</div>
+						<div class="examplefile" folder="puck">DisorderedParamPuckShader.bck</div>
+						<div class="examplefile" folder="puck">NoRendererPuckShader.bck</div>
+						<div class="examplefile" folder="puck">ArrayCnxPuck.pck</div>
+						<div class="examplefile" folder="puck">BogusPuckShader.pck</div>
+						<div class="examplefile" folder="puck">ColorShare.pck</div>
+						<div class="examplefile" folder="puck">WellorderedParamPuckShader.pck</div>
+					</td>
+				</tr>
+			</table>
+			<a name="build"></a>
+			<h2>Running the Example</h2>
+			<div id="toinstall" style="DISPLAY: none">
+				<p class="proc-head">To install the example</p>
+				<ul>
+					<li>
+						<p>Connect to the Softimage SDK workgroup at
+							<span class="workgroupPath">%XSISDK_ROOT%\examples\workgroup</span>.</p>
+						<ol>
+					<li>
+						In the <strong>Plug-in Manager</strong>, click the <strong>Workgroups</strong> tab.
+					<li>
+						Click <strong>File</strong> and then click <strong>Connect</strong>.
+					<li>
+						In the <strong>Connect to Workgroup</strong> dialog box, click <IMG src="..\..\doc\shared\bBrowse.gif">,
+						locate the workgroup folder and then click <strong>Select</strong>.
+					</li>
+					</OL></LI></ul>
+				<p class="proc-head">To view the help page for an example</p>
+				<ul>
+					<li>
+						Do one of the following:
+						<ul>
+							<li>
+								In the Plug-in Tree, expand the SDK examples workgroup, right-click the example
+								add-on and then click <strong>Help</strong>.
+							<li>
+								Open a Net View and click <IMG style="BOTTOM: -6px; POSITION: relative" src="..\..\doc\shared\xsiweb.png">
+								to go to XSI Net local. In the top navigation bar, click <strong>add-ons</strong>,
+								and then click the SDK example add-on.
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div>
+				<p class="proc-head">To instantiate the Puck shader definitions</p>
+				<ul>
+					<li>
+						<p>Start Softimage and open the render tree.
+						<br><br>
+						You can see a number of presets in the preset manager under the Parsed (Good) and Parsed (Bad)
+						sub-categories under the main Example Shaders category:
+						<br><br>
+						<img src="PresetManager.jpg" alt="Preset Manager"/>
+						</p>
+					</LI>
+					<li>
+						<p>You can instantiate it by running the following in the Script Editor::</p>
+						<pre><span class=comment>// [JScript]</SPAN>
+NewScene("", false);
+CreatePrim("Cone", "MeshSurface");
+CreateShaderFromProgID("Puck.ArrayCnxPuck.1.0", "Sources.Materials.DefaultLib.Scene_Material");
+SIConnectShaderToCnxPoint("Sources.Materials.DefaultLib.Scene_Material.Array_Cnx_Puck.out_vector3",
+   "Sources.Materials.DefaultLib.Scene_Material.Phong.bump", false);
+</pre>
+					</LI>
+				</ul>
+			</div>
+
+			<div id="keywords">
+				<h2>Keywords</h2>
+				<p>This example uses the following keywords:</p>
+				<p>JScript example, JScript, RegisterShaderLanguageParser, QueryParserSettings, Parse, ParseInfo, ShaderDef, Context, GetSource
+				</p>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,9 @@
+# 'Puck' definition file tests missing directionality for @out_dummyout
+=BadParamPuckShader 1 0
+@in_dummystring string in yes
+# This should cause an error because there's no in/out info:
+@out_dummyout string yes
+# WARNING : Couldn't get parameter info for Puck.BadParamPuckShader.1.0 shader definition at line 5
+# And @in_mute only appears in PPGLayout, not RenderTreeLayout
+@in_mute boolean in no
+%PretendRend main_proc {LIBS}/../rendercore.{EXT}

@@ -1,0 +1,88 @@
+# WireframeShader.spdl
+#
+# This shader draws the edges of the original geometry
+
+SPDL
+Version = "2.0.0.0";
+Reference = "{95CB3ECC-B0B1-4479-913A-06095D8C3ED1}";
+PropertySet "wireframe_params"
+{
+	Parameter "out" output
+	{
+		title = "wireframe";
+		guid = "{4C6879FF-7EC8-11D0-8E3B-00A0C90640EC}";
+		type = color;
+	}
+
+	#Parameters of the Shader
+	Parameter "wire_color" input
+	{
+		title = "Wireframe";
+		guid = "{512783EF-E238-4276-84B6-0C23CE48B0F7}";
+		type = color;
+		value = 1.0 1.0 1.0 1.0;
+		texturable = on;	
+	}
+	Parameter "base_color" input
+	{
+		title = "Base";
+		guid = "{BBA0FC8A-92AA-4A1A-881C-9B5F78E03938}";
+		type = color;
+		value = 0.0 0.0 1.0 1.0;
+		texturable = on;
+	}
+	Parameter "wire_width" input
+	{
+		title = "Thickness";
+		guid = "{EE8C8693-8CDE-4602-99DC-5B97E703138C}";
+		type = scalar;
+		value = 0.2;
+		texturable = on;	
+	}
+}
+
+MetaShader "wireframe_declare"
+{
+	Name = "wireframe";
+	Type = texture;
+	Renderer "mental ray"
+	{
+		Name = "wireframe";
+		Options
+		{
+			"version" = 1;
+		}
+	}
+}
+
+BEGIN "{24810490-56FF-11d2-BF23-00A0C982CE5D}"
+Defaults
+{
+	wire_color
+	{
+		UIType = "rgba",4;
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	base_color
+	{
+		UIType = "rgba",4;
+		Commands = "{F5C75F11-2F05-11d3-AA95-00AA0068D2C0}";
+	}
+	wire_width
+	{
+		UIRange = 0 to 1;
+	}
+}
+
+Layout "Default"
+{
+	wire_color;
+	base_color;
+	wire_width;
+}
+
+Plugin = Shader
+{
+	Filename = "Wireframe";   #dll name, both the Operator and Shader are in the same dll
+}
+END

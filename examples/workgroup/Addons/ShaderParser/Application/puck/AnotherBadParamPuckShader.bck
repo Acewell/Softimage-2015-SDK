@@ -1,0 +1,11 @@
+# 'Puck' definition file tests bad directionality value for @in_bad1
+=AnotherBadParamPuckShader 1 0
+@in_good1 string in yes
+@in_good2 string in yes
+# This should cause an error because there's bad in/out info:
+@in_bad1 string up yes
+# WARNING : Couldn't find directionality of the parameter at line 6 for the Puck.AnotherBadParamPuckShader.1.0 shader definition
+@in_good3 string in yes
+@in_good4 boolean in no
+@out_dummyout string out yes
+%PretendRend main_proc {LIBS}/../rendercore.{EXT}

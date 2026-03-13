@@ -1,0 +1,1 @@
+This example implements a simple custom command that takes one argument and logs the argument value to the command history. The example includes JScript, Python, VBScript, and C++ versions of the command. The example also includes a more elaborated C# version which logs all parameters of an input object.

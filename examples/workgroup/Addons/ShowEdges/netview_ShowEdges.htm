@@ -1,0 +1,394 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>ShowEdges</title>
+<link rel="StyleSheet" href="../../doc/shared/examples.css" type="text/css">
+<script type="text/javascript" src="../../doc/shared/utils.js"></script>
+
+<script type="text/javascript">
+
+function runExample(s)
+{
+	if ( s == 'Wireframe' )
+	{
+		runWireframeExample();
+	}
+	else
+	{
+		g_app.NewScene( null, false );
+		var oSphere = g_app.ActiveSceneRoot.AddGeometry( "Sphere", "MeshSurface" );
+		g_app.SelectObj( oSphere );
+
+		var oMaterial = oSphere.AddMaterial( "show_edges.Preset",false,"ShowEdges");
+		g_app.InspectObj( oMaterial.Parameters("Surface").Source );
+	}
+}
+</script>
+
+
+<script type="text/vbscript">
+
+function runWireframeExample()
+
+	'[VBScript] Demo program for the Wireframe Softimage shader example
+
+	g_app.NewScene ,false
+
+	' Create test sphere
+	set object = g_app.ActiveSceneRoot.AddGeometry( "Sphere", "MeshSurface" )
+
+
+	SetupObject object
+
+	'Shadow effect
+	set oGrid = g_app.ActiveSceneRoot.AddGeometry( "Grid", "MeshSurface" )
+	g_app.Translate oGrid, 0, -5, 0, siAbsolute, siParent, siObj, siY
+	oGrid.ulength = 100
+	oGrid.vlength = 100
+	g_app.SetValue "light.light.soft_light.shadow", True
+
+end function
+
+
+sub SetupObject( in_obj )
+
+
+	' Add the UserDataBlob property and set it renderable
+	' The UserDataID must be set to the specific ID that
+	' the shader is expecting
+
+	set prop = in_obj.AddProperty( "UserDataBlob" )
+	prop.RenderData = True
+	prop.UserDataID = 6789
+
+
+	on error resume next
+	prop.AddCustomOp "WireframeOp",in_obj.ActivePrimitive
+
+	if ( err <> 0 ) then
+		MsgBox "Failed to create WriteframeOp Custom Operator" & vbCrLf & _
+				"Please make sure the example is fully installed"
+		exit sub
+	end if
+
+	on error goto 0
+
+	' Add wireframe shader to an empty material
+	set material = in_obj.AddMaterial
+	set oSurfParam = material.Parameters( "surface" )
+
+	set oSpriteShader = oSurfParam.connectfrompreset( "Sprite", "Material Shaders" )
+
+	material.Parameters("Shadow").Connect( oSpriteShader )
+
+
+	set inputParam = oSpriteShader.Parameters( "input" )
+
+	on error resume next
+	set oWireShader = inputParam.connectfrompreset( "WireframeShader", "Texture Shaders" )
+
+	if ( err <> 0 ) then
+		MsgBox "Failed to create WriteframeShader " & vbCrLf & _
+				"Please make sure the example is fully installed"
+		exit sub
+	end if
+
+	oWireShader.Parameters("wire_width").value = 0.1
+	oWireShader.Parameters("base_color").Parameters("red").value = 1
+	oWireShader.Parameters("base_color").Parameters("green").value = 1
+	oWireShader.Parameters("base_color").Parameters("blue").value = 1
+	oWireShader.Parameters("base_color").Parameters("alpha").value = 0
+
+	g_app.InspectObj oWireShader
+end sub
+
+
+</script>
+
+
+<body>
+<div class="body"><a name="top"></a>
+
+
+
+<img class="netview" src="netview_ShowEdges.jpg" style="float:left;padding-right:6px;">
+<h1>Show Edges and Wireframe</h1>
+
+<p>
+This example includes two related examples:
+</p>
+<ul style="margin-top:16px">
+<li>
+<b>ShowEdges</b> is a basic mental ray shader that draws a thick border along the edges of a polygon mesh. ShowEdges renders the triangulated version of the mesh that is sent to mental ray.
+</li>
+
+<li><p><b>Wireframe</b> also draws edges, but it shows the true edges (before tesselation). Wireframe uses a UserDataBlob to pass edge information to a shader (which shows how to map Softimage user data into mental ray user data). A custom operator populates the UserDataBlob with the edge information. An operator is used rather than a custom command because whenever the geometry changes, Softimage re-evaluates the operator and re-renders the object.
+The operater and the shader are contained in the same DLL/SO, and this file is located in the Application\Plugins directory instead of the conventional shader directory (Application\bin\{CPU}) so
+that Softimage automatically loads it as a self-installed plugin.  This approach is convenient for implementing both a shader and an operator together in an single dll, but it means that
+the normal ability to have multiple platform binaries on a single workgroup would not work.  To support that configuration the example would be implemented as two separate dlls.
+</p>
+
+</li>
+</ul>
+
+<p>
+The difference between Wireframe and ShowEdges is illustrated in the figure below, which shows how the two examples render the same mesh.
+</p>
+
+<p style="margin-bottom:0px;font-size:10px">Comparison of Wireframe and ShowEdges</p>
+<img src="Compare.png">
+
+
+
+<h2>Example Files</h2>
+<table><tr>
+<td><strong>Location</strong></td><td><span class="installPath"></span>
+</td>
+</tr>
+
+<tr>
+<td><strong>ShowEdges</strong></td>
+<td>
+	<div class="examplefile">show_edges.spdl</div>
+	<div class="examplefile" folder="cppsrc_ShowEdges">show_edges.cpp</div>
+	<div class="examplefile" folder="cppsrc_ShowEdges">show_edges.h</div>
+	<div class="examplefile" folder="cppsrc_ShowEdges">show_edges_dll.cpp</div>
+	<div class="examplefile" folder="cppsrc_ShowEdges">show_edges.vcproj</div>
+	<div class="examplefile" folder="cppsrc_ShowEdges">GNUmakefile</div>
+</td>
+</tr>
+
+<tr>
+<td><strong>WireFrame Files</strong></td>
+<td>
+	<div class="examplefile" folder="cppsrc_WireFrame">WireframeOp.cpp</div>
+	<div class="examplefile" folder="cppsrc_WireFrame">WireframeShader.cpp</div>
+	<div class="examplefile">WireframeShader.spdl</div>
+	<div class="examplefile" folder="cppsrc_WireFrame">Wireframe.vcproj</div>
+	<div class="examplefile" folder="cppsrc_WireFrame">GNUmakefile</div>
+</td>
+</tr>
+
+
+</table>
+
+
+<a name="build"></a><h2>Running the Example</h2>
+
+<div id="toinstall" style="display:none">
+<p class="proc-head">To install the example</p>
+<ul>
+<li><p>Connect to the Softimage SDK workgroup at <span class="workgroupPath">%XSISDK_ROOT%\examples\workgroup</span>.</p>
+	<ol>
+	<li>In the <strong>Plug-in Manager</strong>, click the <strong>Workgroups</strong> tab.</li>
+	<li>Click <strong>File</strong> and then click <strong>Connect</strong>.</li>
+	<li>In the <strong>Connect to Workgroup</strong> dialog box, click <img src="..\..\doc\shared\bBrowse.gif">, locate the workgroup folder and then click <strong>Select</strong>.</li>
+	</ol>
+</li>
+</ul>
+
+<p class="proc-head">To view the help page for an example</p>
+
+<ul>
+<li>Do one of the following:</li>
+<ul>
+<li>In the Plug-in Tree, expand the SDK examples workgroup, right-click the example add-on and then click <strong>Help</strong>.
+</li>
+<li>
+Open a Net View and click <img style="position:relative;bottom:-6px;" src="..\..\doc\shared\xsiweb.png"> to go to Softimage Net local. In the top navigation bar, click <strong>add-ons</strong>, and then click the SDK example add-on.
+</li>
+</ul>
+</ul>
+</div>
+
+
+<p class="proc-head">To run the ShowEdges example</p>
+
+<ol>
+
+<li><p>In a script editor, <span class="runExample" id="ShowEdges">run</span> this <span class="loadScript">demo script</span>:</p>
+<pre>
+// [ Jscript ] Demo script for ShowEdges
+
+NewScene( null, false );
+var oSphere = ActiveSceneRoot.AddGeometry( "Sphere", "MeshSurface" );
+SelectObj( oSphere );
+
+var oMaterial = oSphere.AddMaterial( "show_edges.Preset",false,"ShowEdges");
+InspectObj( oMaterial.Parameters("Surface").Source );
+</pre>
+</li>
+
+
+<li>Draw a render region.</li>
+</ol>
+
+<p class="proc-head">To run the Wireframe example</p>
+
+<ol>
+
+<li><p>In a script editor, <span class="runExample" id="Wireframe">run</span> this <span class="loadScript">demo script</span>:</p>
+
+<pre>
+'[VBScript] Demo program for the Wireframe Softimage shader example
+
+NewScene , false
+
+' Create test sphere
+set object = ActiveSceneRoot.AddGeometry( "Sphere", "MeshSurface" )
+
+SetupObject object
+
+'Shadow effect
+set oGrid = ActiveSceneRoot.AddGeometry( "Grid", "MeshSurface" )
+Translate oGrid, 0, -5, 0, siAbsolute, siParent, siObj, siY
+oGrid.ulength = 100
+oGrid.vlength = 100
+SetValue "light.light.soft_light.shadow", True
+
+sub SetupObject( in_obj )
+
+	' Add the UserDataBlob property and set it renderable
+	' The UserDataID must be set to the specific ID that
+	' the shader is expecting
+
+	set prop = in_obj.AddProperty( "UserDataBlob" )
+	prop.RenderData = True
+	prop.UserDataID = 6789
+
+	on error resume next
+	prop.AddCustomOp "WireframeOp",in_obj.ActivePrimitive
+
+	if ( err &lt;&gt; 0 ) then
+		MsgBox "Failed to create WriteframeOp Custom Operator" & vbCrLf & _
+				"Please make sure the example is fully installed"
+		exit sub
+	end if
+
+	on error goto 0
+
+	' Add wireframe shader to an empty material
+	set material = in_obj.AddMaterial
+	set oSurfParam = material.Parameters( "surface" )
+
+	set oSpriteShader = oSurfParam.connectfrompreset( "Sprite", siMaterialShaderFamily )
+
+	material.Parameters("Shadow").Connect( oSpriteShader )
+
+
+	set inputParam = oSpriteShader.Parameters( "input" )
+
+	on error resume next
+	set oWireShader = inputParam.connectfrompreset( "WireframeShader", siTextureShaderFamily )
+
+	if ( err &lt;&gt; 0 ) then
+		MsgBox "Failed to create WriteframeShader " & vbCrLf & _
+				"Please make sure the example is fully installed"
+		exit sub
+	end if
+
+	oWireShader.Parameters("wire_width").value = 0.1
+	oWireShader.Parameters("base_color").Parameters("red").value = 1
+	oWireShader.Parameters("base_color").Parameters("green").value = 1
+	oWireShader.Parameters("base_color").Parameters("blue").value = 1
+	oWireShader.Parameters("base_color").Parameters("alpha").value = 0
+
+	InspectObj oWireShader
+end sub
+</pre>
+</li>
+
+
+<li>Draw a render region.</li>
+</ol>
+
+
+
+<a name="build"></a><h2>Building the C++ Example</h2>
+
+<p>
+The Softimage SDK includes a compiled version of ShowEdges. If you want to modify the code, you can rebuild the shader by following these instructions.</p>
+
+<div id="windows-build">
+<p class="proc-head">To build ShowEdges on Windows</p>
+<ol>
+<li><p><span class="sishell" cppsrc="cppsrc_ShowEdges">Open</span> an Softimage command prompt, and type <strong>devenv</strong> to start Visual Studio .NET.</p>
+<p>Starting Visual Studio .NET from an Softimage command prompt ensures that environment variables such as XSISDK_ROOT are set (otherwise you'll get build and link errors).</p>
+
+<p><strong>Tip</strong> To load the <span class="devenv" vcproj="cppsrc_ShowEdges\show_edges.vcproj">show_edges</span> project from the command line, type:</p>
+<pre>devenv <span class="installPath">cppsrc_ShowEdges\show_edges.vcproj</span></pre>
+
+<!--
+<p>If devenv is in your path, <span class="devenv" vcproj="show_edges.vcproj">click here to start devenv</span> and load the <strong>show_edges</strong> project.</p>
+-->
+
+</li>
+<li>In Visual Studio .NET, open the project file .vcproj.</li>
+<li>Select a configuration (Release or Debug) and build the DLL.</li>
+</ol>
+</div>
+
+
+<div id="windows-build">
+<p class="proc-head">To build Wireframe on Windows</p>
+<ol>
+<li><p><span class="sishell" cppsrc="cppsrc_Wireframe">Open</span> an Softimage command prompt, and type <strong>devenv</strong> to start Visual Studio .NET.</p>
+<p>Starting Visual Studio .NET from an Softimage command prompt ensures that environment variables such as XSISDK_ROOT are set (otherwise you'll get build and link errors).</p>
+
+<p><strong>Tip</strong> To load the <span class="devenv" vcproj="cppsrc_Wireframe\Wireframe.vcproj">Wireframe</span> project from the command line, type:</p>
+<pre>devenv <span class="installPath">cppsrc_Wireframe\Wireframe.vcproj</span></pre>
+
+<!--
+<p>If devenv is in your path, <span class="devenv" vcproj="show_edges.vcproj">click here to start devenv</span> and load the <strong>show_edges</strong> project.</p>
+-->
+
+</li>
+<li>In Visual Studio .NET, open the project file .vcproj.</li>
+<li>Select a configuration (Release or Debug) and build the DLL.</li>
+</ol>
+</div>
+
+
+
+<div id="linux-build">
+<p class="proc-head">To build the example on Linux</p>
+<ol>
+<li>
+<p>In a shell (tcsh) window, type:</p>
+<pre>source $XSI_HOME/<span class="linuxExt">.xsi_&lt;xsi_version&gt;</span></pre>
+</li>
+
+<li>
+<p>Change directories to</p>
+<pre><span class="installPath">cppsrc_ShowEdges</span></pre>
+</li>
+
+<li>
+<p>To remove all intermediate files before building the example, run this command:</p>
+<pre>gmake clean</pre>
+</li>
+
+<li>
+<p>To compile the example, run this command:<p>
+<pre>gmake</pre>
+</li>
+</ol>
+</div>
+
+<div id="keywords">
+<h2>Keywords</h2>
+<p>This example uses the following keywords:</p>
+<p>
+mental ray, shader, tessellated, geometry, edges, polygon,
+C++ example, operator, Update, InputPort, OutputPort, UserData, UserDataBlob, GetUserData, user data,
+segments, CSegmentRefArray, GetSegments, CPointRefArray,
+MATH, CVector3,
+miQ_FUNC_USERPTR, miQ_INST_DATA, miQ_DATA_LABEL, miQ_DATA_PARAM
+</p>
+</div>
+
+
+
+</div>
+</body>
+</html>
